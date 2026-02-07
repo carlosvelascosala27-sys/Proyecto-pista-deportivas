@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('fondo.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.registro{
+    width: 400px;
+    padding: 30px 40px;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-family: 'Poppins', sans-serif;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.6);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.registro h1{
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+}
+
+.controls{
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    font-size: 16px;
+    backdrop-filter: blur(10px);
+    color: rgb(255, 255, 255);
+}
+
+.controls::placeholder{
+    color: white;
+    padding-left: 10px;
+}
+
+.registro p{
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.registro a{
+    color: rgb(255, 255, 255);
+    text-decoration:none;
+}
+
+.registro a:hover{
+    text-decoration:underline;
+    color: #ffffff;
+}
+
+.boton{
+    width: 100%;
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    border-bottom: 12px solid #71b7e6;
+    border: none;
+    margin: 16px 0;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    cursor: pointer;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio Sesión</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="caja1">
+        <form action="principal.html" method="get">
+            <h1>Login</h1>
+            <div class="box">
+                <input type="text" name="usuario" placeholder="Usuario" required>
+                <i class="bx bx-user" style="color:#ffffff;" ></i>
+            </div>
+            <div class="box">
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <i class="bx bx-lock" style="color:#ffffff;" ></i>
+            </div>
+            <div class ="recordar">
+                <label><input type="checkbox" name="recordar"> Recordar contraseña</label>
+                <a href="../Recuperar/olvido.html">¿Olvidaste tu contraseña?</a>
+            </div>
+            <button type="submit" class="boton">Iniciar sesión</button>
+
+            <div class="registro">
+                <p>¿No tienes una cuenta? <a href="../registro/registro.html">Regístrate aquí</a></p>
+            </div>
+
+            <button type="submit" class="google-boton" type="button">
+            <img src="google.png" alt="Google">
+                Iniciar sesión con Google
+            </button>
+
+            
+        </form>
+    </div>
+
+
+
+</body>
+</html>

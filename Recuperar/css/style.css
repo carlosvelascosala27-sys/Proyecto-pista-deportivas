@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('fondo.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.recuperar{
+    width: 400px;
+    padding: 30px 40px;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-family: 'Poppins', sans-serif;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.6);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 0px auto 20px auto;
+    display: block;
+    text-align: center;
+
+}
+
+.recuperar h1{
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+}
+
+.controls{
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    font-size: 16px;
+    backdrop-filter: blur(10px);
+    color: rgb(255, 255, 255);
+}
+
+.controls::placeholder{
+    color: rgb(255, 255, 255);
+    padding-left: 10px;
+}
+
+.recuperar p{
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+
+.recuperar a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.recuperar a:hover{
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.boton{
+    width: 60%;
+    background: transparent;
+    padding: 2px;
+    border-radius: 10px;
+    border: 11px solid rgba(255, 255, 255, .2);
+    font-size: 12px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
