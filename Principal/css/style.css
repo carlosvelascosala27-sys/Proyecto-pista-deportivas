@@ -1,0 +1,113 @@
+.header{
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+}
+
+body{
+    
+    min-height: 100vh;
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("fondo.png");
+         
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.logos {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.logo2{
+    width: 20px;
+    height: auto;
+    padding: 12px 20px;
+
+}
+
+.nav1 {
+    display: flex;
+    gap: 20px;
+    color: white;
+    align-items: center;
+
+}
+
+.nav1 a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 15px 20px;
+}
+
+.nav1 a:hover {
+    background-color: rgb(196, 137, 29);
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.nav2 {
+    display: flex;
+    gap: 20px;
+    color: white;
+    align-items: center;
+}
+
+.nav2 a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    text-decoration: none;
+    
+}
+
+.nav2 a:hover {
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.login-button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #555;
+    text-decoration: underline;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: transparent;
+    
+    
+
+}
