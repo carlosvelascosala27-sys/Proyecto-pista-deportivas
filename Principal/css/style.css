@@ -1,31 +1,32 @@
 .header{
-    background-color: transparent;
-    backdrop-filter: blur(10px);
+    background-color: black;
     color: white;
-    padding: 10px 20px;
+    padding: 0px 10px;
     text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     gap: 10px;
-    border-radius: 10px;
+    top: 0px; 
+    left: 0px; 
+    right: 0px;
+    font-family: "Playwrite NZ Basic";
+
 }
 
-body{
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Playwrite NZ Basic", sans-serif;
+    background-color: #f0f0f0;
+}
+
     
-    min-height: 100vh;
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.45),
-            rgba(0, 0, 0, 0.45)
-        ),
-        url("fondo.png");
-         
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    
+    
 
-}
+
 
 .logos {
     display: flex;
@@ -56,13 +57,13 @@ body{
 .nav1 a {
     color: white;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 17px;
     text-decoration: none;
     padding: 15px 20px;
 }
 
 .nav1 a:hover {
-    background-color: rgb(196, 137, 29);
+    background-color: rgba(241, 146, 37, 0.93);
     border-radius: 5px;
     text-decoration: underline;
 }
@@ -79,6 +80,8 @@ body{
     text-decoration: none;
     font-size: 17px;
     text-decoration: none;
+    padding:10px 10px;
+    left: -20px;
     
 }
 
@@ -88,7 +91,7 @@ body{
 }
 
 .login-button {
-    background-color: #000000;
+    background-color: rgba(241, 146, 37, 0.93);
     color: white;
     padding: 10px 15px;
     border: none;
@@ -97,17 +100,272 @@ body{
 }
 
 .login-button:hover {
-    background-color: #555;
+    background-color: rgba(241, 146, 37, 0.93);
     text-decoration: underline;
 }
 
 .main {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 80vh;
-    background-color: transparent;
-    
-    
-
+    align-items: flex-start;
+    flex-wrap: wrap;     
+    gap: 40px; 
+    min-height: 100vh;          
+    padding: 120px 40px 40px 40px;
+    background: 
+        url('fondo.jpg');
+    background-size: 100% ;
+    background-position: center;
 }
+
+.bloques {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px; 
+    min-height: 350px;
+}
+
+.bloques img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 20px 20px;
+}
+
+.reservar-button {
+    background-color: #f19225;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}   
+
+.reservar-button:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    text-decoration: underline;
+}
+
+.reservar-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.bienvenida {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 60px 40px 60px 40px;
+    background-color: rgba(241, 146, 37, 1.2);
+}
+
+.bienvenida h1 {
+    color: white;
+    font-size: 36px;
+    text-align: center;
+    margin: auto;
+    margin-left: auto;
+}
+
+.main-2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;     
+    gap: 40px; 
+    padding: 120px 40px 80px 40px;
+    background-color: rgba(255, 255, 255);
+}
+
+.main-2 h1 {
+    width: 100%;
+    text-align: left;
+    margin: auto;
+    margin-left: 300px;
+}
+
+.adults {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    color: white;
+    width: 600px;
+    overflow: hidden;
+}
+
+.adults img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.adults h1 {
+    padding: 20px 30px 10px 30px;
+    margin: 0;
+}
+
+.adults p {
+    padding: 0 30px 30px 30px;
+    margin: 0;
+}
+
+.kids {
+     background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    color: white;
+    width: 600px;
+    overflow: hidden;
+}
+
+.kids img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.kids h1 {
+    padding: 20px 30px 10px 30px;
+    margin: 0;
+}
+
+.kids p {
+    padding: 0 30px 30px 30px;
+    margin: 0;
+}
+
+.torneos {
+    padding: 100px 60px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(241, 146, 37, 1.2);
+}
+
+.contenido-torneos {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    position: relative;
+    max-width: 1200px;   
+    width: 100%;
+}
+
+
+.contenido-torneos img {
+    width: 450px;       
+    height: 550px;
+    object-fit: cover;
+    border-radius: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+
+.contenido-torneos::before {
+    content: "";
+    position: absolute;
+    width: 380px;
+    height: 520px;     
+    background-color: #ffffff;
+    border-radius: 15px;
+    top: 30px;
+    left: -20px;
+    z-index: 1;
+}
+
+
+.texto-torneos {
+    max-width: 450px;
+}
+
+
+.texto-torneos {
+    max-width: 500px;
+}
+
+.texto-torneos h2 {
+    font-size: 40px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.texto-torneos p {
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.btn-torneos {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-torneos:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: #000000;
+    color: white;
+    padding-top: 60px;
+}
+
+.footer-contenido {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-col h3,
+.footer-col h4 {
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 40px;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
