@@ -11,22 +11,18 @@
     top: 0px; 
     left: 0px; 
     right: 0px;
-    font-family: "Playwrite NZ Basic";
+    font-family: 'Montserrat', sans-serif;
+
 
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: "Playwrite NZ Basic", sans-serif;
+    font-family: 'Montserrat', sans-serif;
+
     background-color: #f0f0f0;
 }
-
-    
-    
-    
-
-
 
 .logos {
     display: flex;
@@ -103,6 +99,32 @@ body {
     background-color: rgba(241, 146, 37, 0.93);
     text-decoration: underline;
 }
+
+
+@media (max-width: 1100px) {
+    .contacto {
+        display: none;
+    }
+}
+
+@media (max-width: 950px) {
+    .torneos {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .creditos {
+        display: none;
+    }
+}
+
+@media (max-width: 650px) {
+    .inicio {
+        display: none;
+    }
+}
+
 
 .main {
     display: flex;
@@ -190,7 +212,7 @@ body {
     width: 100%;
     text-align: left;
     margin: auto;
-    margin-left: 300px;
+    margin-left: 100px;
 }
 
 .adults {
@@ -243,7 +265,7 @@ body {
     margin: 0;
 }
 
-.torneos {
+.torneos-parte {
     padding: 100px 60px;
     display: flex;
     justify-content: center;
