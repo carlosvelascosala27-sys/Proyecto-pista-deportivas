@@ -1,0 +1,266 @@
+.header{
+    background-color: black;
+    color: white;
+    padding: 0px 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+    top: 0px; 
+    left: 0px; 
+    right: 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+
+    background-color: #f0f0f0;
+}
+
+.logos {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.logo2{
+    width: 20px;
+    height: auto;
+    padding: 12px 20px;
+
+}
+
+.nav1 {
+    display: flex;
+    gap: 20px;
+    color: white;
+    align-items: center;
+
+}
+
+.nav1 a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 15px 20px;
+}
+
+.nav1 a:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.nav2 {
+    display: flex;
+    gap: 20px;
+    color: white;
+    align-items: center;
+}
+
+.nav2 a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    text-decoration: none;
+    padding:10px 10px;
+    left: -20px;
+    
+}
+
+.nav2 a:hover {
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.login-button {
+    background-color: rgba(241, 146, 37, 0.93);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    text-decoration: underline;
+}
+
+
+@media (max-width: 1100px) {
+    .contacto {
+        display: none;
+    }
+}
+
+@media (max-width: 950px) {
+    .torneos {
+        display: none;
+    }
+}
+
+
+
+@media (max-width: 800px) {
+    .creditos {
+        display: none;
+    }
+}
+
+@media (max-width: 650px) {
+    .inicio {
+        display: none;
+    }
+}
+
+.reservas {
+    padding: 20px;
+    
+}   
+
+
+.panel {
+    width: 70%;
+    margin: 30px auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    background: white;
+}
+
+.titulo-deporte {
+    width: 70%;
+    margin: 30px auto;
+    text-align: left;
+}
+
+.estado {
+    width: 70%;
+    margin: 10px auto;
+    text-align: center;
+    font-size: 20px;
+}
+
+.panel-header {
+    list-style: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+.panel-header img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    font-weight: 600;
+    font-size: 18px;
+    position: relative;
+}
+
+.header-info::after {
+    content: "▼";
+    margin-left: 15px;
+    transition: transform 0.3s ease;
+}
+
+.panel[open] .header-info::after {
+    transform: rotate(180deg);
+}
+
+.titulo {
+    font-size: 24px;
+    color: #333;
+    margin-right: auto;
+}
+
+.precio {
+    color: #e67e22;
+}
+
+.contenido {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+
+    transition:
+        max-height 0.5s ease,
+        opacity 0.4s ease,
+        transform 0.4s ease;
+
+    padding: 0 20px;
+}
+
+.panel[open] .contenido {
+    max-height: 600px;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 20px;
+}
+
+.contenido {
+    padding: 20px;
+    background: #fafafa;
+}
+
+.precio {
+    color: #e67e22;
+    text-align: right;
+    align-items: right;
+}
+
+.horario-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.slot {
+    background-color: #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.disponible {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.disponible:hover {
+    background-color: #b7e4c7;
+    transform: scale(1.05);
+}
+
+.ocupado {
+    background-color: #f8d7da;
+    color: #721c24;
+    cursor: not-allowed;
+}
