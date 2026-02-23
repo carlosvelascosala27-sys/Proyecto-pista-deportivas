@@ -53,7 +53,7 @@ body {
 .nav1 a {
     color: white;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
     text-decoration: none;
     padding: 15px 20px;
 }
@@ -113,6 +113,8 @@ body {
     }
 }
 
+
+
 @media (max-width: 800px) {
     .creditos {
         display: none;
@@ -136,8 +138,18 @@ body {
     padding: 120px 40px 40px 40px;
     background: 
         url('fondo.jpg');
-    background-size: 100% ;
+    background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: -50px;
+    font-size: 50px;
+    color: rgb(0, 0, 0);
 }
 
 .bloques {
@@ -151,6 +163,12 @@ body {
     align-items: center;
     width: 600px; 
     min-height: 350px;
+}
+
+.bloques h1 {
+    margin: 0;
+    font-size: 40px;
+    color: #ffffff;
 }
 
 .bloques img {
@@ -192,7 +210,7 @@ body {
 
 .bienvenida h1 {
     color: white;
-    font-size: 36px;
+    font-size: 70px;
     text-align: center;
     margin: auto;
     margin-left: auto;
@@ -210,9 +228,10 @@ body {
 
 .main-2 h1 {
     width: 100%;
-    text-align: left;
-    margin: auto;
-    margin-left: 100px;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: -10px;
+    font-size: 50px;
 }
 
 .adults {
@@ -220,7 +239,11 @@ body {
     border-radius: 10px;
     color: white;
     width: 600px;
+    height: auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .adults img {
@@ -233,19 +256,25 @@ body {
 .adults h1 {
     padding: 20px 30px 10px 30px;
     margin: 0;
+    text-align: left;
+    font-size: 40px;
 }
 
 .adults p {
     padding: 0 30px 30px 30px;
     margin: 0;
+    flex-grow: 1;
 }
 
 .kids {
-     background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     color: white;
     width: 600px;
+    height: auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .kids img {
@@ -258,11 +287,14 @@ body {
 .kids h1 {
     padding: 20px 30px 10px 30px;
     margin: 0;
+    text-align: left;
+    font-size: 40px;
 }
 
 .kids p {
     padding: 0 30px 30px 30px;
     margin: 0;
+    flex-grow: 1;
 }
 
 .torneos-parte {
@@ -307,6 +339,7 @@ body {
 
 .texto-torneos {
     max-width: 450px;
+    font-size: 20px;
 }
 
 
@@ -315,7 +348,7 @@ body {
 }
 
 .texto-torneos h2 {
-    font-size: 40px;
+    font-size: 60px;
     color: #ffffff;
     margin-bottom: 20px;
 }
@@ -324,6 +357,8 @@ body {
     line-height: 1.6;
     margin-bottom: 30px;
 }
+
+
 
 .btn-torneos {
     background-color: #000000;
