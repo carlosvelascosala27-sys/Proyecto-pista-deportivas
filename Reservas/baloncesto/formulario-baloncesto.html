@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservas</title>
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logos">
+            <img src="logo.png" alt="Logo" class="logo">
+            <img src="espana.png" alt="Logo" class="logo2">
+        </div>
+        <nav class="nav1">
+            
+                <a href="../../Principal/principal.html" class="inicio">Inicio</a>
+                <a href="../../Creditos/creditos.html" class="creditos">Créditos</a>
+                <a href="../../Torneos/torneos.html" class="torneos">Torneos</a>
+                <a href="../../Contacto/contacto.html" class="contacto">Contacto</a>
+        </nav>
+        <nav class="nav2">
+                <button class="login-button"><a href="../Login/login.html">Acceder</a></button>
+                <a href="../../Login/login.html">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <main class="formulario-container">
+
+    <h1>Formulario de Reserva - Baloncesto</h1>
+
+    <form action="../../Confirmacion/confirmacion.html" method="get">
+
+        <div class="grupo">
+            <label>Nombre Completo:</label>
+            <input type="text" placeholder="Tu nombre y apellidos" required>
+        </div>
+
+        <div class="grupo-fecha">
+            <label>Fecha:</label>
+            <input type="date" required>
+        </div>
+
+        <div class="grupo">
+            <label>Duración:</label>
+            <select>
+                <option>1 hora</option>
+                <option>1 hora y media</option>
+                <option>2 horas</option>
+            </select>
+        </div>
+
+        <div class="grupo">
+            <label>Tipo de pago:</label>
+            <div class="opciones">
+                <label><input type="radio" name="pago"> Tarjeta</label>
+                <label><input type="radio" name="pago"> Bizum</label>
+                <label><input type="radio" name="pago"> Efectivo</label>
+                <label><input type="radio" name="pago"> BMVCoins</label>
+            </div>
+        </div>
+
+        <div class="grupo">
+            <label>Alquiler de material:</label>
+            <div class="opciones">
+                <label><input type="checkbox"> Balón (3€)</label>
+                <label><input type="checkbox"> Petos (2€)</label>
+            </div>
+        </div>
+
+        <div class="grupo">
+            <label>
+                <input type="checkbox" required>
+                Acepto la política de cancelación
+            </label>
+        </div>
+
+        <button type="submit">Confirmar Reserva</button>
+
+    </form>
+
+    <p class="politica">
+        Las reservas podrán cancelarse hasta 1 hora antes del inicio.
+        Pasado ese tiempo no se permitirá la cancelación.
+    </p>
+
+</main>
