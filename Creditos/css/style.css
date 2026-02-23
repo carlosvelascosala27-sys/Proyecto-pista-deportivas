@@ -129,3 +129,61 @@ body {
     padding: 20px;
     
 } 
+
+.fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.titulo-creditos {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 36px;
+    color: rgba(241, 146, 37, 0.93);
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;     
+    gap: 40px; 
+    padding: 120px 40px 80px 40px;
+}
+
+.main h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: -10px;
+    font-size: 50px;
+}
+
+.credito-item {
+    Background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    color: white;
+    width: 300px;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    object-fit: contain;
+}
+
+.credito-imagen {
+    width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.credito-titulo{
+    padding: 20px;
+    margin: 0;
+    text-align: left;
+}
