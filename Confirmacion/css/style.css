@@ -1,0 +1,67 @@
+body {
+    font-family: 'Playwrite NZ Basic', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    
+}
+
+.confirmacion-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f6fa;
+}
+
+.confirmacion-card {
+    background: white;
+    padding: 60px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    width: 40%;
+}
+
+.confirmacion-card h1 {
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+.mensaje {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.botones {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    background-color: #e67e22;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #cf711f;
+}
+
+.btn-secundario {
+    background-color: #ddd;
+    color: #333;
+    padding: 12px 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.btn-secundario:hover {
+    background-color: #ccc;
+}
