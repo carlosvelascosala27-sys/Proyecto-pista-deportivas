@@ -42,12 +42,26 @@ body {
 
 }
 
+.moneda {
+    width: 60px;
+    height: auto;
+    padding: 12px -50px;
+    margin-right: -50px;
+}
+
+.saldo {
+    font-size: 18px;
+    color: white;
+    padding: 30px 30px;
+}
+
 .nav1 {
     display: flex;
     gap: 20px;
     color: white;
     align-items: center;
-
+    text-align: center;
+    padding-left: 260px;
 }
 
 .nav1 a {
@@ -56,12 +70,12 @@ body {
     font-size: 20px;
     text-decoration: none;
     padding: 15px 20px;
+    align-items: center;
 }
 
 .nav1 a:hover {
     background-color: rgba(241, 146, 37, 0.93);
     border-radius: 5px;
-    text-decoration: underline;
 }
 
 .nav2 {
@@ -125,6 +139,13 @@ body {
     .inicio {
         display: none;
     }
+
+    .moneda {
+        display: none;
+    }
+        .saldo {
+            display: none;
+        }
 }
 
 
