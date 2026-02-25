@@ -39,13 +39,25 @@ body {
     padding: 12px 20px;
 
 }
+.moneda {
+    width: 60px;
+    height: auto;
+    padding: 12px -50px;
+    margin-right: -50px;
+}
+
+.saldo {
+    font-size: 18px;
+    color: white;
+    padding: 30px 30px;
+}
 
 .nav1 {
     display: flex;
     gap: 20px;
     color: white;
     align-items: center;
-
+    padding-left: 260px;
 }
 
 .nav1 a {
