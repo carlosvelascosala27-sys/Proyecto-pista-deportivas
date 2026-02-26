@@ -1,0 +1,392 @@
+.header{
+    background-color: black;
+    color: white;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
+}
+
+.logos {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.logo2{
+    width: 20px;
+    height: auto;
+}
+
+.moneda {
+    width: 35px;
+    height: auto;
+}
+
+.saldo {
+    font-size: 18px;
+    color: white;
+}
+
+.nav1 {
+    position: absolute;
+    left: 50%; /* Posiciona el nav1 en el centro horizontal del header */
+    transform: translateX(-50%); /* Centra horizontalmente el nav1 */
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav1 a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 15px 20px;
+}
+
+.nav1 a:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.nav2 {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre la moneda y los enlaces de navegación */
+    font-size: 20px;
+}
+
+.monedas {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la moneda y el saldo */
+}
+
+.monedas .moneda {
+    width: 60px;
+    height: auto;
+}
+
+.nav2 a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 10px 10px;
+}
+
+.nav2 a:hover {
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+
+.login-button {
+    background-color: rgba(241, 146, 37, 0.93);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.login-button:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    text-decoration: underline;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .contacto {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .torneos {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .creditos {
+        display: none;
+    }
+
+    .nav2 {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        gap: 8px 15px;
+    }
+
+    .monedas {
+        grid-column: 1; /* Ocupa toda la primera columna */
+        grid-row: 1; /* Ocupa la primera fila */
+    }
+
+    .login-button {
+        grid-column: 2; /* Ocupa la segunda columna */
+        grid-row: 1; /* Ocupa la primera fila */
+        justify-self: end;
+    }
+
+    .cerrar {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+    }
+}
+
+
+@media (max-width: 750px) {
+    .inicio {
+        display: none;
+    }
+}
+
+.torneos-section {
+    height: 400px;
+    background-image: url("fondo-torneos.png"); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.torneos-section::before { /* Capa de superposición para oscurecer la imagen de fondo */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(241, 146, 37, 0.20); /* Color de superposición con transparencia */
+}
+
+.torneos-header {
+    position: relative; /* Para que el contenido esté por encima de la capa de superposición */
+    color: white;
+    text-align: center;
+}
+
+.torneos-header h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;/* Espacio entre letras para un efecto más elegante */
+}
+
+.torneos-header p {
+    font-size: 20px;
+    opacity: 0.9; /* Para dar un efecto de texto más suave */
+}
+
+.intro-torneos {
+    padding: 80px 20px;
+    background-color: #ffffff;
+}
+
+.intro-contenido {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    border-left: 4px solid rgba(241,146,37,0.93);
+    padding-left: 40px;
+}
+
+
+.intro-titulo {
+    flex: 1;
+}
+
+.intro-titulo h2 {
+    font-size: 34px;
+    color: #222;
+    margin: 0;
+}
+
+.intro-texto {
+    flex: 1;
+}
+
+.intro-texto p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+}
+
+.torneos-parte {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 30px;
+
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* POSICIONES */
+
+.tarjeta-adultos {
+    grid-column: 1;
+    grid-row: 1 / 3;
+}
+
+.tarjeta-juniors {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.tarjeta-pro {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* TARJETA ADULTOS */
+
+.tarjeta-adultos {
+    background-color: #e9922f;
+    color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.tarjeta-adultos img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+}
+
+.tarjeta-adultos h3 {
+    margin: 20px 30px 10px 30px;
+    font-size: 26px;
+}
+
+.tarjeta-adultos p {
+    margin: 0 30px 30px 30px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.tarjeta-adultos:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+/* TARJETA JUNIORS */
+
+.tarjeta-juniors {
+    display: flex;
+    background-color: #e9922f;
+    color: white;
+    border-radius: 15px;
+    overflow: hidden;
+
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.tarjeta-juniors img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tarjeta-juniors .texto {
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tarjeta-juniors h3 {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+}
+
+.tarjeta-juniors p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.tarjeta-juniors:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+/* TARJETA PRO */
+
+.tarjeta-pro {
+    display: flex;
+    background-color: #e9922f;
+    color: white;
+    border-radius: 15px;
+    overflow: hidden;
+
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.tarjeta-pro img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    order: 2;
+}
+
+.tarjeta-pro .texto {
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tarjeta-pro h3 {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+}
+
+.tarjeta-pro p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.tarjeta-pro:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
