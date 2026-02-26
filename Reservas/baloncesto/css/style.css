@@ -225,8 +225,8 @@ summary::-webkit-details-marker {
     opacity: 0;
     transform: translateY(-10px);
     animation: fadein 0.5s ease-in-out;
-
     padding: 0 20px;
+    text-decoration: none;
 }
 
 .panel[open] .contenido {
@@ -246,6 +246,7 @@ summary::-webkit-details-marker {
 .contenido {
     padding: 20px;
     background: #fafafa;
+    text-decoration: none;
 }
 
 .precio {
@@ -259,6 +260,7 @@ summary::-webkit-details-marker {
     grid-template-columns: repeat(5, 1fr); 
     gap: 15px;
     margin-top: 20px;
+    text-decoration: none;
 }
 
 .slot {
@@ -269,20 +271,59 @@ summary::-webkit-details-marker {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.slotdisponible{
+    background-color: #d4edda;
+    color: #155724;
+    text-decoration: none;
 }
 
 .disponible {
     background-color: #d4edda;
     color: #155724;
+    text-decoration: none;
 }
 
 .disponible:hover {
     background-color: #b7e4c7;
     transform: scale(1.05);
+    text-decoration: none;
 }
 
 .ocupado {
     background-color: #f8d7da;
     color: #721c24;
     cursor: not-allowed;
+}
+
+.selector-fecha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: 30px 0;
+}
+
+.fecha {
+    font-size: 22px;
+    font-weight: 600px;
+    background: white;
+    padding: 12px 40px; /* Aumenta el padding para un aspecto más destacado */
+    border-radius: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    letter-spacing: 1px; /* Espaciado entre letras para un efecto más elegante */
+}
+
+.flecha {
+    font-size: 32px;
+    cursor: pointer;
+    color: #e67e22;
+    transition: all 0.3s ease; /* Transición suave para el efecto hover */
+}
+
+.flecha:hover {
+    transform: scale(1.25); /* Aumenta el tamaño al hacer hover */
+    color: #cf711f;
 }
