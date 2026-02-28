@@ -1,0 +1,321 @@
+.header{
+    background-color: black;
+    color: white;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* Espacio entre los elementos del header */
+    font-family: 'Montserrat', sans-serif;
+    position: fixed;/* Hace que el header se quede fijo en la parte superior de la página */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total del header */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
+    margin-top: 100px;
+    overflow-x: hidden; /* Evita el scroll horizontal causado por el header fijo */
+
+}
+
+.logos {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.logo2{
+    width: 20px;
+    height: auto;
+}
+
+.moneda {
+    width: 35px;
+    height: auto;
+}
+
+.saldo {
+    font-size: 18px;
+    color: white;
+}
+
+.nav1 {
+    position: absolute;
+    left: 50%; /* Posiciona el nav1 en el centro horizontal del header */
+    transform: translateX(-50%); /* Centra horizontalmente el nav1 */
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav1 a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 15px 20px;
+}
+
+.nav1 a:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.nav2 {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre la moneda y los enlaces de navegación */
+    font-size: 20px;
+}
+
+.monedas {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la moneda y el saldo */
+}
+
+.monedas .moneda {
+    width: 60px;
+    height: auto;
+}
+
+.nav2 a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 10px 10px;
+}
+
+.nav2 a:hover {
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+
+.login-button {
+    background-color: rgba(241, 146, 37, 0.93);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.login-button:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    text-decoration: underline;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .contacto {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .torneos {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .creditos {
+        display: none;
+    }
+
+    .nav2 {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        gap: 8px 15px;
+    }
+
+    .monedas {
+        grid-column: 1; /* Ocupa toda la primera columna */
+        grid-row: 1; /* Ocupa la primera fila */
+    }
+
+    .login-button {
+        grid-column: 2; /* Ocupa la segunda columna */
+        grid-row: 1; /* Ocupa la primera fila */
+        justify-self: end;
+    }
+
+    .cerrar {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+    }
+}
+
+
+@media (max-width: 750px) {
+    .inicio {
+        display: none;
+    }
+}
+
+.torneos-section {
+    height: 400px;
+    background-image: url("fondo.png"); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.torneos-section::before { /* Capa de superposición para oscurecer la imagen de fondo */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(241, 146, 37, 0.20); /* Color de superposición con transparencia */
+}
+
+.torneos-header {
+    position: relative; /* Para que el contenido esté por encima de la capa de superposición */
+    color: white;
+    text-align: center;
+}
+
+.torneos-header h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;/* Espacio entre letras para un efecto más elegante */
+}
+
+.torneos-header p {
+    font-size: 20px;
+    opacity: 0.9; /* Para dar un efecto de texto más suave */
+    border-left: 3px solid rgba(241,146,37,0.93); /* Línea vertical a la izquierda del texto */
+    padding-left: 15px; /* Espacio entre la línea y el texto */
+
+}
+
+.contenedor-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Espacio vertical entre las tarjetas */
+    margin: 80px 20px; /* Espacio vertical entre la sección de torneos y las tarjetas */
+}
+
+/* TARJETA */
+.card-torneo {
+    display: flex; /* clave para poner foto y contenido en fila */
+    align-items: center;
+    background-color: rgba(241,146,37,0.93);
+    border-radius: 15px;
+    overflow: hidden; /* Para que las esquinas redondeadas afecten a la imagen también */
+    position: relative;
+    text-decoration: none;
+    color: inherit; /* Hereda el color del texto del contenedor padre */
+    transition: 0.3s ease;
+}
+
+/* FOTO */
+.card-torneo img {
+    width: 220px;   /* ancho fijo tipo cartel */
+    height: auto;
+}
+
+/* CONTENIDO */
+.card-contenido {
+    width: 60%;
+    padding: 30px;
+    position: relative;
+}
+
+.card-torneo h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.card-torneo p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444;
+}
+
+
+/* HOVER */
+.card-torneo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.footer {
+    background-color: #000000;
+    color: white;
+    padding-top: 60px;
+}
+
+.footer-contenido {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-col h3,
+.footer-col h4 {
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 40px;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+
+
