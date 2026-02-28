@@ -172,8 +172,6 @@ body {
     }
 }
 
-/* HERO */
-
 .contacto-hero {
     text-align: center;
     padding: 80px 20px;
@@ -191,9 +189,6 @@ body {
     color: #555;
 }
 
-
-/* CONTENIDO PRINCIPAL */
-
 .contacto-contenido {
     display: flex;
     gap: 60px;
@@ -201,9 +196,6 @@ body {
     margin: 80px auto;
     padding: 0 20px;
 }
-
-
-/* FORMULARIO */
 
 .contacto-formulario {
     flex: 1;
@@ -247,9 +239,6 @@ body {
 .contacto-formulario button:hover {
     background-color: #002b5b;
 }
-
-
-/* INFORMACIÓN */
 
 .contacto-info {
     flex: 1;
