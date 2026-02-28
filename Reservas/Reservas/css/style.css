@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header{
+    background-color: black;
+    color: white;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* Espacio entre los elementos del header */
+    font-family: 'Montserrat', sans-serif;
+    position: fixed;/* Hace que el header se quede fijo en la parte superior de la página */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total del header */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f6f9;
+}
+
+
+.logos {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.logo2{
+    width: 20px;
+    height: auto;
+}
+
+.moneda {
+    width: 35px;
+    height: auto;
+}
+
+.saldo {
+    font-size: 18px;
+    color: white;
+}
+
+.nav1 {
+    position: absolute;
+    left: 50%; /* Posiciona el nav1 en el centro horizontal del header */
+    transform: translateX(-50%); /* Centra horizontalmente el nav1 */
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav1 a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 15px 20px;
+}
+
+.nav1 a:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.nav2 {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre la moneda y los enlaces de navegación */
+    font-size: 20px;
+}
+
+.monedas {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la moneda y el saldo */
+}
+
+.monedas .moneda {
+    width: 60px;
+    height: auto;
+}
+
+.nav2 a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 10px 10px;
+}
+
+.nav2 a:hover {
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+
+.login-button {
+    background-color: rgba(241, 146, 37, 0.93);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.login-button:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    text-decoration: underline;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .contacto {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .torneos {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .creditos {
+        display: none;
+    }
+
+    .nav2 {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        gap: 8px 15px;
+    }
+
+    .monedas {
+        grid-column: 1; /* Ocupa toda la primera columna */
+        grid-row: 1; /* Ocupa la primera fila */
+    }
+
+    .login-button {
+        grid-column: 2; /* Ocupa la segunda columna */
+        grid-row: 1; /* Ocupa la primera fila */
+        justify-self: end;
+    }
+
+    .cerrar {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+    }
+}
+
+
+@media (max-width: 750px) {
+    .inicio {
+        display: none;
+    }
+}
+
+
+
+.contenedor-reservas {
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 20px;
+}
+
+.contenedor-reservas h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #000000;
+}
+
+.reserva {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border: 1px solid #ddd;
+}
+
+.reserva h3 {
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.reserva p {
+    margin-bottom: 8px;
+}
+
+.btn-cancelar {
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: rgba(241, 146, 37, 0.93);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-cancelar:hover {
+    background-color: #000000;
+}
