@@ -1,0 +1,272 @@
+.header{
+    background-color: black;
+    color: white;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px; /* Espacio entre los elementos del header */
+    font-family: 'Montserrat', sans-serif;
+    position: fixed;/* Hace que el header se quede fijo en la parte superior de la página */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total del header */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
+    margin-top: 100px;
+    overflow-x: hidden; /* Evita el scroll horizontal causado por el header fijo */
+
+}
+
+.logos {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.logo2{
+    width: 20px;
+    height: auto;
+}
+
+.moneda {
+    width: 35px;
+    height: auto;
+}
+
+.saldo {
+    font-size: 18px;
+    color: white;
+}
+
+.nav1 {
+    position: absolute;
+    left: 50%; /* Posiciona el nav1 en el centro horizontal del header */
+    transform: translateX(-50%); /* Centra horizontalmente el nav1 */
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav1 a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 15px 20px;
+}
+
+.nav1 a:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.nav2 {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre la moneda y los enlaces de navegación */
+    font-size: 20px;
+}
+
+.monedas {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la moneda y el saldo */
+}
+
+.monedas .moneda {
+    width: 60px;
+    height: auto;
+}
+
+.nav2 a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 10px 10px;
+}
+
+.nav2 a:hover {
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+
+.login-button {
+    background-color: rgba(241, 146, 37, 0.93);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.login-button:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    text-decoration: underline;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .contacto {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .torneos {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .creditos {
+        display: none;
+    }
+
+    .nav2 {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        gap: 8px 15px;
+    }
+
+    .monedas {
+        grid-column: 1; /* Ocupa toda la primera columna */
+        grid-row: 1; /* Ocupa la primera fila */
+    }
+
+    .login-button {
+        grid-column: 2; /* Ocupa la segunda columna */
+        grid-row: 1; /* Ocupa la primera fila */
+        justify-self: end;
+    }
+
+    .cerrar {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+    }
+}
+
+
+@media (max-width: 750px) {
+    .inicio {
+        display: none;
+    }
+}
+
+/* HERO */
+
+.contacto-hero {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: #f5f5f5;
+}
+
+.contacto-hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    color: #002b5b;
+}
+
+.contacto-hero p {
+    font-size: 18px;
+    color: #555;
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+.contacto-contenido {
+    display: flex;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+
+/* FORMULARIO */
+
+.contacto-formulario {
+    flex: 1;
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.contacto-formulario h2 {
+    margin-bottom: 25px;
+    color: #002b5b;
+}
+
+.contacto-formulario form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contacto-formulario input,
+.contacto-formulario select,
+.contacto-formulario textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.contacto-formulario button {
+    background-color: #e9922f;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.contacto-formulario button:hover {
+    background-color: #002b5b;
+}
+
+
+/* INFORMACIÓN */
+
+.contacto-info {
+    flex: 1;
+}
+
+.contacto-info h2 {
+    margin-bottom: 25px;
+    color: #002b5b;
+}
+
+.contacto-info p {
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.mapa {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
