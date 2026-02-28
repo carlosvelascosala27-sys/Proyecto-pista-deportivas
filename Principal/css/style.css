@@ -5,7 +5,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-<<<<<<< HEAD
     gap: 10px; /* Espacio entre los elementos del header */
     font-family: 'Montserrat', sans-serif;
     position: fixed;/* Hace que el header se quede fijo en la parte superior de la página */
@@ -14,11 +13,9 @@
     width: 100%;
     z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
     box-sizing: border-box; /* Asegura que el padding no afecte al ancho total del header */
-=======
     gap: 10px;
     font-family: 'Montserrat', sans-serif;
     position: relative;
->>>>>>> Reservas
 }
 
 body {
