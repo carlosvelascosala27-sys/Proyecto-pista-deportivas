@@ -175,14 +175,15 @@ body {
     align-items: center;
 }
 
-.torneos-section::before { /* Capa de superposición para oscurecer la imagen de fondo */
+.main ::before{
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(241, 146, 37, 0.20); /* Color de superposición con transparencia */
+    background-color: rgba(241, 146, 37, 0.20);
+    z-index: 0; /* Asegura que la capa de superposición esté detrás del contenido */
 }
 
 .torneos-header {
