@@ -174,10 +174,11 @@ body {
     min-height: 100vh;          
     padding: 120px 40px 40px 40px;
     background: 
-        url('fondo.jpg');
+        url('fondo.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    
 }
 
 .main h1 {
@@ -186,7 +187,7 @@ body {
     margin-bottom: 40px;
     margin-top: -50px;
     font-size: 50px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .bloques {
@@ -242,7 +243,7 @@ body {
     align-items: flex-start;
     gap: 20px;
     padding: 60px 40px 60px 40px;
-    background-color: rgba(241, 146, 37, 1.2);
+    background-color: rgba(241, 146, 37, 1);
 }
 
 .bienvenida h1 {
@@ -260,7 +261,7 @@ body {
     flex-wrap: wrap;     
     gap: 40px; 
     padding: 120px 40px 80px 40px;
-    background-color: rgba(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .main-2 h1 {
@@ -338,7 +339,9 @@ body {
     padding: 100px 60px;
     display: flex;
     justify-content: center;
-    background-color: rgba(241, 146, 37, 1.2);
+    background: url('fondo-torneos.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .contenido-torneos {
@@ -348,6 +351,7 @@ body {
     position: relative;
     max-width: 1200px;   
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 
@@ -377,6 +381,7 @@ body {
 .texto-torneos {
     max-width: 450px;
     font-size: 20px;
+    color: white;
 }
 
 
@@ -398,7 +403,7 @@ body {
 
 
 .btn-torneos {
-    background-color: #000000;
+    background-color: rgba(241, 146, 37, 0.93);
     color: #ffffff;
     padding: 12px 25px;
     border-radius: 8px;
