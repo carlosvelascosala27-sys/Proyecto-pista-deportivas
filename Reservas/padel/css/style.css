@@ -155,6 +155,7 @@ body {
         grid-row: 2;
         justify-self: end;
     }
+<<<<<<< HEAD
 }
 
 
@@ -485,6 +486,10 @@ body {
     }
 }
 
+=======
+}
+
+>>>>>>> Reservas
 
 @media (max-width: 750px) {
     .inicio {
