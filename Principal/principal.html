@@ -2,12 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Principal</title>
+    <title>Reservas</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header class="header">
         <div class="logos">
@@ -17,42 +18,49 @@
         <nav class="nav1">
             
                 <a href="../Principal/principal.html" class="inicio">Inicio</a>
-                <a href="#" class="creditos">Créditos</a>
-                <a href="#" class="torneos">Torneos</a>
-                <a href="#" class="contacto">Contacto</a>
+                <a href="../Torneos/torneos.html" class="torneos">Torneos</a>
+                <a href="../Contacto/contacto.html" class="contacto">Contacto</a>
         </nav>
         <nav class="nav2">
-                <button class="login-button"><a href="../Login/login.html">Acceder</a></button>
-                <a href="../Login/login.html">Cerrar Sesión</a>
+
+            <div class="monedas">
+                <img src="moneda.png" class="moneda">
+                <span class="saldo">9999</span>
+            </div>
+
+            <button class="login-button">Acceder</button>
+            <a href="#" class="cerrar">Cerrar Sesión</a>
+
         </nav>
     </header>
     <section class="main">
+        <h1>RESERVA TU PISTA EN A3PISTAS</h1>
         <div class="bloques"> 
             <h1>FUTBOL</h1> 
             <p>Contamos con unas instalaciones de futbol para todos los niveles.</p> 
             <img src="futbol-img.png" alt="Futbol">
-            <button class="reservar-button"><a href="#">Reservar</a></button>
+            <button class="reservar-button"><a href="../Reservas/futbol/reservas-futbol.html">Reservar</a></button>
         </div>
 
         <div class="bloques"> 
-            <h1>PADEL</h1> 
-            <p>Contamos con unas instalaciones de padel para todos los niveles.</p> 
+            <h1>PÁDEL</h1> 
+            <p>Contamos con unas instalaciones de pádel para todos los niveles.</p> 
             <img src="padel.png" alt="Padel">
-            <button class="reservar-button"><a href="#">Reservar</a></button>
+            <button class="reservar-button"><a href="../Reservas/padel/reservas-padel.html">Reservar</a></button>
         </div>
 
         <div class="bloques"> 
             <h1>TENIS</h1> 
             <p>Contamos con unas instalaciones de tenis para todos los niveles.</p> 
             <img src="tenis.png" alt="Tenis">
-            <button class="reservar-button"><a href="#">Reservar</a></button>
+            <button class="reservar-button"><a href="../Reservas/tenis/reservas-tenis.html">Reservar</a></button>
         </div>
 
         <div class="bloques">
             <h1>BALONCESTO</h1> 
             <p>Contamos con unas instalaciones de baloncesto para todos los niveles.</p> 
             <img src="baloncesto.png" alt="Baloncesto">
-            <button class="reservar-button"><a href="#">Reservar</a></button>
+            <button class="reservar-button"><a href="../Reservas/baloncesto/reservas-baloncesto.html">Reservar</a></button>
         </div>
     </section>
 
@@ -71,7 +79,7 @@
         <div class="kids">
             <img src="niños.jpg" alt="Niños">
             <h1>NIÑOS</h1>
-            <p>En A3Pitas contamos con entrenamientos deportivos para niños, los cuales pueden ser individuales o en grupo para mejorar su técnica. Se produce un entorno idílico para el desarrollo físico y mental de los participantes.</p>
+            <p>En A3Pitas contamos con entrenamientos deportivos para jóvenes, los cuales pueden ser individuales o en grupo para mejorar su técnica. Se produce un entorno idílico para el desarrollo físico y mental de los participantes.</p>
         </div>
     </section>
 
@@ -81,10 +89,9 @@
 
             <div class="texto-torneos">
                 <h2>Torneos</h2>
-                <p>
-                    Los torneos de A3Pistas brindan una plataforma emocionante para competir y mejorar en un entorno inspirador.
+                <p>En A3Pitas organizamos torneos deportivos para fomentar la competencia y el espíritu deportivo entre nuestros usuarios. Nuestros torneos son abiertos a jugadores de todos los niveles, desde principiantes hasta profesionales, y se llevan a cabo en nuestras instalaciones de alta calidad. Participar en nuestros torneos es una excelente manera de poner a prueba tus habilidades, conocer a otros entusiastas del deporte y disfrutar de una experiencia emocionante y competitiva.
                 </p>
-                <a href="#" class="btn-torneos">Disponibles</a>
+                <a href="../Torneos/torneos.html" class="btn-torneos">Disponibles</a>
             </div>
         </div>
 
@@ -101,10 +108,10 @@
             <div class="footer-col">
                 <h4>Enlaces</h4>
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Torneos</a></li>
-                    <li><a href="#">Entrenamientos</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="">Inicio</a></li>
+                    <li><a href="../Torneos/torneos.html">Torneos</a></li>
+                    <li><a href="../Entrenamientos/entrenamientos.html">Entrenamientos</a></li>
+                    <li><a href="../Contacto/contacto.html">Contacto</a></li>
                 </ul>
             </div>
 
