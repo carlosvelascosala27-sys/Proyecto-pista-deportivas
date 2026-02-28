@@ -1,16 +1,19 @@
 .header{
     background-color: black;
     color: white;
-    padding: 0px 10px;
-    text-align: center;
+    padding: 0px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    gap: 10px; /* Espacio entre los elementos del header */
+    font-family: 'Montserrat', sans-serif;
+    position: fixed;/* Hace que el header se quede fijo en la parte superior de la página */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total del header */
     gap: 10px;
-    top: 0px; 
-    left: 0px; 
-    right: 0px;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -18,13 +21,15 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-
     background-color: #f0f0f0;
+    margin-top: 100px;
+    overflow-x: hidden; /* Evita el scroll horizontal causado por el header fijo */
+
 }
 
 .logos {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
 }
 
@@ -36,23 +41,31 @@ body {
 .logo2{
     width: 20px;
     height: auto;
-    padding: 12px 20px;
+}
 
+.moneda {
+    width: 35px;
+    height: auto;
+}
+
+.saldo {
+    font-size: 18px;
+    color: white;
 }
 
 .nav1 {
+    position: absolute;
+    left: 50%; /* Posiciona el nav1 en el centro horizontal del header */
+    transform: translateX(-50%); /* Centra horizontalmente el nav1 */
     display: flex;
-    gap: 20px;
-    color: white;
+    gap: 25px;
     align-items: center;
-
 }
 
 .nav1 a {
     color: white;
     text-decoration: none;
     font-size: 20px;
-    text-decoration: none;
     padding: 15px 20px;
 }
 
@@ -64,25 +77,34 @@ body {
 
 .nav2 {
     display: flex;
-    gap: 20px;
-    color: white;
     align-items: center;
+    gap: 20px; /* Espacio entre la moneda y los enlaces de navegación */
+    font-size: 20px;
+}
+
+.monedas {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la moneda y el saldo */
+}
+
+.monedas .moneda {
+    width: 60px;
+    height: auto;
 }
 
 .nav2 a {
     color: white;
     text-decoration: none;
     font-size: 17px;
-    text-decoration: none;
-    padding:10px 10px;
-    left: -20px;
-    
+    padding: 10px 10px;
 }
 
 .nav2 a:hover {
     border-radius: 5px;
     text-decoration: underline;
 }
+
 
 .login-button {
     background-color: rgba(241, 146, 37, 0.93);
@@ -91,6 +113,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 17px;
 }
 
 .login-button:hover {
@@ -99,45 +122,67 @@ body {
 }
 
 
-@media (max-width: 1100px) {
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
     .contacto {
         display: none;
     }
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1000px) {
     .torneos {
         display: none;
     }
 }
 
-
-
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .creditos {
         display: none;
     }
+
+    .nav2 {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        gap: 8px 15px;
+    }
+
+    .monedas {
+        grid-column: 1; /* Ocupa toda la primera columna */
+        grid-row: 1; /* Ocupa la primera fila */
+    }
+
+    .login-button {
+        grid-column: 2; /* Ocupa la segunda columna */
+        grid-row: 1; /* Ocupa la primera fila */
+        justify-self: end;
+    }
+
+    .cerrar {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+    }
 }
 
-@media (max-width: 650px) {
+
+@media (max-width: 750px) {
     .inicio {
         display: none;
     }
 }
 
-body {
-    background-color: #f5f6fa;
-    font-family: Arial, sans-serif;
-}
-
 .formulario-container {
-    width: 50%;
-    margin: 80px auto;
+    margin: 150px 600px 200px 600px;
+
 }
 
 .formulario-container h1 {
     text-align: center;
     margin-bottom: 30px;
+
 }
 
 form {
