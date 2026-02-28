@@ -1,32 +1,25 @@
 .header{
     background-color: black;
     color: white;
-    padding: 0px 10px;
-    text-align: center;
+    padding: 0px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
     gap: 10px;
-    top: 0px; 
-    left: 0px; 
-    right: 0px;
     font-family: 'Montserrat', sans-serif;
-
-
+    position: relative;
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-
     background-color: #f0f0f0;
 }
 
 .logos {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
 }
 
@@ -38,23 +31,31 @@ body {
 .logo2{
     width: 20px;
     height: auto;
-    padding: 12px 20px;
+}
 
+.moneda {
+    width: 35px;
+    height: auto;
+}
+
+.saldo {
+    font-size: 18px;
+    color: white;
 }
 
 .nav1 {
+    position: absolute;
+    left: 50%; /* Posiciona el nav1 en el centro horizontal del header */
+    transform: translateX(-50%); /* Centra horizontalmente el nav1 */
     display: flex;
-    gap: 20px;
-    color: white;
+    gap: 25px;
     align-items: center;
-
 }
 
 .nav1 a {
     color: white;
     text-decoration: none;
-    font-size: 17px;
-    text-decoration: none;
+    font-size: 20px;
     padding: 15px 20px;
 }
 
@@ -66,25 +67,34 @@ body {
 
 .nav2 {
     display: flex;
-    gap: 20px;
-    color: white;
     align-items: center;
+    gap: 20px; /* Espacio entre la moneda y los enlaces de navegación */
+    font-size: 20px;
+}
+
+.monedas {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la moneda y el saldo */
+}
+
+.monedas .moneda {
+    width: 60px;
+    height: auto;
 }
 
 .nav2 a {
     color: white;
     text-decoration: none;
     font-size: 17px;
-    text-decoration: none;
-    padding:10px 10px;
-    left: -20px;
-    
+    padding: 10px 10px;
 }
 
 .nav2 a:hover {
     border-radius: 5px;
     text-decoration: underline;
 }
+
 
 .login-button {
     background-color: rgba(241, 146, 37, 0.93);
@@ -93,6 +103,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 17px;
 }
 
 .login-button:hover {
@@ -101,25 +112,53 @@ body {
 }
 
 
-@media (max-width: 1100px) {
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
     .contacto {
         display: none;
     }
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1000px) {
     .torneos {
         display: none;
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .creditos {
         display: none;
     }
+
+    .nav2 {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        gap: 8px 15px;
+    }
+
+    .monedas {
+        grid-column: 1; /* Ocupa toda la primera columna */
+        grid-row: 1; /* Ocupa la primera fila */
+    }
+
+    .login-button {
+        grid-column: 2; /* Ocupa la segunda columna */
+        grid-row: 1; /* Ocupa la primera fila */
+        justify-self: end;
+    }
+
+    .cerrar {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+    }
 }
 
-@media (max-width: 650px) {
+
+@media (max-width: 750px) {
     .inicio {
         display: none;
     }
@@ -135,9 +174,20 @@ body {
     min-height: 100vh;          
     padding: 120px 40px 40px 40px;
     background: 
-        url('fondo.jpg');
-    background-size: 100% ;
+        url('fondo.png');
+    background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    
+}
+
+.main h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: -50px;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
 }
 
 .bloques {
@@ -151,6 +201,12 @@ body {
     align-items: center;
     width: 600px; 
     min-height: 350px;
+}
+
+.bloques h1 {
+    margin: 0;
+    font-size: 40px;
+    color: #ffffff;
 }
 
 .bloques img {
@@ -187,12 +243,12 @@ body {
     align-items: flex-start;
     gap: 20px;
     padding: 60px 40px 60px 40px;
-    background-color: rgba(241, 146, 37, 1.2);
+    background-color: rgba(241, 146, 37, 1);
 }
 
 .bienvenida h1 {
     color: white;
-    font-size: 36px;
+    font-size: 70px;
     text-align: center;
     margin: auto;
     margin-left: auto;
@@ -205,14 +261,15 @@ body {
     flex-wrap: wrap;     
     gap: 40px; 
     padding: 120px 40px 80px 40px;
-    background-color: rgba(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .main-2 h1 {
     width: 100%;
-    text-align: left;
-    margin: auto;
-    margin-left: 100px;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: -10px;
+    font-size: 50px;
 }
 
 .adults {
@@ -220,7 +277,11 @@ body {
     border-radius: 10px;
     color: white;
     width: 600px;
+    height: auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .adults img {
@@ -233,19 +294,25 @@ body {
 .adults h1 {
     padding: 20px 30px 10px 30px;
     margin: 0;
+    text-align: left;
+    font-size: 40px;
 }
 
 .adults p {
     padding: 0 30px 30px 30px;
     margin: 0;
+    flex-grow: 1;
 }
 
 .kids {
-     background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     color: white;
     width: 600px;
+    height: auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .kids img {
@@ -258,18 +325,23 @@ body {
 .kids h1 {
     padding: 20px 30px 10px 30px;
     margin: 0;
+    text-align: left;
+    font-size: 40px;
 }
 
 .kids p {
     padding: 0 30px 30px 30px;
     margin: 0;
+    flex-grow: 1;
 }
 
 .torneos-parte {
     padding: 100px 60px;
     display: flex;
     justify-content: center;
-    background-color: rgba(241, 146, 37, 1.2);
+    background: url('fondo-torneos.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .contenido-torneos {
@@ -279,6 +351,7 @@ body {
     position: relative;
     max-width: 1200px;   
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 
@@ -307,6 +380,8 @@ body {
 
 .texto-torneos {
     max-width: 450px;
+    font-size: 20px;
+    color: white;
 }
 
 
@@ -315,7 +390,7 @@ body {
 }
 
 .texto-torneos h2 {
-    font-size: 40px;
+    font-size: 60px;
     color: #ffffff;
     margin-bottom: 20px;
 }
@@ -325,8 +400,10 @@ body {
     margin-bottom: 30px;
 }
 
+
+
 .btn-torneos {
-    background-color: #000000;
+    background-color: rgba(241, 146, 37, 0.93);
     color: #ffffff;
     padding: 12px 25px;
     border-radius: 8px;
@@ -337,6 +414,46 @@ body {
 .btn-torneos:hover {
     background-color: rgba(0, 0, 0, 0.8);
     text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+
+    .contenido-torneos {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+
+    .contenido-torneos::before {
+        display: none; /* quitamos el fondo blanco decorativo */
+    }
+
+    .texto-torneos {
+        order: 1;
+        max-width: 100%;
+    }
+
+    .texto-torneos h2 {
+        font-size: 40px;
+    }
+
+    .contenido-torneos img {
+        order: 2;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+
+    .btn-torneos {
+        order: 3;
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+    .texto-torneos p {
+        display: none; /* eliminamos el párrafo */
+    }
 }
 
 .footer {
@@ -390,4 +507,3 @@ body {
     text-align: center;
     width: 100%;
 }
-
