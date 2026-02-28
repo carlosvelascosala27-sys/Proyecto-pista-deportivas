@@ -390,3 +390,56 @@ body {
     cursor: pointer;
 }
 
+.footer {
+    background-color: #000000;
+    color: white;
+    padding-top: 60px;
+}
+
+.footer-contenido {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-col h3,
+.footer-col h4 {
+    margin-bottom: 20px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 40px;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+
