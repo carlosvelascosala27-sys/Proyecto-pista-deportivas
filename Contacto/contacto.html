@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logos">
+            <img src="logo.png" alt="Logo" class="logo">
+            <img src="espana.png" alt="Logo" class="logo2">
+        </div>
+        <nav class="nav1">
+            
+                <a href="../Principal/principal.html" class="inicio">Inicio</a>
+                <a href="../Torneos/torneos.html" class="torneos">Torneos</a>
+                <a href="../Contacto/contacto.html" class="contacto">Contacto</a>
+        </nav>
+        <nav class="nav2">
+
+            <div class="monedas">
+                <img src="moneda.png" class="moneda">
+                <span class="saldo">9999</span>
+            </div>
+
+            <button class="login-button">Acceder</button>
+            <a href="#" class="cerrar">Cerrar Sesión</a>
+
+        </nav>
+    </header>
+
+    <section class="contacto-hero">
+    <h1>Contacto A3Pistas</h1>
+    <p>Estamos aquí para ayudarte</p>
+    </section>
+
+
+    <section class="contacto-contenido">
+
+        <div class="contacto-formulario">
+
+            <h2>Envíanos un mensaje</h2>
+
+            <form>
+
+                <label>Nombre</label>
+                <input type="text" placeholder="Tu nombre completo">
+
+                <label>Email</label>
+                <input type="email" placeholder="Tu correo electrónico">
+
+                <label>Asunto</label>
+                <select>
+                    <option>Consulta general</option>
+                    <option>Reserva de pista</option>
+                    <option>Organización de torneo</option>
+                    <option>Otro</option>
+                </select>
+
+                <label>Mensaje</label>
+                <textarea rows="5" placeholder="Escribe tu mensaje..."></textarea>
+
+                <button type="submit">Enviar mensaje</button>
+
+            </form>
+
+        </div>
+
+        <div class="contacto-info">
+
+            <h2>Información de contacto</h2>
+
+            <p><strong>Dirección:</strong> Alicante, España</p>
+            <p><strong>Teléfono:</strong> +34 600 000 000</p>
+            <p><strong>Email:</strong> info@a3pistas.com</p>
+            <p><strong>Horario:</strong> Lunes a Domingo 9:00 - 23:00</p>
+
+            <div class="mapa"> 
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18..."
+                    width="100%" 
+                    height="200" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe> /*Reemplaza el src con la URL de tu ubicación en Google Maps*/    
+            </div>
+
+        </div>
+
+    </section>
