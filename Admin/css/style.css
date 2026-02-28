@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f6f9;
+}
+
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #000000;
+    color: white;
+    padding: 40px 20px;
+    position: fixed;
+    height: 100vh;
+}
+
+.logo-admin {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 22px;
+}
+
+.menu-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-admin a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.menu-admin a:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+}
+
+.cerrar-admin {
+    margin-top: 30px;
+    background-color: rgba(241, 146, 37, 0.93);
+    text-align: center;
+}
+
+.contenido-admin {
+    margin-left: 250px;
+    padding: 60px;
+    width: 100%;
+    background-color: #f4f6f9;
+}
+
+.seccion-admin {
+    margin-bottom: 80px;
+}
+
+.seccion-admin h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #002b5b;
+}
+
+.seccion-admin p {
+    font-size: 16px;
+    color: #555;
+}
+
+#dashboard {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#dashboard .bloque-admin {
+    width: 250px;
+}
+
+.bloque-admin {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.bloque-admin h3 {
+    margin-bottom: 10px;
+}
+
+.bloque-admin p {
+    margin: 5px 0;
+}
+
+.boton-admin {
+    margin-top: 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(241, 146, 37, 0.93);
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.boton-admin:hover {
+    background-color: #002b5b;
+}
