@@ -15,7 +15,6 @@
     box-sizing: border-box; /* Asegura que el padding no afecte al ancho total del header */
     gap: 10px;
     font-family: 'Montserrat', sans-serif;
-    position: relative;
 }
 
 body {
