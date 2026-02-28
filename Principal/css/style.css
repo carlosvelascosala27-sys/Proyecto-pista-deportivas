@@ -416,6 +416,46 @@ body {
     text-decoration: underline;
 }
 
+@media (max-width: 1000px) {
+
+    .contenido-torneos {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+
+    .contenido-torneos::before {
+        display: none; /* quitamos el fondo blanco decorativo */
+    }
+
+    .texto-torneos {
+        order: 1;
+        max-width: 100%;
+    }
+
+    .texto-torneos h2 {
+        font-size: 40px;
+    }
+
+    .contenido-torneos img {
+        order: 2;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+
+    .btn-torneos {
+        order: 3;
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+    .texto-torneos p {
+        display: none; /* eliminamos el párrafo */
+    }
+}
+
 .footer {
     background-color: #000000;
     color: white;
