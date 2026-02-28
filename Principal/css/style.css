@@ -5,16 +5,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 10px; /* Espacio entre los elementos del header */
     font-family: 'Montserrat', sans-serif;
-
-    position: fixed;
+    position: fixed;/* Hace que el header se quede fijo en la parte superior de la página */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-
-    box-sizing: border-box; /* IMPORTANTE */
+    z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total del header */
 }
 
 body {
@@ -23,7 +21,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     background-color: #f0f0f0;
     margin-top: 100px;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Evita el scroll horizontal causado por el header fijo */
 
 }
 
