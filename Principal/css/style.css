@@ -5,9 +5,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-<<<<<<< HEAD
-    gap: 10px; /* Espacio entre los elementos del header */
-    font-family: 'Montserrat', sans-serif;
     position: fixed;/* Hace que el header se quede fijo en la parte superior de la página */
     top: 0;
     left: 0;
@@ -16,36 +13,14 @@
     box-sizing: border-box; /* Asegura que el padding no afecte al ancho total del header */
     gap: 10px;
     font-family: 'Montserrat', sans-serif;
-=======
-<<<<<<< Updated upstream
-    position: relative;
-=======
->>>>>>> Stashed changes
-    gap: 10px;
-    top: 0px; 
-    left: 0px; 
+    position: relative; 
     right: 0px;
-    font-family: 'Montserrat', sans-serif;
-<<<<<<< Updated upstream
-
-
-=======
-    position: relative;
->>>>>>> Stashed changes
->>>>>>> Principal
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
->>>>>>> Principal
     background-color: #f0f0f0;
     margin-top: 100px;
     overflow-x: hidden; /* Evita el scroll horizontal causado por el header fijo */
