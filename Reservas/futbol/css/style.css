@@ -197,7 +197,7 @@ body {
     margin: 10px auto;
     text-align: center;
     font-size: 20px;
-    animation: fadeout 1s ease-in-out;
+    animation: fadeout 1s ease;
 }
 
 /* Animación para el contenido al abrir el panel */
@@ -272,7 +272,7 @@ summary::-webkit-details-marker {
     opacity: 1;
     transform: translateY(0);
     padding: 20px;
-    animation: fadein 1s ease-in-out;
+    animation: fadein 1s ease;
 }
 
 /* Animación para el contenido al abrir el panel */
@@ -284,7 +284,6 @@ summary::-webkit-details-marker {
 .contenido {
     padding: 20px;
     background: #fafafa;
-    text-decoration: none;
 }
 
 .precio {
@@ -295,7 +294,7 @@ summary::-webkit-details-marker {
 
 .horario-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); 
     gap: 15px;
     margin-top: 20px;
 }
