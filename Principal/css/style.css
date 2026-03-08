@@ -18,7 +18,7 @@ body {
 }
 
 .logos {
-    display: flex;
+    display: flex;/* Permite que los elementos hijos se coloquen en una fila */
     gap: 15px;
     align-items: center;
 }
@@ -133,10 +133,10 @@ body {
 
     .nav2 {
         display: grid;
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto;
+        grid-template-columns: 1fr auto;/* Dos columnas: una para las monedas y otra para el botón de login */
+        grid-template-rows: auto auto;/* Dos filas: una para las monedas y otra para el botón de login */
         align-items: center;
-        gap: 8px 15px;
+        gap: 8px 15px;/* Espacio entre filas y columnas */
     }
 
     .monedas {
@@ -171,7 +171,7 @@ body {
     flex-wrap: wrap;     
     gap: 40px; 
     min-height: 100vh;          
-    padding: 120px 40px 40px 40px;
+    padding: 120px 40px 40px 40px;/* Ajusta el padding para dar espacio al contenido */
     background: 
         url('fondo.png');
     background-size: cover;
