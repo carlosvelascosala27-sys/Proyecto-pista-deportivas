@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($usuario['rol'] === 'admin') {
                 header("Location: ../Admin/admin.php");
             } else {
-                header("Location: ../Principal/principal.php");
+                header("Location: ../Principal/principal.html");
             }
             exit(); // Importante: detiene el PHP después de redirigir
 
