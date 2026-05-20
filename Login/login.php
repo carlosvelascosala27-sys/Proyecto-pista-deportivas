@@ -31,10 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($usuario && password_verify($password, $usuario['password'])) {
 
             // Login correcto: guardamos sus datos en la sesión
-            $_SESSION['id']     = $usuario['id'];
+            $_SESSION['id'] = $usuario['id'];
             $_SESSION['nombre'] = $usuario['nombre'];
-            $_SESSION['email']  = $usuario['email'];
-            $_SESSION['rol']    = $usuario['rol'];
+            $_SESSION['email'] = $usuario['email'];
+            $_SESSION['rol'] = $usuario['rol'];
+            $_SESSION['saldo_monedas'] = $usuario['saldo_monedas'];
 
             // Redirigimos según el rol
             if ($usuario['rol'] === 'admin') {
