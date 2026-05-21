@@ -1,0 +1,131 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Torneos Juniors</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logos">
+            <img src="logo.png" alt="Logo" class="logo">
+            <img src="espana.png" alt="Logo" class="logo2">
+        </div>
+        <nav class="nav1">
+            
+                <a href="../../Principal/principal.html" class="inicio">Inicio</a>
+                <a href="../../Torneos/torneos.html" class="torneos">Torneos</a>
+                <a href="../../Contacto/contacto.html" class="contacto">Contacto</a>
+        </nav>
+        <nav class="nav2">
+
+            <div class="monedas">
+                <img src="moneda.png" class="moneda">
+                <span class="saldo"><?= $_SESSION['saldo_monedas'] ?? 0 ?></span>
+            </div>
+
+            <?php if (isset($_SESSION['id'])): ?>
+                <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span>
+                <a href="../../logout.php" class="cerrar">Cerrar Sesión</a>
+            <?php else: ?>
+                <a href="../../Login/login.php" class="login-button">Acceder</a>
+            <?php endif; ?>
+
+        </nav>
+    </header>
+    <section class="torneos-section">
+        <div class="torneos-header">
+            <h1>Torneos Juniors</h1>
+            <p>Torneos dirigidos a jugadores jóvenes de todos los niveles, con organización y ambiente competitivo.
+            </p>
+        </div>
+    </section>
+
+    <section class="torneos-parte">
+        <div class="contenedor-cards">
+            <a href="torneo_futbol_junior.html" class="card-torneo">
+                <img src="cartel-futbol.png" alt="Torneo Junior Fútbol">
+
+                <div class="card-contenido">
+                    <h3>Torneo Junior Fútbol</h3>
+
+                    <p>
+                        Competición juvenil por equipos con fase de grupos y eliminatorias.
+                        Ambiente deportivo y formativo.
+                        <strong>PRÓXIMAMENTE SE ABRIRÁN LAS INSCRIPCIONES.</strong>
+                    </p>
+                </div>
+            </a>
+
+            <a href="torneo_baloncesto_junior.html" class="card-torneo">
+                <img src="cartel-baloncesto.png" alt="Torneo Junior Baloncesto">
+
+                <div class="card-contenido">
+                    <h3>Torneo Junior Baloncesto</h3>
+
+                    <p>
+                        Campeonato juvenil 3x3 y 5x5 para jóvenes promesas.
+                        Premios y trofeos para los finalistas.
+                        <strong>PRÓXIMAMENTE SE ABRIRÁN LAS INSCRIPCIONES.</strong>
+                    </p>
+                </div>
+            </a>
+
+            <a href="torneo_tenis_junior.html" class="card-torneo">
+                <img src="cartel-tenis.png" alt="Torneo Junior Tenis">
+
+                <div class="card-contenido">
+                    <h3>Torneo Junior Tenis</h3>
+
+                    <p>
+                        Torneo individual juvenil con diferentes categorías por edad.
+                        Sistema de competición oficial.
+                        <strong>PRÓXIMAMENTE SE ABRIRÁN LAS INSCRIPCIONES.</strong>
+                    </p>
+                </div>
+            </a>
+
+        </div>
+   </section>
+
+   <footer class="footer">
+        <div class="footer-contenido">
+
+            <div class="footer-col">
+                <h3>A3Pitas</h3>
+                <p>Centro deportivo especializado en reservas, torneos y alquiler de pistas.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Torneos</a></li>
+                    <li><a href="#">Entrenamientos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>Alicante, España</p>
+                <p>+34 600 000 000</p>
+                <p>info@a3pistas.com</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 A3Pitas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
