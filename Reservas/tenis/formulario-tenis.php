@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $alquiler_pelotas = isset($_POST['pelotas']) ? 1 : 0;
     $alquiler_raqueta = isset($_POST['raqueta']) ? 1 : 0;
     $precio_total = ($duracion_horas * 10) + ($alquiler_pelotas ? 8 : 0) + ($alquiler_raqueta ? 5 : 0); // Costo base de 10€/hora
-    $id_pista = 1; // ID de la pista de tenis, puedes ajustarlo según tu base de datos
+    // Recogemos el id_pista que viene del reservas-tenis.php por POST (campo oculto)
+    $id_pista = $_POST['id_pista'];
 
     // Verificar si el usuario tiene suficientes monedas para pagar con BMVCoins
     if ($tipo_pago === 'bmvcoins') {
@@ -95,6 +96,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form action="formulario-tenis.php" method="post" class="formulario">
 
+        <!-- Campo oculto con el id de la pista que viene de reservas-tenis.php -->
+        <input type="hidden" name="id_pista" value="<?= isset($_GET['id_pista']) ? $_GET['id_pista'] : '' ?>">
+
         <div class="grupo">
             <label>Nombre Completo:</label>
             <input type="text" value="<?= htmlspecialchars($_SESSION['nombre']) ?>" readonly>
@@ -102,12 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="grupo-fecha">
             <label>Fecha:</label>
-            <input type="date" name="fecha" required>
+            <!-- Se rellena automáticamente con la fecha elegida en reservas-tenis.php -->
+            <input type="date" name="fecha" value="<?= isset($_GET['fecha']) ? $_GET['fecha'] : '' ?>" readonly required>
         </div>
 
         <div class="grupo">
             <label>Hora de inicio:</label>
-            <input type="time" name="hora_inicio" min="09:00" max="22:00" required>
+            <!-- Se rellena automáticamente con la hora elegida en reservas-tenis.php -->
+            <input type="time" name="hora_inicio" value="<?= isset($_GET['hora']) ? $_GET['hora'] : '' ?>" readonly required>
         </div>
 
         <div class="grupo">
