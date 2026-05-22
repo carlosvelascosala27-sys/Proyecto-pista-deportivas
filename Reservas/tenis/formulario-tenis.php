@@ -14,8 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tipo_pago = $_POST['pago'];
     $alquiler_pelotas = isset($_POST['pelotas']) ? 1 : 0;
     $alquiler_raqueta = isset($_POST['raqueta']) ? 1 : 0;
-    $precio_total = ($duracion_horas * 10) + ($alquiler_pelotas ? 8 : 0) + ($alquiler_raqueta ? 5 : 0); // Costo base de 10€/hora
-    // Recogemos el id_pista que viene del reservas-tenis.php por POST (campo oculto)
+    // Precio en euros (para pagar con tarjeta, bizum o efectivo)
+    $precio_euros = ($duracion_horas * 10) + ($alquiler_pelotas ? 8 : 0) + ($alquiler_raqueta ? 5 : 0);
+    // Precio en BMVCoins (100 coins por hora de tenis)
+    $precio_coins = $duracion_horas * 100;
     $id_pista = $_POST['id_pista'];
 
     // Verificar si el usuario tiene suficientes monedas para pagar con BMVCoins
@@ -24,25 +26,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$id_usuario]);
         $saldo_monedas = $stmt->fetchColumn();
 
-        if ($saldo_monedas < $precio_total) {
+        if ($saldo_monedas < $precio_coins) {
             echo "<script>alert('No tienes suficientes BMVCoins para realizar esta reserva.');</script>";
             exit();
         }
     }
 
+    $precio_total = ($tipo_pago === 'bmvcoins') ? $precio_coins : $precio_euros;
+
     // Insertar la reserva en la base de datos
     $stmt = $pdo->prepare('INSERT INTO reservas (id_usuario, fecha, hora_inicio, duracion_horas, tipo_pago, alquiler_pelotas, alquiler_raqueta, precio_total, id_pista) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
     if ($stmt->execute([$id_usuario, $fecha, $hora_inicio, $duracion_horas, $tipo_pago, $alquiler_pelotas, $alquiler_raqueta, $precio_total, $id_pista])) {
-        // Si el pago es con BMVCoins, descontar las monedas del usuario
         if ($tipo_pago === 'bmvcoins') {
+            // Descontar las monedas del usuario
             $stmt = $pdo->prepare('UPDATE usuarios SET saldo_monedas = saldo_monedas - ? WHERE id = ?');
-            $stmt->execute([$precio_total, $id_usuario]);
+            $stmt->execute([$precio_coins, $id_usuario]);
+            $_SESSION['saldo_monedas'] -= $precio_coins;
         } else {
-            // Aquí puedes agregar la lógica para procesar el pago con tarjeta, Bizum o efectivo
-            // Por ejemplo, podrías redirigir a una página de pago o mostrar un mensaje de confirmación
-            $monedas_ganadas = (int)$precio_total; // Por cada euro gastado, el usuario gana 1 moneda
-            $pdo->prepare('UPDATE usuarios SET saldo_monedas = saldo_monedas + ? WHERE id = ?')->execute([$monedas_ganadas, $id_usuario]); // Actualizar el saldo de monedas en la base de datos
-            $_SESSION['saldo_monedas'] += $monedas_ganadas; // Actualizar el saldo de monedas en la sesión
+            // Ganar la mitad del precio en euros como BMVCoins
+            $monedas_ganadas = (int)($precio_euros / 2);
+            $pdo->prepare('UPDATE usuarios SET saldo_monedas = saldo_monedas + ? WHERE id = ?')->execute([$monedas_ganadas, $id_usuario]);
+            $_SESSION['saldo_monedas'] += $monedas_ganadas;
         }
         echo "<script>alert('Reserva confirmada exitosamente.'); window.location.href='../../Confirmacion/confirmacion.php';</script>";
         exit();

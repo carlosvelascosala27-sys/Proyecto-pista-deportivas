@@ -16,9 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $alquiler_balon = isset($_POST['balon']) ? 1 : 0;
     $id_pista = $_POST['id_pista'];
 
-    // Precio: 25€/hora + balón opcional (3€)
-    // Usamos alquiler_pelotas para guardar el balón (mismo campo de la BD)
-    $precio_total = ($duracion_horas * 25) + ($alquiler_balon ? 3 : 0);
+    // Precio en euros (para pagar con tarjeta, bizum o efectivo)
+    $precio_euros = ($duracion_horas * 25) + ($alquiler_balon ? 3 : 0);
+    // Precio en BMVCoins (200 coins por hora de baloncesto)
+    $precio_coins = $duracion_horas * 200;
 
     // Verificar si el usuario tiene suficientes monedas para pagar con BMVCoins
     if ($tipo_pago === 'bmvcoins') {
@@ -26,22 +27,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$id_usuario]);
         $saldo_monedas = $stmt->fetchColumn();
 
-        if ($saldo_monedas < $precio_total) {
+        if ($saldo_monedas < $precio_coins) {
             echo "<script>alert('No tienes suficientes BMVCoins para realizar esta reserva.');</script>";
             exit();
         }
     }
+
+    $precio_total = ($tipo_pago === 'bmvcoins') ? $precio_coins : $precio_euros;
 
     // Insertar la reserva en la base de datos
     // alquiler_raqueta = 0 porque en baloncesto no hay raqueta
     $stmt = $pdo->prepare('INSERT INTO reservas (id_usuario, fecha, hora_inicio, duracion_horas, tipo_pago, alquiler_pelotas, alquiler_raqueta, precio_total, id_pista) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
     if ($stmt->execute([$id_usuario, $fecha, $hora_inicio, $duracion_horas, $tipo_pago, $alquiler_balon, 0, $precio_total, $id_pista])) {
         if ($tipo_pago === 'bmvcoins') {
+            // Descontar las monedas del usuario
             $stmt = $pdo->prepare('UPDATE usuarios SET saldo_monedas = saldo_monedas - ? WHERE id = ?');
-            $stmt->execute([$precio_total, $id_usuario]);
-            $_SESSION['saldo_monedas'] -= $precio_total;
+            $stmt->execute([$precio_coins, $id_usuario]);
+            $_SESSION['saldo_monedas'] -= $precio_coins;
         } else {
-            $monedas_ganadas = (int)$precio_total;
+            // Ganar la mitad del precio en euros como BMVCoins
+            $monedas_ganadas = (int)($precio_euros / 2);
             $pdo->prepare('UPDATE usuarios SET saldo_monedas = saldo_monedas + ? WHERE id = ?')->execute([$monedas_ganadas, $id_usuario]);
             $_SESSION['saldo_monedas'] += $monedas_ganadas;
         }
