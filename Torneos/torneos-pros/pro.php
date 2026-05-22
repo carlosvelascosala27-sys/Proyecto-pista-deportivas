@@ -20,9 +20,9 @@ session_start();
         </div>
         <nav class="nav1">
             
-                <a href="../../Principal/principal.html" class="inicio">Inicio</a>
-                <a href="../../Torneos/torneos.html" class="torneos">Torneos</a>
-                <a href="../../Contacto/contacto.html" class="contacto">Contacto</a>
+                <a href="../../Principal/principal.php" class="inicio">Inicio</a>
+                <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
+                <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
         <nav class="nav2">
 
@@ -42,8 +42,8 @@ session_start();
     </header>
     <section class="torneos-section">
         <div class="torneos-header">
-            <h1>Torneos Adultos</h1>
-            <p>Torneos dirigidos a jugadores adultos de todos los niveles, con organización y ambiente competitivo.
+            <h1>Torneos Profesionales</h1>
+            <p>Torneos dirigidos a jugadores profesionales de todos los niveles, con organización y ambiente competitivo.
             </p>
         </div>
     </section>
@@ -88,10 +88,10 @@ session_start();
             <div class="footer-col">
                 <h4>Enlaces</h4>
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Torneos</a></li>
-                    <li><a href="#">Entrenamientos</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="../../Principal/principal.php">Inicio</a></li>
+                    <li><a href="../../Torneos/torneos.php">Torneos</a></li>
+                    <li><a href="../../Entrenamientos/entrenamientos.php">Entrenamientos</a></li>
+                    <li><a href="../../Contacto/contacto.php">Contacto</a></li>
                 </ul>
             </div>
 

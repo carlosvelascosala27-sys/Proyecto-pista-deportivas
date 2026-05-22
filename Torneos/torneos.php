@@ -22,9 +22,9 @@ session_start();
         </div>
         <nav class="nav1">
             
-                <a href="../Principal/principal.html" class="inicio">Inicio</a>
-                <a href="torneos.html" class="torneos">Torneos</a>
-                <a href="../Contacto/contacto.html" class="contacto">Contacto</a>
+                <a href="../Principal/principal.php" class="inicio">Inicio</a>
+                <a href="torneos.php" class="torneos">Torneos</a>
+                <a href="../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
         <nav class="nav2">
 
@@ -66,13 +66,13 @@ session_start();
 
     <section class="torneos-parte">
         
-        <a href="torneos-adultos/adultos.html" class="tarjeta-adultos">
+        <a href="torneos-adultos/adultos.php" class="tarjeta-adultos">
             <img src="adultos.jpeg" alt="Torneos Adultos">
             <h3>Adultos</h3>
             <p>Los jugadores inscritos vivirán una experiencia profesional única. (+18)</p>
         </a>
 
-        <a href="torneos-juniors/juniors.html" class="tarjeta-juniors">
+        <a href="torneos-juniors/juniors.php" class="tarjeta-juniors">
             <img src="juniors.jpeg" alt="Torneos Juniors">
             <div class="texto">
                 <h3>Juniors</h3>
@@ -80,7 +80,7 @@ session_start();
             </div>
         </a>
 
-        <a href="torneos-pros/pro.html" class="tarjeta-pro">
+        <a href="torneos-pros/pro.php" class="tarjeta-pro">
             <img src="pros.jpeg" alt="Torneos Pro">
             <div class="texto">
                 <h3>Pro</h3>
@@ -101,10 +101,10 @@ session_start();
             <div class="footer-col">
                 <h4>Enlaces</h4>
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Torneos</a></li>
-                    <li><a href="#">Entrenamientos</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a href="../Principal/principal.php">Inicio</a></li>
+                    <li><a href="torneos.php">Torneos</a></li>
+                    <li><a href="../Entrenamientos/entrenamientos.php">Entrenamientos</a></li>
+                    <li><a href="../Contacto/contacto.php">Contacto</a></li>
                 </ul>
             </div>
 
