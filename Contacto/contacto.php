@@ -20,9 +20,9 @@ session_start();
         </div>
         <nav class="nav1">
             
-                <a href="../Principal/principal.html" class="inicio">Inicio</a>
-                <a href="../Torneos/torneos.html" class="torneos">Torneos</a>
-                <a href="../Contacto/contacto.html" class="contacto">Contacto</a>
+                <a href="../Principal/principal.php" class="inicio">Inicio</a>
+                <a href="../Torneos/torneos.php" class="torneos">Torneos</a>
+                <a href="../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
         <nav class="nav2">
 
