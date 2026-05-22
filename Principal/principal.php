@@ -23,9 +23,9 @@ require_once '../config/db.php';
         </div>
         <nav class="nav1">
             
-                <a href="../Principal/principal.html" class="inicio">Inicio</a>
-                <a href="../Torneos/torneos.html" class="torneos">Torneos</a>
-                <a href="../Contacto/contacto.html" class="contacto">Contacto</a>
+                <a href="../Principal/principal.php" class="inicio">Inicio</a>
+                <a href="../Torneos/torneos.php" class="torneos">Torneos</a>
+                <a href="../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
         <nav class="nav2">
 
@@ -49,28 +49,28 @@ require_once '../config/db.php';
             <h1>FUTBOL</h1> 
             <p>Contamos con unas instalaciones de futbol para todos los niveles.</p> 
             <img src="futbol-img.png" alt="Futbol">
-            <button class="reservar-button"><a href="../Reservas/futbol/reservas-futbol.html">Reservar</a></button>
+            <button class="reservar-button"><a href="../Reservas/futbol/reservas-futbol.php">Reservar</a></button>
         </div>
 
         <div class="bloques"> 
             <h1>PÁDEL</h1> 
             <p>Contamos con unas instalaciones de pádel para todos los niveles.</p> 
             <img src="padel.png" alt="Padel">
-            <button class="reservar-button"><a href="../Reservas/padel/reservas-padel.html">Reservar</a></button>
+            <button class="reservar-button"><a href="../Reservas/padel/reservas-padel.php">Reservar</a></button>
         </div>
 
         <div class="bloques"> 
             <h1>TENIS</h1> 
             <p>Contamos con unas instalaciones de tenis para todos los niveles.</p> 
             <img src="tenis.png" alt="Tenis">
-            <button class="reservar-button"><a href="../Reservas/tenis/reservas-tenis.html">Reservar</a></button>
+            <button class="reservar-button"><a href="../Reservas/tenis/reservas-tenis.php">Reservar</a></button>
         </div>
 
         <div class="bloques">
             <h1>BALONCESTO</h1> 
             <p>Contamos con unas instalaciones de baloncesto para todos los niveles.</p> 
             <img src="baloncesto.png" alt="Baloncesto">
-            <button class="reservar-button"><a href="../Reservas/baloncesto/reservas-baloncesto.html">Reservar</a></button>
+            <button class="reservar-button"><a href="../Reservas/baloncesto/reservas-baloncesto.php">Reservar</a></button>
         </div>
     </section>
 
@@ -101,7 +101,7 @@ require_once '../config/db.php';
                 <h2>Torneos</h2>
                 <p>En A3Pitas organizamos torneos deportivos para fomentar la competencia y el espíritu deportivo entre nuestros usuarios. Nuestros torneos son abiertos a jugadores de todos los niveles, desde principiantes hasta profesionales, y se llevan a cabo en nuestras instalaciones de alta calidad. Participar en nuestros torneos es una excelente manera de poner a prueba tus habilidades, conocer a otros entusiastas del deporte y disfrutar de una experiencia emocionante y competitiva.
                 </p>
-                <a href="../Torneos/torneos.html" class="btn-torneos">Disponibles</a>
+                <a href="../Torneos/torneos.php" class="btn-torneos">Disponibles</a>
             </div>
         </div>
 
@@ -118,10 +118,10 @@ require_once '../config/db.php';
             <div class="footer-col">
                 <h4>Enlaces</h4>
                 <ul>
-                    <li><a href="">Inicio</a></li>
-                    <li><a href="../Torneos/torneos.html">Torneos</a></li>
-                    <li><a href="../Entrenamientos/entrenamientos.html">Entrenamientos</a></li>
-                    <li><a href="../Contacto/contacto.html">Contacto</a></li>
+                    <li><a href="../Principal/principal.php">Inicio</a></li>
+                    <li><a href="../Torneos/torneos.php">Torneos</a></li>
+                    <li><a href="../Entrenamientos/entrenamientos.php">Entrenamientos</a></li>
+                    <li><a href="../Contacto/contacto.php">Contacto</a></li>
                 </ul>
             </div>
 
