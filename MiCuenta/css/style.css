@@ -1,0 +1,252 @@
+/* ===== HEADER ===== */
+.header {
+    background-color: black;
+    color: white;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
+    margin-top: 100px;
+    overflow-x: hidden;
+}
+
+.logos {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.logo2 {
+    width: 20px;
+    height: auto;
+}
+
+.moneda {
+    width: 35px;
+    height: auto;
+}
+
+.saldo {
+    font-size: 18px;
+    color: white;
+}
+
+.nav1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav1 a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 15px 20px;
+}
+
+.nav1 a:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.nav2 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+}
+
+.monedas {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.monedas .moneda {
+    width: 60px;
+    height: auto;
+}
+
+.nav2 a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 10px 10px;
+}
+
+.nav2 a:hover {
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.login-button {
+    background-color: rgba(241, 146, 37, 0.93);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.login-button:hover {
+    background-color: rgba(241, 146, 37, 0.93);
+    text-decoration: underline;
+}
+
+/* ===== MI CUENTA ===== */
+.micuenta-container {
+    width: 75%;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.seccion {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.seccion h1 {
+    font-size: 28px;
+    color: #333;
+    margin-top: 0;
+    border-bottom: 3px solid #e67e22;
+    padding-bottom: 10px;
+}
+
+.seccion h2 {
+    font-size: 22px;
+    color: #333;
+    margin-top: 0;
+    border-bottom: 3px solid #e67e22;
+    padding-bottom: 10px;
+}
+
+/* ===== DATOS USUARIO ===== */
+.datos-usuario p {
+    font-size: 18px;
+    color: #444;
+    margin: 10px 0;
+}
+
+.datos-usuario strong {
+    color: #e67e22;
+}
+
+/* ===== TABLA RESERVAS ===== */
+.tabla-reservas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+.tabla-reservas th {
+    background-color: #e67e22;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.tabla-reservas td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+.tabla-reservas tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-reservas tr:hover td {
+    background-color: #fef5ec;
+}
+
+/* ===== ESTADOS ===== */
+.estado-activa {
+    color: #155724;
+    font-weight: bold;
+}
+
+.estado-completada {
+    color: #555;
+    font-weight: bold;
+}
+
+.estado-cancelada {
+    color: #721c24;
+    font-weight: bold;
+}
+
+/* ===== BMVCOINS ===== */
+.saldo-total {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.saldo-total strong {
+    color: #e67e22;
+    font-size: 22px;
+}
+
+.ganancia {
+    color: #155724;
+    font-weight: bold;
+}
+
+.gasto {
+    color: #721c24;
+    font-weight: bold;
+}
+
+/* ===== SIN DATOS ===== */
+.sin-datos {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+    .contacto { display: none; }
+}
+
+@media (max-width: 1000px) {
+    .torneos { display: none; }
+    .micuenta-container { width: 90%; }
+}
+
+@media (max-width: 750px) {
+    .inicio { display: none; }
+    .tabla-reservas { font-size: 13px; }
+}
