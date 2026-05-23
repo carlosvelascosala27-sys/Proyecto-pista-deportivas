@@ -15,7 +15,7 @@ session_start();
 <body>
     <header class="header">
         <div class="logos">
-            <a href="../Principal/principal.html">
+            <a href="../Principal/principal.php">
                 <img src="logo.png" alt="Logo" class="logo">
             </a>
             <img src="espana.png" alt="Logo" class="logo2">
@@ -35,6 +35,7 @@ session_start();
 
             <?php if (isset($_SESSION['id'])): ?>
                 <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span>
+                <a href="../MiCCuenta/micuenta.php" class="perfil">Mi Cuenta</a>
                 <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
             <?php else: ?>
                 <a href="../Login/login.php" class="login-button">Acceder</a>
