@@ -1,5 +1,18 @@
 <?php
 session_start();
+require_once '../config/db.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nombre = $_POST['nombre'];
+    $email = $_POST['email'];
+    $mensaje = $_POST['mensaje'];
+
+    $stmt = $pdo->prepare('INSERT INTO mensajes_contacto (nombre, email, mensaje) VALUES (?, ?, ?)');
+    $stmt->execute([$nombre, $email, $mensaje]);
+
+    echo "<script>alert('Mensaje enviado correctamente. Nos pondremos en contacto contigo pronto.'); window.location.href='contacto.php';</script>";
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,12 +44,13 @@ session_start();
                 <span class="saldo"><?= $_SESSION['saldo_monedas'] ?? 0 ?></span>
             </div>
 
-            <?php if (isset($_SESSION['id'])): ?>
+            <?php if (isset($_SESSION['id'])) { ?>
                 <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span>
                 <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
-            <?php else: ?>
+            <?php } else { ?>
                 <a href="../Login/login.php" class="login-button">Acceder</a>
-            <?php endif; ?>
+            <?php } ?>
+            
 
         </nav>
     </header>
@@ -53,16 +67,16 @@ session_start();
 
             <h2>Envíanos un mensaje</h2>
 
-            <form>
+            <form action="contacto.php" method="post">
 
                 <label>Nombre</label>
-                <input type="text" placeholder="Tu nombre completo">
+                <input type="text" name="nombre" placeholder="Tu nombre completo" required>
 
                 <label>Email</label>
-                <input type="email" placeholder="Tu correo electrónico">
+                <input type="email" name="email" placeholder="Tu correo electrónico" required>
 
                 <label>Asunto</label>
-                <select>
+                <select name="asunto">
                     <option>Consulta general</option>
                     <option>Reserva de pista</option>
                     <option>Organización de torneo</option>
@@ -70,7 +84,7 @@ session_start();
                 </select>
 
                 <label>Mensaje</label>
-                <textarea rows="5" placeholder="Escribe tu mensaje..."></textarea>
+                <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje..." required></textarea>
 
                 <button type="submit">Enviar mensaje</button>
 
