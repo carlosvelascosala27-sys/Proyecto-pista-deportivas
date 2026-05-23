@@ -27,7 +27,7 @@ session_start();
         <nav class="nav2">
 
             <div class="monedas">
-                <img src="moneda.png" class="moneda">
+                <i  mg src="moneda.png" class="moneda">
                 <span class="saldo"><?= $_SESSION['saldo_monedas'] ?? 0 ?></span>
             </div>
 
