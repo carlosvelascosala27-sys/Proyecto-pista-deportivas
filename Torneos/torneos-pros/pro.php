@@ -33,6 +33,7 @@ session_start();
 
             <?php if (isset($_SESSION['id'])): ?>
                 <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span>
+                <a href="../../MiCuenta/mi_cuenta.php" class="mi-cuenta">Mi Cuenta</a>
                 <a href="../../logout.php" class="cerrar">Cerrar Sesión</a>
             <?php else: ?>
                 <a href="../../Login/login.php" class="login-button">Acceder</a>
