@@ -30,6 +30,7 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin')
                 <a href="#pistas">Pistas</a>
                 <a href="#reservas">Reservas</a>
                 <a href="#usuarios">Usuarios</a>
+                <a href="#mensajes">Mensajes</a>
                 <a href="../logout.php" class="cerrar-admin">Cerrar Sesión</a>
             </nav>
         </aside>
@@ -48,6 +49,9 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin')
 
                 // Contamos pistas activas
                 $total_pistas = $pdo->query("SELECT COUNT(*) FROM pistas WHERE estado = 'activa'")->fetchColumn();
+
+                // Contamos mensajes de contacto
+                $total_mensajes = $pdo->query("SELECT COUNT(*) FROM mensajes_contacto")->fetchColumn();
                 ?>
 
                 <div class="bloque-admin">
@@ -64,6 +68,11 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin')
                     <h3>Pistas disponibles</h3>
                     <p><?= $total_pistas ?> pistas activas</p>
                 </div>
+
+                <div class="bloque-admin">
+                    <h3>Mensajes de contacto</h3>
+                    <p><?= $total_mensajes ?> mensajes recibidos</p>
+                </div>
             </section>
 
 
@@ -78,7 +87,7 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin')
                     JOIN deportes d ON p.id_deporte = d.id
                 ")->fetchAll();
 
-                foreach ($pistas as $p):
+                foreach ($pistas as $p) {
                 ?>
                     <div class="bloque-admin">
                         <h3><?= htmlspecialchars($p['nombre']) ?></h3>
@@ -86,7 +95,7 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin')
                         <p>Precio/hora: <?= $p['precio_hora'] ?>€</p>
                         <p>Estado: <?= $p['estado'] ?></p>
                     </div>
-                <?php endforeach; ?>
+                <?php } ?>
             </section>
 
 
@@ -104,7 +113,7 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin')
                     ORDER BY r.fecha DESC
                 ")->fetchAll();
 
-                foreach ($reservas as $r):
+                foreach ($reservas as $r) {
                 ?>
                     <div class="bloque-admin">
                         <h3><?= htmlspecialchars($r['nombre'] . ' ' . $r['apellidos']) ?></h3>
@@ -113,11 +122,11 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin')
                         <p>Hora: <?= $r['hora_inicio'] ?></p>
                         <p>Estado: <?= $r['estado'] ?></p>
                     </div>
-                <?php endforeach; ?>
+                <?php } ?>
 
-                <?php if (empty($reservas)): ?>
+                <?php if (empty($reservas)) { ?>
                     <p>No hay reservas todavía.</p>
-                <?php endif; ?>
+                <?php } ?>
             </section>
 
 
@@ -127,14 +136,39 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin')
 
                 <?php
                 $usuarios = $pdo->query("SELECT nombre, apellidos, email, rol FROM usuarios")->fetchAll();
-                foreach ($usuarios as $u):
+                foreach ($usuarios as $u) {
                 ?>
                     <div class="bloque-admin">
                         <h3><?= htmlspecialchars($u['nombre'] . ' ' . $u['apellidos']) ?></h3>
                         <p>Email: <?= htmlspecialchars($u['email']) ?></p>
                         <p>Rol: <?= $u['rol'] ?></p>
                     </div>
-                <?php endforeach; ?>
+                <?php } ?>
+            </section>
+
+            <!-- MENSAJES DE CONTACTO -->
+            <section id="mensajes" class="seccion-admin">
+                <h1>Mensajes de Contacto</h1>
+
+                <?php
+                $mensajes = $pdo->query("SELECT nombre, email, asunto, mensaje, fecha_envio FROM mensajes_contacto ORDER BY fecha_envio DESC")->fetchAll();
+
+                if (count($mensajes) == 0) {
+                    echo "<p>No hay mensajes todavía.</p>";
+                } else {
+                    foreach ($mensajes as $m) {
+                ?>
+                    <div class="bloque-admin">
+                        <h3><?= htmlspecialchars($m['nombre']) ?></h3>
+                        <p>Email: <?= htmlspecialchars($m['email']) ?></p>
+                        <p>Asunto: <?= htmlspecialchars($m['asunto']) ?></p>
+                        <p>Mensaje: <?= htmlspecialchars($m['mensaje']) ?></p>
+                        <p>Fecha: <?= $m['fecha_envio'] ?></p>
+                    </div>
+                <?php
+                    }
+                }
+                ?>
             </section>
 
         </main>
