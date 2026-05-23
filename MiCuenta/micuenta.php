@@ -58,8 +58,8 @@ $todas = $stmt->fetchAll();
                 <img src="moneda.png" class="moneda">
                 <span class="saldo"><?= $_SESSION['saldo_monedas'] ?? 0 ?></span>
             </div>
-            <?php if (isset($_SESSION['id'])) { ?>
-                <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span>
+            <?php if (isset($_SESSION['id'])) { ?> // Usuario logueado
+                <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span> // Mostrar nombre del usuario
                 <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
             <?php } else { ?>
                 <a href="../Login/login.php" class="login-button">Acceder</a>
@@ -69,7 +69,6 @@ $todas = $stmt->fetchAll();
 
     <main class="micuenta-container">
 
-        <!-- MI CUENTA -->
         <section class="seccion">
             <h1>Mi Cuenta</h1>
             <p><strong>Nombre:</strong> <?= htmlspecialchars($usuario['nombre']) ?></p>
@@ -77,7 +76,6 @@ $todas = $stmt->fetchAll();
             <p><strong>BMVCoins:</strong> <?= $usuario['saldo_monedas'] ?> coins</p>
         </section>
 
-        <!-- PRÓXIMAS RESERVAS -->
         <section class="seccion">
             <h2>Próximas Reservas</h2>
             <?php if (count($proximas) == 0) { ?>
@@ -96,7 +94,7 @@ $todas = $stmt->fetchAll();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($proximas as $reserva) { ?>
+                        <?php foreach ($proximas as $reserva) { ?> // Recorrer reservas próximas
                         <tr>
                             <td><?= htmlspecialchars($reserva['nombre_pista']) ?></td>
                             <td><?= $reserva['fecha'] ?></td>
@@ -112,7 +110,6 @@ $todas = $stmt->fetchAll();
             <?php } ?>
         </section>
 
-        <!-- HISTORIAL -->
         <section class="seccion">
             <h2>Historial</h2>
             <?php if (count($historial) == 0) { ?>
@@ -131,7 +128,7 @@ $todas = $stmt->fetchAll();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($historial as $reserva) { ?>
+                        <?php foreach ($historial as $reserva) { ?> // Recorrer historial de reservas
                         <tr>
                             <td><?= htmlspecialchars($reserva['nombre_pista']) ?></td>
                             <td><?= $reserva['fecha'] ?></td>
@@ -147,7 +144,6 @@ $todas = $stmt->fetchAll();
             <?php } ?>
         </section>
 
-        <!-- BMVCOINS -->
         <section class="seccion">
             <h2>BMVCoins</h2>
             <p>Saldo actual: <strong><?= $usuario['saldo_monedas'] ?> coins</strong></p>

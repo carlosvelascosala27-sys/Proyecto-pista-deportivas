@@ -134,7 +134,7 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin')
             <section id="usuarios" class="seccion-admin">
                 <h1>Gestión de Usuarios</h1>
 
-                <?php
+                <?php // Obtenemos usuarios
                 $usuarios = $pdo->query("SELECT nombre, apellidos, email, rol FROM usuarios")->fetchAll();
                 foreach ($usuarios as $u) {
                 ?>
@@ -146,11 +146,10 @@ if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin')
                 <?php } ?>
             </section>
 
-            <!-- MENSAJES DE CONTACTO -->
             <section id="mensajes" class="seccion-admin">
                 <h1>Mensajes de Contacto</h1>
 
-                <?php
+                <?php // Obtenemos mensajes de contacto
                 $mensajes = $pdo->query("SELECT nombre, email, asunto, mensaje, fecha_envio FROM mensajes_contacto ORDER BY fecha_envio DESC")->fetchAll();
 
                 if (count($mensajes) == 0) {
