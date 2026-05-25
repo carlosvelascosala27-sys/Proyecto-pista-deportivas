@@ -6,7 +6,7 @@ require_once '../config/db.php';
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Torneos</title>
+    <title>Principal</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@ require_once '../config/db.php';
 <body>
     <header class="header">
         <div class="logos">
-            <a href="../Principal/principal.html">
+            <a href="../Principal/principal.php">
                 <img src="logo.png" alt="Logo" class="logo">
             </a>
             <img src="espana.png" alt="Logo" class="logo2">
@@ -34,12 +34,12 @@ require_once '../config/db.php';
                 <span class="saldo"><?= isset($_SESSION['id']) ? htmlspecialchars($_SESSION['saldo_monedas'] ?? 0) : '' ?></span>
             </div>
 
-            <?php if (isset($_SESSION['id'])): ?>
+            <?php if (isset($_SESSION['id'])) { ?>
                 <a href="../MiCuenta/micuenta.php" class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></a>
                 <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
-            <?php else: ?>
+            <?php } else { ?>
                 <a href="../Login/login.php" class="login-button">Acceder</a>
-            <?php endif; ?>
+            <?php } ?>
 
         </nav>
     </header>
