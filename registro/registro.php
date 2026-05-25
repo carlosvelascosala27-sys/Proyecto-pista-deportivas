@@ -4,10 +4,10 @@ require_once '../config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $nombre           = trim($_POST['nombre']);
-    $apellido         = trim($_POST['apellido']);
-    $email            = trim($_POST['email']);
-    $password         = trim($_POST['password']);
+    $nombre = trim($_POST['nombre']);
+    $apellido = trim($_POST['apellido']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
     $confirm_password = trim($_POST['confirm_password']);
 
     if (empty($nombre) || empty($apellido) || empty($email) || empty($password)) {
@@ -35,12 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$nombre, $apellido, $email, $hash]);
 
-            $_SESSION['id']     = $pdo->lastInsertId();
+            $_SESSION['id'] = $pdo->lastInsertId();
             $_SESSION['nombre'] = $nombre;
-            $_SESSION['email']  = $email;
-            $_SESSION['rol']    = 'cliente';
+            $_SESSION['email'] = $email;
+            $_SESSION['rol'] = 'cliente';
 
-            header("Location: ../Principal/principal.html");
+            header("Location: ../Principal/principal.php");
             exit();
         }
     }
