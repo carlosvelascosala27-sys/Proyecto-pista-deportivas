@@ -34,8 +34,7 @@ session_start();
             </div>
 
             <?php if (isset($_SESSION['id'])): ?>
-                <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span>
-                <a href="../MiCCuenta/micuenta.php" class="perfil">Mi Cuenta</a>
+                <a href="../MiCuenta/micuenta.php" class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></a>
                 <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
             <?php else: ?>
                 <a href="../Login/login.php" class="login-button">Acceder</a>
