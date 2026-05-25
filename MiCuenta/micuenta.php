@@ -15,12 +15,12 @@ $stmt = $pdo->prepare('SELECT nombre, email, saldo_monedas FROM usuarios WHERE i
 $stmt->execute([$id_usuario]);
 $usuario = $stmt->fetch();
 
-// Próximas reservas (fecha >= hoy)
+// Próximas reservas del usuario
 $stmt = $pdo->prepare('SELECT reservas.*, pistas.nombre AS nombre_pista FROM reservas JOIN pistas ON reservas.id_pista = pistas.id WHERE reservas.id_usuario = ? AND reservas.fecha >= ? ORDER BY reservas.fecha ASC');
 $stmt->execute([$id_usuario, $hoy]);
 $proximas = $stmt->fetchAll();
 
-// Historial (fecha < hoy)
+// Historial fechas menores a hoy
 $stmt = $pdo->prepare('SELECT reservas.*, pistas.nombre AS nombre_pista FROM reservas JOIN pistas ON reservas.id_pista = pistas.id WHERE reservas.id_usuario = ? AND reservas.fecha < ? ORDER BY reservas.fecha DESC');
 $stmt->execute([$id_usuario, $hoy]);
 $historial = $stmt->fetchAll();
@@ -58,8 +58,8 @@ $todas = $stmt->fetchAll();
                 <img src="moneda.png" class="moneda">
                 <span class="saldo"><?= $_SESSION['saldo_monedas'] ?? 0 ?></span>
             </div>
-            <?php if (isset($_SESSION['id'])) { ?> // Usuario logueado
-                <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span> // Mostrar nombre del usuario
+            <?php if (isset($_SESSION['id'])) { ?>
+                <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span> 
                 <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
             <?php } else { ?>
                 <a href="../Login/login.php" class="login-button">Acceder</a>
@@ -94,7 +94,7 @@ $todas = $stmt->fetchAll();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($proximas as $reserva) { ?> // Recorrer reservas próximas
+                        <?php foreach ($proximas as $reserva) { ?> /* Recorrer reservas próximas */
                         <tr>
                             <td><?= htmlspecialchars($reserva['nombre_pista']) ?></td>
                             <td><?= $reserva['fecha'] ?></td>
@@ -128,7 +128,7 @@ $todas = $stmt->fetchAll();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($historial as $reserva) { ?> // Recorrer historial de reservas
+                        <?php foreach ($historial as $reserva) { ?> /* Recorrer historial de reservas */
                         <tr>
                             <td><?= htmlspecialchars($reserva['nombre_pista']) ?></td>
                             <td><?= $reserva['fecha'] ?></td>
