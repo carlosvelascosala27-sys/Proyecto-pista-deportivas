@@ -2,30 +2,41 @@
 session_start();
 require_once '../../config/db.php';
 
+// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['id'])) {
     header('Location: ../../Login/login.php');
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// Procesar el formulario de reserva
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_usuario = $_SESSION['id'];
     $fecha = $_POST['fecha'];
     $hora_inicio = $_POST['hora_inicio'];
     $duracion_horas = $_POST['duracion'];
     $tipo_pago = $_POST['pago'];
-    $alquiler_balon = isset($_POST['balon']) ? 1 : 0;
     $id_pista = $_POST['id_pista'];
 
-    // Precio en euros (para pagar con tarjeta, bizum o efectivo)
-    $precio_euros = ($duracion_horas * 25) + ($alquiler_balon ? 3 : 0);
-    // Precio en BMVCoins (200 coins por hora de baloncesto)
+    // Validar que la fecha no sea anterior a hoy
+    if (isset($_POST['balon'])) {
+        $alquiler_balon = 1;
+    } else {
+        $alquiler_balon = 0;
+    }
+
+    // Calcular el precio total de la reserva
+    $precio_euros = $duracion_horas * 25;
+    if ($alquiler_balon == 1) {
+        $precio_euros = $precio_euros + 3;
+    }
+
+    // Calcular el precio en BMVCoins (1 euro = 200 BMVCoins)
     $precio_coins = $duracion_horas * 200;
 
-    // Verificar si el usuario tiene suficientes monedas para pagar con BMVCoins
-    if ($tipo_pago === 'bmvcoins') {
-        $stmt = $pdo->prepare('SELECT saldo_monedas FROM usuarios WHERE id = ?');
-        $stmt->execute([$id_usuario]);
-        $saldo_monedas = $stmt->fetchColumn();
+    // Si se alquila el balón, agregar el costo en BMVCoins
+    if ($tipo_pago == 'bmvcoins') {
+        $resultado = $pdo->query("SELECT saldo_monedas FROM usuarios WHERE id = $id_usuario");
+        $saldo_monedas = $resultado->fetchColumn();
 
         if ($saldo_monedas < $precio_coins) {
             echo "<script>alert('No tienes suficientes BMVCoins para realizar esta reserva.');</script>";
@@ -33,28 +44,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $precio_total = ($tipo_pago === 'bmvcoins') ? $precio_coins : $precio_euros;
+    if ($tipo_pago == 'bmvcoins') {
+        $precio_total = $precio_coins;
+    } else {
+        $precio_total = $precio_euros;
+    }
 
     // Insertar la reserva en la base de datos
-    // alquiler_raqueta = 0 porque en baloncesto no hay raqueta
-    $stmt = $pdo->prepare('INSERT INTO reservas (id_usuario, fecha, hora_inicio, duracion_horas, tipo_pago, alquiler_pelotas, alquiler_raqueta, precio_total, id_pista) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    if ($stmt->execute([$id_usuario, $fecha, $hora_inicio, $duracion_horas, $tipo_pago, $alquiler_balon, 0, $precio_total, $id_pista])) {
-        if ($tipo_pago === 'bmvcoins') {
-            // Descontar las monedas del usuario
-            $stmt = $pdo->prepare('UPDATE usuarios SET saldo_monedas = saldo_monedas - ? WHERE id = ?');
-            $stmt->execute([$precio_coins, $id_usuario]);
+    $resultado = $pdo->query("INSERT INTO reservas (id_usuario, fecha, hora_inicio, duracion_horas, tipo_pago, alquiler_pelotas, alquiler_raqueta, precio_total, id_pista) VALUES ($id_usuario, '$fecha', '$hora_inicio', $duracion_horas, '$tipo_pago', $alquiler_balon, 0, $precio_total, $id_pista)");
+
+    // Si el pago es con BMVCoins, descontar el saldo del usuario; si es con tarjeta, bizum o efectivo, agregar monedas al usuario
+    if ($resultado) {
+        if ($tipo_pago == 'bmvcoins') {
+            $pdo->query("UPDATE usuarios SET saldo_monedas = saldo_monedas - $precio_coins WHERE id = $id_usuario");
             $_SESSION['saldo_monedas'] -= $precio_coins;
         } else {
-            // Ganar la mitad del precio en euros como BMVCoins
             $monedas_ganadas = (int)($precio_euros / 2);
-            $pdo->prepare('UPDATE usuarios SET saldo_monedas = saldo_monedas + ? WHERE id = ?')->execute([$monedas_ganadas, $id_usuario]);
+            $pdo->query("UPDATE usuarios SET saldo_monedas = saldo_monedas + $monedas_ganadas WHERE id = $id_usuario");
             $_SESSION['saldo_monedas'] += $monedas_ganadas;
         }
-        echo "<script>alert('Reserva confirmada exitosamente.'); window.location.href='../../Confirmacion/confirmacion.php';</script>";
         exit();
     } else {
         echo "<script>alert('Error al confirmar la reserva. Por favor, inténtalo de nuevo.');</script>";
     }
+}
+
+// Obtener los valores de id_pista, fecha y hora de la URL para prellenar el formulario
+$id_pista_valor = '';
+if (isset($_GET['id_pista'])) {
+    $id_pista_valor = $_GET['id_pista'];
+}
+
+$fecha_valor = '';
+if (isset($_GET['fecha'])) {
+    $fecha_valor = $_GET['fecha'];
+}
+
+$hora_valor = '';
+if (isset($_GET['hora'])) {
+    $hora_valor = $_GET['hora'];
 }
 ?>
 <!DOCTYPE html>
@@ -81,14 +109,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <nav class="nav2">
             <div class="monedas">
                 <img src="moneda.png" class="moneda">
-                <span class="saldo"><?= $_SESSION['saldo_monedas'] ?? 0 ?></span>
+                <span class="saldo"><?php echo $_SESSION['saldo_monedas']; ?></span>
             </div>
-            <?php if (isset($_SESSION['id'])): ?>
-                <a href="../MiCuenta/micuenta.php" class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></a>
-                <a href="../../logout.php" class="cerrar">Cerrar Sesión</a>
-            <?php else: ?>
-                <a href="../../Login/login.php" class="login-button">Acceder</a>
-            <?php endif; ?>
+            <?php
+            if (isset($_SESSION['id'])) {
+                echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . $_SESSION['nombre'] . '</a>';
+                echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
+            } else {
+                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
+            }
+            ?>
         </nav>
     </header>
 
@@ -98,21 +128,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form action="formulario-baloncesto.php" method="post" class="formulario">
 
-            <input type="hidden" name="id_pista" value="<?= isset($_GET['id_pista']) ? $_GET['id_pista'] : '' ?>">
+            <input type="hidden" name="id_pista" value="<?php echo $id_pista_valor; ?>">
 
             <div class="grupo">
                 <label>Nombre Completo:</label>
-                <input type="text" value="<?= htmlspecialchars($_SESSION['nombre']) ?>" readonly>
+                <input type="text" value="<?php echo $_SESSION['nombre']; ?>" readonly>
             </div>
 
             <div class="grupo-fecha">
                 <label>Fecha:</label>
-                <input type="date" name="fecha" value="<?= isset($_GET['fecha']) ? $_GET['fecha'] : '' ?>" readonly required>
+                <input type="date" name="fecha" value="<?php echo $fecha_valor; ?>" readonly required>
             </div>
 
             <div class="grupo">
                 <label>Hora de inicio:</label>
-                <input type="time" name="hora_inicio" value="<?= isset($_GET['hora']) ? $_GET['hora'] : '' ?>" readonly required>
+                <input type="time" name="hora_inicio" value="<?php echo $hora_valor; ?>" readonly required>
             </div>
 
             <div class="grupo">

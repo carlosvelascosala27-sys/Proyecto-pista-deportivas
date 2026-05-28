@@ -2,14 +2,22 @@
 session_start();
 require_once '../../config/db.php';
 
+// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['id'])) {
     header('Location: ../../Login/login.php');
     exit();
 }
 
-$fecha = isset($_GET['fecha']) ? $_GET['fecha'] : date('Y-m-d');
+// Obtener la fecha seleccionada o usar la fecha de hoy
+if (isset($_GET['fecha'])) {
+    $fecha = $_GET['fecha'];
+} else {
+    $fecha = date('Y-m-d');
+}
+
 $hoy = date('Y-m-d');
 
+// No permitir fechas anteriores a hoy
 if ($fecha < $hoy) {
     $fecha = $hoy;
 }
@@ -17,8 +25,10 @@ if ($fecha < $hoy) {
 $fecha_anterior = date('Y-m-d', strtotime($fecha . ' -1 day'));
 $fecha_siguiente = date('Y-m-d', strtotime($fecha . ' +1 day'));
 
+// Horas disponibles
 $horas = ['11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 
+// Pistas de pádel disponibles
 $pistas = [
     ['id' => 15, 'nombre' => 'Pista Cubierta 1', 'imagen' => 'padelcubierto.png'],
     ['id' => 16, 'nombre' => 'Pista Cubierta 2', 'imagen' => 'padelcubierto.png'],
@@ -52,63 +62,57 @@ $pistas = [
         <nav class="nav2">
             <div class="monedas">
                 <img src="moneda.png" class="moneda">
-                <span class="saldo"><?= $_SESSION['saldo_monedas'] ?? 0 ?></span>
+                <span class="saldo"><?php echo $_SESSION['saldo_monedas']; ?></span>
             </div>
-            <?php if (isset($_SESSION['id'])): ?>
-                <a href="../MiCuenta/micuenta.php" class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></a>
-                <a href="../../logout.php" class="cerrar">Cerrar Sesión</a>
-            <?php else: ?>
-                <a href="../../Login/login.php" class="login-button">Acceder</a>
-            <?php endif; ?>
+            <?php
+            if (isset($_SESSION['id'])) {
+                echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . $_SESSION['nombre'] . '</a>';
+                echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
+            } else {
+                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
+            }
+            ?>
         </nav>
     </header>
 
     <main class="reservas">
         <h1 class="titulo-deporte">PÁDEL</h1>
 
-        <?php foreach ($pistas as $pista): ?>
-        <details class="panel">
-            <summary class="panel-header">
-                <img src="<?= $pista['imagen'] ?>" alt="<?= $pista['nombre'] ?>">
-                <div class="header-info">
-                    <span class="titulo"><?= $pista['nombre'] ?></span>
-                    <span class="precio">20€/hora</span>
-                </div>
-            </summary>
+        <?php
+        // Recorrer todas las pistas y mostrar su disponibilidad
+        foreach ($pistas as $pista) {
+            echo '<details class="panel">';
+            echo '<summary class="panel-header">';
+            echo '<img src="' . $pista['imagen'] . '" alt="' . $pista['nombre'] . '">';
+            echo '<div class="header-info"><span class="titulo">' . $pista['nombre'] . '</span><span class="precio">20€/hora</span></div>';
+            echo '</summary>';
+            echo '<div class="selector-fecha">';
+            if ($fecha > $hoy) {
+                echo '<a href="?fecha=' . $fecha_anterior . '" class="flecha">&#8249;</a>';
+            } else {
+                echo '<span class="flecha" style="opacity:0.3;">&#8249;</span>';
+            }
+            echo '<span class="fecha">' . date('d/m/Y', strtotime($fecha)) . '</span>';
+            echo '<a href="?fecha=' . $fecha_siguiente . '" class="flecha">&#8250;</a>';
+            echo '</div>';
+            echo '<p class="estado">Disponible <span style="color:green;">&#128994;</span> | Ocupado <span style="color:red;">&#128308;</span></p>';
+            echo '<div class="contenido"><div class="horario-grid">';
 
-            <div class="selector-fecha">
-                <?php if ($fecha > $hoy): ?>
-                    <a href="?fecha=<?= $fecha_anterior ?>" class="flecha">&#8249;</a>
-                <?php else: ?>
-                    <span class="flecha" style="opacity:0.3;">&#8249;</span>
-                <?php endif; ?>
-                <span class="fecha"><?= date('d/m/Y', strtotime($fecha)) ?></span>
-                <a href="?fecha=<?= $fecha_siguiente ?>" class="flecha">&#8250;</a>
-            </div>
-
-            <p class="estado">
-                Disponible <span style="color:green;">&#128994;</span> |
-                Ocupado <span style="color:red;">&#128308;</span>
-            </p>
-
-            <div class="contenido">
-                <div class="horario-grid">
-                    <?php foreach ($horas as $hora): ?>
-                        <?php
-                        $stmt = $pdo->prepare("SELECT COUNT(*) FROM reservas WHERE id_pista = ? AND fecha = ? AND hora_inicio = ?");
-                        $stmt->execute([$pista['id'], $fecha, $hora . ':00']);
-                        $ocupado = $stmt->fetchColumn() > 0;
-                        ?>
-                        <?php if ($ocupado): ?>
-                            <div class="slot ocupado"><?= $hora ?></div>
-                        <?php else: ?>
-                            <a href="formulario-padel.php?id_pista=<?= $pista['id'] ?>&fecha=<?= $fecha ?>&hora=<?= $hora ?>" class="slot disponible"><?= $hora ?></a>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </details>
-        <?php endforeach; ?>
+            // Comprobar disponibilidad de cada hora
+            foreach ($horas as $hora) {
+                $id_pista_actual = $pista['id'];
+                $hora_completa = $hora . ':00';
+                $consulta = $pdo->query("SELECT COUNT(*) FROM reservas WHERE id_pista = $id_pista_actual AND fecha = '$fecha' AND hora_inicio = '$hora_completa'");
+                $ocupado = $consulta->fetchColumn() > 0;
+                if ($ocupado) {
+                    echo '<div class="slot ocupado">' . $hora . '</div>';
+                } else {
+                    echo '<a href="formulario-padel.php?id_pista=' . $pista['id'] . '&fecha=' . $fecha . '&hora=' . $hora . '" class="slot disponible">' . $hora . '</a>';
+                }
+            }
+            echo '</div></div></details>';
+        }
+        ?>
     </main>
 </body>
 </html>

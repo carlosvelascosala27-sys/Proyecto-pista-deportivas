@@ -1,30 +1,51 @@
 <?php
 session_start();
 require_once '../../config/db.php';
-if (!isset($_SESSION['id'])) { // Si el usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['id'])) {
     header('Location: ../../Login/login.php');
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// Procesar el formulario de reserva
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_usuario = $_SESSION['id'];
     $fecha = $_POST['fecha'];
     $hora_inicio = $_POST['hora_inicio'];
     $duracion_horas = $_POST['duracion'];
     $tipo_pago = $_POST['pago'];
-    $alquiler_pelotas = isset($_POST['pelotas']) ? 1 : 0;
-    $alquiler_raqueta = isset($_POST['raqueta']) ? 1 : 0;
-    // Precio en euros (para pagar con tarjeta, bizum o efectivo)
-    $precio_euros = ($duracion_horas * 10) + ($alquiler_pelotas ? 8 : 0) + ($alquiler_raqueta ? 5 : 0);
-    // Precio en BMVCoins (100 coins por hora de tenis)
-    $precio_coins = $duracion_horas * 100;
     $id_pista = $_POST['id_pista'];
 
-    // Verificar si el usuario tiene suficientes monedas para pagar con BMVCoins
-    if ($tipo_pago === 'bmvcoins') {
-        $stmt = $pdo->prepare('SELECT saldo_monedas FROM usuarios WHERE id = ?');
-        $stmt->execute([$id_usuario]);
-        $saldo_monedas = $stmt->fetchColumn();
+    // Comprobar si se alquilan pelotas o raqueta
+    if (isset($_POST['pelotas'])) {
+        $alquiler_pelotas = 1;
+    } else {
+        $alquiler_pelotas = 0;
+    }
+
+    if (isset($_POST['raqueta'])) {
+        $alquiler_raqueta = 1;
+    } else {
+        $alquiler_raqueta = 0;
+    }
+
+    // Calcular el precio total de la reserva
+    $precio_euros = $duracion_horas * 10;
+    if ($alquiler_pelotas == 1) {
+        $precio_euros = $precio_euros + 8;
+    }
+    if ($alquiler_raqueta == 1) {
+        $precio_euros = $precio_euros + 5;
+    }
+
+    // Calcular el precio en BMVCoins (100 BMVCoins por hora de tenis)
+    $precio_coins = $duracion_horas * 100;
+
+    // Verificar si el usuario tiene suficientes BMVCoins
+    if ($tipo_pago == 'bmvcoins') {
+        $resultado = $pdo->query("SELECT saldo_monedas FROM usuarios WHERE id = $id_usuario");
+        $saldo_monedas = $resultado->fetchColumn();
 
         if ($saldo_monedas < $precio_coins) {
             echo "<script>alert('No tienes suficientes BMVCoins para realizar esta reserva.');</script>";
@@ -32,20 +53,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $precio_total = ($tipo_pago === 'bmvcoins') ? $precio_coins : $precio_euros;
+    if ($tipo_pago == 'bmvcoins') {
+        $precio_total = $precio_coins;
+    } else {
+        $precio_total = $precio_euros;
+    }
 
     // Insertar la reserva en la base de datos
-    $stmt = $pdo->prepare('INSERT INTO reservas (id_usuario, fecha, hora_inicio, duracion_horas, tipo_pago, alquiler_pelotas, alquiler_raqueta, precio_total, id_pista) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    if ($stmt->execute([$id_usuario, $fecha, $hora_inicio, $duracion_horas, $tipo_pago, $alquiler_pelotas, $alquiler_raqueta, $precio_total, $id_pista])) {
-        if ($tipo_pago === 'bmvcoins') {
-            // Descontar las monedas del usuario
-            $stmt = $pdo->prepare('UPDATE usuarios SET saldo_monedas = saldo_monedas - ? WHERE id = ?');
-            $stmt->execute([$precio_coins, $id_usuario]);
+    $resultado = $pdo->query("INSERT INTO reservas (id_usuario, fecha, hora_inicio, duracion_horas, tipo_pago, alquiler_pelotas, alquiler_raqueta, precio_total, id_pista) VALUES ($id_usuario, '$fecha', '$hora_inicio', $duracion_horas, '$tipo_pago', $alquiler_pelotas, $alquiler_raqueta, $precio_total, $id_pista)");
+
+    // Si el pago es con BMVCoins, descontar el saldo; si no, ganar monedas
+    if ($resultado) {
+        if ($tipo_pago == 'bmvcoins') {
+            $pdo->query("UPDATE usuarios SET saldo_monedas = saldo_monedas - $precio_coins WHERE id = $id_usuario");
             $_SESSION['saldo_monedas'] -= $precio_coins;
         } else {
-            // Ganar la mitad del precio en euros como BMVCoins
             $monedas_ganadas = (int)($precio_euros / 2);
-            $pdo->prepare('UPDATE usuarios SET saldo_monedas = saldo_monedas + ? WHERE id = ?')->execute([$monedas_ganadas, $id_usuario]);
+            $pdo->query("UPDATE usuarios SET saldo_monedas = saldo_monedas + $monedas_ganadas WHERE id = $id_usuario");
             $_SESSION['saldo_monedas'] += $monedas_ganadas;
         }
         echo "<script>alert('Reserva confirmada exitosamente.'); window.location.href='../../Confirmacion/confirmacion.php';</script>";
@@ -53,6 +77,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "<script>alert('Error al confirmar la reserva. Por favor, inténtalo de nuevo.');</script>";
     }
+}
+
+// Obtener los valores de id_pista, fecha y hora de la URL para prellenar el formulario
+$id_pista_valor = '';
+if (isset($_GET['id_pista'])) {
+    $id_pista_valor = $_GET['id_pista'];
+}
+
+$fecha_valor = '';
+if (isset($_GET['fecha'])) {
+    $fecha_valor = $_GET['fecha'];
+}
+
+$hora_valor = '';
+if (isset($_GET['hora'])) {
+    $hora_valor = $_GET['hora'];
 }
 ?>
 <!DOCTYPE html>
@@ -65,7 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <header class="header">
         <div class="logos">
@@ -73,94 +112,95 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <img src="espana.png" alt="Logo" class="logo2">
         </div>
         <nav class="nav1">
-            
-                <a href="../../Principal/principal.php" class="inicio">Inicio</a>
-                <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
-                <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
+            <a href="../../Principal/principal.php" class="inicio">Inicio</a>
+            <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
+            <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
         <nav class="nav2">
-
             <div class="monedas">
                 <img src="moneda.png" class="moneda">
-                <span class="saldo"><?= $_SESSION['saldo_monedas'] ?? 0 ?></span>
+                <span class="saldo"><?php echo $_SESSION['saldo_monedas']; ?></span>
             </div>
-
-            <?php if (isset($_SESSION['id'])): ?>
-                <a href="../MiCuenta/micuenta.php" class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></a>
-                <a href="../../logout.php" class="cerrar">Cerrar Sesión</a>
-            <?php else: ?>
-                <a href="../../Login/login.php" class="login-button">Acceder</a>
-            <?php endif; ?>
+            <?php
+            if (isset($_SESSION['id'])) {
+                echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . $_SESSION['nombre'] . '</a>';
+                echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
+            } else {
+                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
+            }
+            ?>
         </nav>
     </header>
 
     <main class="formulario-container">
 
-    <h1>Formulario de Reserva - Tenis</h1>
+        <h1>Formulario de Reserva - Tenis</h1>
 
-    <form action="formulario-tenis.php" method="post" class="formulario">
+        <form action="formulario-tenis.php" method="post" class="formulario">
 
-        <!-- Campo oculto con el id de la pista que viene de reservas-tenis.php -->
-        <input type="hidden" name="id_pista" value="<?= isset($_GET['id_pista']) ? $_GET['id_pista'] : '' ?>">
+            <!-- Campo oculto con el id de la pista que viene de reservas-tenis.php -->
+            <input type="hidden" name="id_pista" value="<?php echo $id_pista_valor; ?>">
 
-        <div class="grupo">
-            <label>Nombre Completo:</label>
-            <input type="text" value="<?= htmlspecialchars($_SESSION['nombre']) ?>" readonly>
-        </div>
-
-        <div class="grupo-fecha">
-            <label>Fecha:</label>
-            <!-- Se rellena automáticamente con la fecha elegida en reservas-tenis.php -->
-            <input type="date" name="fecha" value="<?= isset($_GET['fecha']) ? $_GET['fecha'] : '' ?>" readonly required>
-        </div>
-
-        <div class="grupo">
-            <label>Hora de inicio:</label>
-            <!-- Se rellena automáticamente con la hora elegida en reservas-tenis.php -->
-            <input type="time" name="hora_inicio" value="<?= isset($_GET['hora']) ? $_GET['hora'] : '' ?>" readonly required>
-        </div>
-
-        <div class="grupo">
-            <label>Duración:</label>
-            <select name="duracion" required>
-                <option value="1">1 hora</option>
-                <option value="1.5">1 hora y media</option>
-                <option value="2">2 horas</option>
-            </select>
-        </div>
-
-        <div class="grupo">
-            <label>Tipo de pago:</label>
-            <div class="opciones">
-                <label><input type="radio" name="pago" value="tarjeta"> Tarjeta</label>
-                <label><input type="radio" name="pago" value="bizum"> Bizum</label>
-                <label><input type="radio" name="pago" value="efectivo"> Efectivo</label>
-                <label><input type="radio" name="pago" value="bmvcoins"> BMVCoins</label>
+            <div class="grupo">
+                <label>Nombre Completo:</label>
+                <input type="text" value="<?php echo $_SESSION['nombre']; ?>" readonly>
             </div>
-        </div>
 
-        <div class="grupo">
-            <label>Alquiler de material:</label>
-            <div class="opciones">
-                <label><input type="checkbox" name="pelotas" value="1"> Pelotas (8€)</label>
-                <label><input type="checkbox" name="raqueta" value="1"> Raqueta (5€)</label>
+            <div class="grupo-fecha">
+                <label>Fecha:</label>
+                <!-- Se rellena automáticamente con la fecha elegida en reservas-tenis.php -->
+                <input type="date" name="fecha" value="<?php echo $fecha_valor; ?>" readonly required>
             </div>
-        </div>
 
-        <div class="grupo">
-            <label>
-                <input type="checkbox" required>
-                Acepto la política de cancelación
-            </label>
-        </div>
+            <div class="grupo">
+                <label>Hora de inicio:</label>
+                <!-- Se rellena automáticamente con la hora elegida en reservas-tenis.php -->
+                <input type="time" name="hora_inicio" value="<?php echo $hora_valor; ?>" readonly required>
+            </div>
 
-        <button type="submit">Confirmar Reserva</button>
+            <div class="grupo">
+                <label>Duración:</label>
+                <select name="duracion" required>
+                    <option value="1">1 hora</option>
+                    <option value="1.5">1 hora y media</option>
+                    <option value="2">2 horas</option>
+                </select>
+            </div>
 
-    </form>
+            <div class="grupo">
+                <label>Tipo de pago:</label>
+                <div class="opciones">
+                    <label><input type="radio" name="pago" value="tarjeta"> Tarjeta</label>
+                    <label><input type="radio" name="pago" value="bizum"> Bizum</label>
+                    <label><input type="radio" name="pago" value="efectivo"> Efectivo</label>
+                    <label><input type="radio" name="pago" value="bmvcoins"> BMVCoins</label>
+                </div>
+            </div>
 
-    <p class="politica">
-        Las reservas podrán cancelarse hasta 1 hora antes del inicio.
-        Pasado ese tiempo no se permitirá la cancelación.
-    </p>
+            <div class="grupo">
+                <label>Alquiler de material:</label>
+                <div class="opciones">
+                    <label><input type="checkbox" name="pelotas" value="1"> Pelotas (8€)</label>
+                    <label><input type="checkbox" name="raqueta" value="1"> Raqueta (5€)</label>
+                </div>
+            </div>
 
-</main>
+            <div class="grupo">
+                <label>
+                    <input type="checkbox" required>
+                    Acepto la política de cancelación
+                </label>
+            </div>
+
+            <button type="submit">Confirmar Reserva</button>
+
+        </form>
+
+        <p class="politica">
+            Las reservas podrán cancelarse hasta 1 hora antes del inicio.
+            Pasado ese tiempo no se permitirá la cancelación.
+        </p>
+
+    </main>
+</body>
+</html>
