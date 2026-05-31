@@ -63,6 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $pdo->query("UPDATE usuarios SET saldo_monedas = saldo_monedas + $monedas_ganadas WHERE id = $id_usuario");
             $_SESSION['saldo_monedas'] += $monedas_ganadas;
         }
+        // Redirigimos a la pagina de confirmacion
+        header('Location: ../../Confirmacion/confirmacion.php');
         exit();
     } else {
         echo "<script>alert('Error al confirmar la reserva. Por favor, inténtalo de nuevo.');</script>";

@@ -27,17 +27,23 @@ session_start();
         <nav class="nav2">
 
             <div class="monedas">
-                <i  mg src="moneda.png" class="moneda">
-                <span class="saldo"><?= $_SESSION['saldo_monedas'] ?? 0 ?></span>
+                <img src="moneda.png" class="moneda">
+                <?php
+                if (isset($_SESSION['saldo_monedas'])) {
+                    echo '<span class="saldo">' . $_SESSION['saldo_monedas'] . '</span>';
+                } else {
+                    echo '<span class="saldo">0</span>';
+                }
+                ?>
             </div>
-
-            <?php if (isset($_SESSION['id'])): ?>
-                <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span>
-                <a href="../../MiCuenta/mi_cuenta.php" class="mi-cuenta">Mi Cuenta</a>
-                <a href="../../logout.php" class="cerrar">Cerrar Sesión</a>
-            <?php else: ?>
-                <a href="../../Login/login.php" class="login-button">Acceder</a>
-            <?php endif; ?>
+            <?php
+            if (isset($_SESSION['id'])) {
+                echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . htmlspecialchars($_SESSION['nombre']) . '</a>';
+                echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
+            } else {
+                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
+            }
+            ?>
 
         </nav>
     </header>

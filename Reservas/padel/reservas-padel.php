@@ -102,7 +102,7 @@ $pistas = [
             foreach ($horas as $hora) {
                 $id_pista_actual = $pista['id'];
                 $hora_completa = $hora . ':00';
-                $consulta = $pdo->query("SELECT COUNT(*) FROM reservas WHERE id_pista = $id_pista_actual AND fecha = '$fecha' AND hora_inicio = '$hora_completa'");
+                $consulta = $pdo->query("SELECT COUNT(*) FROM reservas WHERE id_pista = $id_pista_actual AND fecha = '$fecha' AND hora_inicio = '$hora_completa' AND estado != 'cancelada'");
                 $ocupado = $consulta->fetchColumn() > 0;
                 if ($ocupado) {
                     echo '<div class="slot ocupado">' . $hora . '</div>';

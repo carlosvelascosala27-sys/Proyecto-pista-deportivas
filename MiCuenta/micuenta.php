@@ -2,6 +2,7 @@
 session_start();
 require_once '../config/db.php';
 
+// Si no ha iniciado sesion, lo mandamos al login
 if (!isset($_SESSION['id'])) {
     header('Location: ../Login/login.php');
     exit();
@@ -10,25 +11,33 @@ if (!isset($_SESSION['id'])) {
 $id_usuario = $_SESSION['id'];
 $hoy = date('Y-m-d');
 
-// Datos del usuario
-$stmt = $pdo->prepare('SELECT nombre, email, saldo_monedas FROM usuarios WHERE id = ?');
-$stmt->execute([$id_usuario]);
-$usuario = $stmt->fetch();
+// Comprobamos si se ha enviado un formulario
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $accion = $_POST['accion'];
 
-// Próximas reservas del usuario
-$stmt = $pdo->prepare('SELECT reservas.*, pistas.nombre AS nombre_pista FROM reservas JOIN pistas ON reservas.id_pista = pistas.id WHERE reservas.id_usuario = ? AND reservas.fecha >= ? ORDER BY reservas.fecha ASC');
-$stmt->execute([$id_usuario, $hoy]);
-$proximas = $stmt->fetchAll();
+    // Cancelar una reserva proxima
+    if ($accion == 'cancelar') {
+        $id_reserva = $_POST['id_reserva'];
+        // Cambiamos el estado a cancelada en vez de borrarla
+        $pdo->query("UPDATE reservas SET estado = 'cancelada' WHERE id = $id_reserva AND id_usuario = $id_usuario");
+    }
+}
 
-// Historial fechas menores a hoy
-$stmt = $pdo->prepare('SELECT reservas.*, pistas.nombre AS nombre_pista FROM reservas JOIN pistas ON reservas.id_pista = pistas.id WHERE reservas.id_usuario = ? AND reservas.fecha < ? ORDER BY reservas.fecha DESC');
-$stmt->execute([$id_usuario, $hoy]);
-$historial = $stmt->fetchAll();
+// Cogemos los datos del usuario de la base de datos
+$consulta_usuario = $pdo->query("SELECT nombre, email, saldo_monedas FROM usuarios WHERE id = $id_usuario");
+$usuario = $consulta_usuario->fetch();
 
-// Todos los movimientos de BMVCoins
-$stmt = $pdo->prepare('SELECT reservas.*, pistas.nombre AS nombre_pista FROM reservas JOIN pistas ON reservas.id_pista = pistas.id WHERE reservas.id_usuario = ? ORDER BY reservas.fecha DESC');
-$stmt->execute([$id_usuario]);
-$todas = $stmt->fetchAll();
+// Proximas reservas del usuario (de hoy en adelante y no canceladas)
+$consulta_proximas = $pdo->query("SELECT reservas.*, pistas.nombre AS nombre_pista FROM reservas JOIN pistas ON reservas.id_pista = pistas.id WHERE reservas.id_usuario = $id_usuario AND reservas.fecha >= '$hoy' AND reservas.estado != 'cancelada' ORDER BY reservas.fecha ASC");
+$proximas = $consulta_proximas->fetchAll();
+
+// Historial de reservas pasadas
+$consulta_historial = $pdo->query("SELECT reservas.*, pistas.nombre AS nombre_pista FROM reservas JOIN pistas ON reservas.id_pista = pistas.id WHERE reservas.id_usuario = $id_usuario AND reservas.fecha < '$hoy' ORDER BY reservas.fecha DESC");
+$historial = $consulta_historial->fetchAll();
+
+// Todas las reservas para el apartado de BMVCoins
+$consulta_todas = $pdo->query("SELECT reservas.*, pistas.nombre AS nombre_pista FROM reservas JOIN pistas ON reservas.id_pista = pistas.id WHERE reservas.id_usuario = $id_usuario ORDER BY reservas.fecha DESC");
+$todas = $consulta_todas->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -56,14 +65,16 @@ $todas = $stmt->fetchAll();
         <nav class="nav2">
             <div class="monedas">
                 <img src="moneda.png" class="moneda">
-                <span class="saldo"><?= $_SESSION['saldo_monedas'] ?? 0 ?></span>
+                <?php echo '<span class="saldo">' . $_SESSION['saldo_monedas'] . '</span>'; ?>
             </div>
-            <?php if (isset($_SESSION['id'])) { ?>
-                <span class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></span> 
-                <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
-            <?php } else { ?>
-                <a href="../Login/login.php" class="login-button">Acceder</a>
-            <?php } ?>
+            <?php
+            if (isset($_SESSION['id'])) {
+                echo '<span class="login-button">Hola, ' . htmlspecialchars($_SESSION['nombre']) . '</span>';
+                echo '<a href="../logout.php" class="cerrar">Cerrar Sesión</a>';
+            } else {
+                echo '<a href="../Login/login.php" class="login-button">Acceder</a>';
+            }
+            ?>
         </nav>
     </header>
 
@@ -71,111 +82,102 @@ $todas = $stmt->fetchAll();
 
         <section class="seccion">
             <h1>Mi Cuenta</h1>
-            <p><strong>Nombre:</strong> <?= htmlspecialchars($usuario['nombre']) ?></p>
-            <p><strong>Email:</strong> <?= htmlspecialchars($usuario['email']) ?></p>
-            <p><strong>BMVCoins:</strong> <?= $usuario['saldo_monedas'] ?> coins</p>
+            <p><strong>Nombre:</strong> <?php echo htmlspecialchars($usuario['nombre']); ?></p>
+            <p><strong>Email:</strong> <?php echo htmlspecialchars($usuario['email']); ?></p>
+            <p><strong>BMVCoins:</strong> <?php echo $usuario['saldo_monedas']; ?> coins</p>
         </section>
 
         <section class="seccion">
             <h2>Próximas Reservas</h2>
-            <?php if (count($proximas) == 0) { ?>
-                <p class="sin-datos">No tienes reservas próximas.</p>
-            <?php } else { ?>
-                <table class="tabla-reservas">
-                    <thead>
-                        <tr>
-                            <th>Pista</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Duración</th>
-                            <th>Precio</th>
-                            <th>Pago</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($proximas as $reserva) { ?> /* Recorrer reservas próximas */
-                        <tr>
-                            <td><?= htmlspecialchars($reserva['nombre_pista']) ?></td>
-                            <td><?= $reserva['fecha'] ?></td>
-                            <td><?= $reserva['hora_inicio'] ?></td>
-                            <td><?= $reserva['duracion_horas'] ?> hora/s</td>
-                            <td><?= $reserva['precio_total'] ?></td>
-                            <td><?= $reserva['tipo_pago'] ?></td>
-                            <td><?= $reserva['estado'] ?></td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            <?php } ?>
+            <?php
+            if (count($proximas) == 0) {
+                echo '<p class="sin-datos">No tienes reservas próximas.</p>';
+            } else {
+                echo '<table class="tabla-reservas">';
+                echo '<thead><tr>';
+                echo '<th>Pista</th><th>Fecha</th><th>Hora</th><th>Duración</th><th>Precio</th><th>Pago</th><th>Estado</th><th></th>';
+                echo '</tr></thead><tbody>';
+                // Recorremos las proximas reservas
+                foreach ($proximas as $reserva) {
+                    echo '<tr>';
+                    echo '<td>' . htmlspecialchars($reserva['nombre_pista']) . '</td>';
+                    echo '<td>' . $reserva['fecha'] . '</td>';
+                    echo '<td>' . $reserva['hora_inicio'] . '</td>';
+                    echo '<td>' . $reserva['duracion_horas'] . ' hora/s</td>';
+                    echo '<td>' . $reserva['precio_total'] . '€</td>';
+                    echo '<td>' . $reserva['tipo_pago'] . '</td>';
+                    echo '<td>' . $reserva['estado'] . '</td>';
+                    // Boton de cancelar que envia el id de la reserva por POST
+                    echo '<td>';
+                    echo '<form action="micuenta.php" method="post">';
+                    echo '<input type="hidden" name="accion" value="cancelar">';
+                    echo '<input type="hidden" name="id_reserva" value="' . $reserva['id'] . '">';
+                    echo '<button type="submit" class="btn-cancelar">Cancelar</button>';
+                    echo '</form>';
+                    echo '</td>';
+                    echo '</tr>';
+                }
+                echo '</tbody></table>';
+            }
+            ?>
         </section>
 
         <section class="seccion">
             <h2>Historial</h2>
-            <?php if (count($historial) == 0) { ?>
-                <p class="sin-datos">No tienes reservas anteriores.</p>
-            <?php } else { ?>
-                <table class="tabla-reservas">
-                    <thead>
-                        <tr>
-                            <th>Pista</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Duración</th>
-                            <th>Precio</th>
-                            <th>Pago</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($historial as $reserva) { ?> /* Recorrer historial de reservas */
-                        <tr>
-                            <td><?= htmlspecialchars($reserva['nombre_pista']) ?></td>
-                            <td><?= $reserva['fecha'] ?></td>
-                            <td><?= $reserva['hora_inicio'] ?></td>
-                            <td><?= $reserva['duracion_horas'] ?> hora/s</td>
-                            <td><?= $reserva['precio_total'] ?></td>
-                            <td><?= $reserva['tipo_pago'] ?></td>
-                            <td><?= $reserva['estado'] ?></td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            <?php } ?>
+            <?php
+            if (count($historial) == 0) {
+                echo '<p class="sin-datos">No tienes reservas anteriores.</p>';
+            } else {
+                echo '<table class="tabla-reservas">';
+                echo '<thead><tr>';
+                echo '<th>Pista</th><th>Fecha</th><th>Hora</th><th>Duración</th><th>Precio</th><th>Pago</th><th>Estado</th>';
+                echo '</tr></thead><tbody>';
+                // Recorremos el historial de reservas pasadas
+                foreach ($historial as $reserva) {
+                    echo '<tr>';
+                    echo '<td>' . htmlspecialchars($reserva['nombre_pista']) . '</td>';
+                    echo '<td>' . $reserva['fecha'] . '</td>';
+                    echo '<td>' . $reserva['hora_inicio'] . '</td>';
+                    echo '<td>' . $reserva['duracion_horas'] . ' hora/s</td>';
+                    echo '<td>' . $reserva['precio_total'] . '€</td>';
+                    echo '<td>' . $reserva['tipo_pago'] . '</td>';
+                    echo '<td>' . $reserva['estado'] . '</td>';
+                    echo '</tr>';
+                }
+                echo '</tbody></table>';
+            }
+            ?>
         </section>
 
         <section class="seccion">
             <h2>BMVCoins</h2>
-            <p>Saldo actual: <strong><?= $usuario['saldo_monedas'] ?> coins</strong></p>
-            <?php if (count($todas) == 0) { ?>
-                <p class="sin-datos">No hay movimientos de BMVCoins.</p>
-            <?php } else { ?>
-                <table class="tabla-reservas">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Pista</th>
-                            <th>Tipo</th>
-                            <th>Coins</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($todas as $reserva) { ?>
-                        <tr>
-                            <td><?= $reserva['fecha'] ?></td>
-                            <td><?= htmlspecialchars($reserva['nombre_pista']) ?></td>
-                            <?php if ($reserva['tipo_pago'] == 'bmvcoins') { ?>
-                                <td class="gasto">Pago con BMVCoins</td>
-                                <td class="gasto">-<?= $reserva['precio_total'] ?> coins</td>
-                            <?php } else { ?>
-                                <td class="ganancia">Reserva pagada</td>
-                                <td class="ganancia">+<?= (int)($reserva['precio_total'] / 2) ?> coins</td>
-                            <?php } ?>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            <?php } ?>
+            <p>Saldo actual: <strong><?php echo $usuario['saldo_monedas']; ?> coins</strong></p>
+            <?php
+            if (count($todas) == 0) {
+                echo '<p class="sin-datos">No hay movimientos de BMVCoins.</p>';
+            } else {
+                echo '<table class="tabla-reservas">';
+                echo '<thead><tr>';
+                echo '<th>Fecha</th><th>Pista</th><th>Tipo</th><th>Coins</th>';
+                echo '</tr></thead><tbody>';
+                foreach ($todas as $reserva) {
+                    echo '<tr>';
+                    echo '<td>' . $reserva['fecha'] . '</td>';
+                    echo '<td>' . htmlspecialchars($reserva['nombre_pista']) . '</td>';
+                    // Si pago con coins se muestra como gasto, si no como ganancia
+                    if ($reserva['tipo_pago'] == 'bmvcoins') {
+                        echo '<td class="gasto">Pago con BMVCoins</td>';
+                        echo '<td class="gasto">-' . $reserva['precio_total'] . ' coins</td>';
+                    } else {
+                        $coins_ganados = (int)($reserva['precio_total'] / 2);
+                        echo '<td class="ganancia">Reserva pagada</td>';
+                        echo '<td class="ganancia">+' . $coins_ganados . ' coins</td>';
+                    }
+                    echo '</tr>';
+                }
+                echo '</tbody></table>';
+            }
+            ?>
         </section>
 
     </main>

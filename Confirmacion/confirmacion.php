@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once '../../config/db.php';
-if (!isset($_SESSION['id'])) { // Si el usuario no ha iniciado sesión, redirigir a la página de inicio de sesión
-    header('Location: ../../Login/login.php');
+require_once '../config/db.php';
+if (!isset($_SESSION['id'])) {
+    header('Location: ../Login/login.php');
     exit();
 }
 ?>
@@ -30,7 +30,7 @@ if (!isset($_SESSION['id'])) { // Si el usuario no ha iniciado sesión, redirigi
 
             <div class="botones">
                 <a href="../Principal/principal.php" class="btn">Volver al inicio</a>
-                <a href="../MiCCuenta/micuenta.php" class="btn-secundario">Ver mis reservas</a>
+                <a href="../MiCuenta/micuenta.php" class="btn-secundario">Ver mis reservas</a>
             </div>
         </div>
 
