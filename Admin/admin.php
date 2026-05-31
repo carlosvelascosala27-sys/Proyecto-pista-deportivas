@@ -38,59 +38,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pdo->query("UPDATE usuarios SET nombre = '$nombre', apellidos = '$apellidos', email = '$email', rol = '$rol' WHERE id = $id");
     }
 
-    // Crear reserva nueva
+    //Crear reserva nueva
     if ($accion == 'crear_reserva') {
         $id_usuario = $_POST['id_usuario'];
         $id_pista = $_POST['id_pista'];
         $fecha = $_POST['fecha'];
         $hora_inicio = $_POST['hora_inicio'];
-        $duracion = $_POST['duracion'];
+        $duracion_horas = $_POST['duracion'];
         $tipo_pago = $_POST['tipo_pago'];
-
-        // Comprobamos si quiere alquiler de material
-        if (isset($_POST['pelotas'])) {
+        
+        // Si se ha seleccionado alquiler de pelotas, agregar esa información a la reserva
+        if (isset($_POST['pelotas'])){
             $alquiler_pelotas = 1;
-        } else {
+        }else {
             $alquiler_pelotas = 0;
         }
 
-        if (isset($_POST['raqueta'])) {
+        if (isset($_POST['raqueta'])){
             $alquiler_raqueta = 1;
-        } else {
+        }else {
             $alquiler_raqueta = 0;
         }
 
         // Cogemos el precio por hora de esa pista de la base de datos
         $consulta = $pdo->query("SELECT precio_hora FROM pistas WHERE id = $id_pista");
         $precio_hora = $consulta->fetchColumn();
-        // Calculamos el precio total
-        $precio_total = $precio_hora * $duracion;
+        // Calculamos el precio total de la reserva
+        $precio_total = $precio_hora * $duracion_horas;
 
-        $pdo->query("INSERT INTO reservas (id_usuario, id_pista, fecha, hora_inicio, duracion_horas, alquiler_pelotas, alquiler_raqueta, tipo_pago, precio_total) VALUES ($id_usuario, $id_pista, '$fecha', '$hora_inicio', $duracion, $alquiler_pelotas, $alquiler_raqueta, '$tipo_pago', $precio_total)");
+        $pdo->query("INSERT INTO reservas (id_usuario, fecha, hora_inicio, duracion_horas, alquiler_pelotas, alquiler_raqueta, tipo_pago, precio_total, id_pista) VALUES (LAST_INSERT_ID(), '$fecha', '$hora_inicio', $duracion_horas, $alquiler_pelotas, $alquiler_raqueta, '$tipo_pago', $precio_total, $id_pista)");
     }
 
-    // Editar reserva existente
+    // Editar reserva existennte
     if ($accion == 'editar_reserva') {
         $id = $_POST['id_reserva'];
         $fecha = $_POST['fecha'];
         $hora_inicio = $_POST['hora_inicio'];
-        $duracion = $_POST['duracion'];
+        $duracion_horas = $_POST['duracion'];
         $tipo_pago = $_POST['tipo_pago'];
 
-        // Comprobamos si quiere alquiler de material
-        if (isset($_POST['pelotas'])) {
+        // Si se ha seleccionado alquiler de pelotas, agregar esa información a la reserva
+        if (isset($_POST['pelotas'])){
             $alquiler_pelotas = 1;
-        } else {
+        }else {
             $alquiler_pelotas = 0;
         }
 
-        if (isset($_POST['raqueta'])) {
+        if (isset($_POST['raqueta'])){
             $alquiler_raqueta = 1;
-        } else {
+        }else {
             $alquiler_raqueta = 0;
         }
 
-        $pdo->query("UPDATE reservas SET fecha = '$fecha', hora_inicio = '$hora_inicio', duracion_horas = $duracion, tipo_pago = '$tipo_pago', alquiler_pelotas = $alquiler_pelotas, alquiler_raqueta = $alquiler_raqueta WHERE id = $id");
+        $pdo->query("UPDATE reservas SET duracion_horas = $duracion_horas, tipo_pago = '$tipo_pago', alquiler_pelotas = $alquiler_pelotas, alquiler_raqueta = $alquiler_raqueta WHERE id = $id");
+
     }
 
     // Eliminar reserva existente
