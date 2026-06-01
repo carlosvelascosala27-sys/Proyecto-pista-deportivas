@@ -59,7 +59,7 @@ session_start();
         
         <div class="contenedor-cards">
             <a href="#" class="card-torneo">
-            <img src="cartel-futbol.png" alt="Torneo de Futbol">
+            <img src="cartel-+18futbol.png" alt="Torneo de Futbol">
                 <div class="card-contenido">
                     <h3>Torneo Open A3Pistas - Futbol</h3>
                     <p>
@@ -73,11 +73,11 @@ session_start();
             </a>
 
             <a href="#" class="card-torneo">
-                <img src="cartel-padel.png" alt="Torneo de Pádel">
+                <img src="cartel-padel-tenis.png" alt="Torneo de Pádel">
                 <div class="card-contenido">
-                    <h3>Torneo Primavera - Pádel</h3>
+                    <h3>Torneo Verano - Pádel y Tenis</h3>
                     <p>
-                        Torneo de pádel por parejas con fase de grupos y eliminatorias.
+                        Torneo de pádel y tenis por parejas con fase de grupos y eliminatorias.
                         Ambiente competitivo y divertido.
 
                     <strong>

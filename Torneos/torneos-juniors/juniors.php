@@ -58,7 +58,7 @@ session_start();
     <section class="torneos-parte">
         <div class="contenedor-cards">
             <a href="torneo_futbol_junior.html" class="card-torneo">
-                <img src="cartel-futbol.png" alt="Torneo Junior Fútbol">
+                <img src="cartel-junior.png" alt="Torneo Junior Fútbol">
 
                 <div class="card-contenido">
                     <h3>Torneo Junior Fútbol</h3>
@@ -71,25 +71,11 @@ session_start();
                 </div>
             </a>
 
-            <a href="torneo_baloncesto_junior.html" class="card-torneo">
-                <img src="cartel-baloncesto.png" alt="Torneo Junior Baloncesto">
-
-                <div class="card-contenido">
-                    <h3>Torneo Junior Baloncesto</h3>
-
-                    <p>
-                        Campeonato juvenil 3x3 y 5x5 para jóvenes promesas.
-                        Premios y trofeos para los finalistas.
-                        <strong>PRÓXIMAMENTE SE ABRIRÁN LAS INSCRIPCIONES.</strong>
-                    </p>
-                </div>
-            </a>
-
             <a href="torneo_tenis_junior.html" class="card-torneo">
-                <img src="cartel-tenis.png" alt="Torneo Junior Tenis">
+                <img src="cartel-padel-tenis.png" alt="Torneo Junior Tenis">
 
                 <div class="card-contenido">
-                    <h3>Torneo Junior Tenis</h3>
+                    <h3>Torneo Junior Tenis y Pádel</h3>
 
                     <p>
                         Torneo individual juvenil con diferentes categorías por edad.

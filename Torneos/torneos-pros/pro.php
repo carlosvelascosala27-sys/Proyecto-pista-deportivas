@@ -71,7 +71,7 @@ session_start();
             </a>
 
             <a href="#" class="card-torneo">
-                <img src="cartel-tenis.png" alt="Torneo de Tenis">
+                <img src="cartel-pro.png" alt="Torneo de Tenis">
                 <div class="card-contenido">
                     <h3>Torneo Pro Tenis - A3Pistas</h3>
                     <p>
