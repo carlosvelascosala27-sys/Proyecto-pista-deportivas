@@ -77,9 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nueva_password'])) {
 
         // Si la contraseña se cambio correctamente mostramos el enlace al login
         if ($mensaje == 'Contraseña cambiada correctamente. Ya puedes iniciar sesión.') {
-            echo '<p><a href="../Login/login.php" class="boton">Ir al login</a></p>';
+            echo '<p><a href="../Login/index.php" class="boton">Ir al login</a></p>';
         } else {
-            echo '<p><a href="../Login/login.php">¿Volver al inicio de sesión?</a></p>';
+            echo '<p><a href="../Login/index.php">¿Volver al inicio de sesión?</a></p>';
         }
         ?>
 

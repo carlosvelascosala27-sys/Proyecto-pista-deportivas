@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <nav class="nav1">
             
-                <a href="../Principal/principal.php" class="inicio">Inicio</a>
+                <a href="../Principal/index.php" class="inicio">Inicio</a>
                 <a href="../Torneos/torneos.php" class="torneos">Torneos</a>
                 <a href="../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <a href="../MiCuenta/micuenta.php" class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></a>
                 <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
             <?php } else { ?>
-                <a href="../Login/login.php" class="login-button">Acceder</a>
+                <a href="../Login/index.php" class="login-button">Acceder</a>
             <?php } ?>
             
 

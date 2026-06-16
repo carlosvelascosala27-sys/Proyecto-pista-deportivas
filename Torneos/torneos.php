@@ -15,14 +15,14 @@ session_start();
 <body>
     <header class="header">
         <div class="logos">
-            <a href="../Principal/principal.php">
+            <a href="../Principal/index.php">
                 <img src="logo.png" alt="Logo" class="logo">
             </a>
             <img src="espana.png" alt="Logo" class="logo2">
         </div>
         <nav class="nav1">
             
-                <a href="../Principal/principal.php" class="inicio">Inicio</a>
+                <a href="../Principal/index.php" class="inicio">Inicio</a>
                 <a href="torneos.php" class="torneos">Torneos</a>
                 <a href="../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -37,7 +37,7 @@ session_start();
                 <a href="../MiCuenta/micuenta.php" class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></a>
                 <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
             <?php else: ?>
-                <a href="../Login/login.php" class="login-button">Acceder</a>
+                <a href="../Login/index.php" class="login-button">Acceder</a>
             <?php endif; ?>
 
         </nav>
@@ -101,7 +101,7 @@ session_start();
             <div class="footer-col">
                 <h4>Enlaces</h4>
                 <ul>
-                    <li><a href="../Principal/principal.php">Inicio</a></li>
+                    <li><a href="../Principal/index.php">Inicio</a></li>
                     <li><a href="torneos.php">Torneos</a></li>
                     <li><a href="../Entrenamientos/entrenamientos.php">Entrenamientos</a></li>
                     <li><a href="../Contacto/contacto.php">Contacto</a></li>

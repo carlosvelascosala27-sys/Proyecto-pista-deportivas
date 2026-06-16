@@ -4,7 +4,7 @@ require_once '../../config/db.php';
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['id'])) {
-    header('Location: ../../Login/login.php');
+    header('Location: ../../Login/index.php');
     exit();
 }
 
@@ -49,13 +49,13 @@ $pistas = [
 <body>
     <header class="header">
         <div class="logos">
-            <a href="../../Principal/principal.php">
+            <a href="../../Principal/index.php">
                 <img src="logo.png" alt="Logo" class="logo">
             </a>
             <img src="espana.png" alt="Logo" class="logo2">
         </div>
         <nav class="nav1">
-            <a href="../../Principal/principal.php" class="inicio">Inicio</a>
+            <a href="../../Principal/index.php" class="inicio">Inicio</a>
             <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
             <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -69,7 +69,7 @@ $pistas = [
                 echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . $_SESSION['nombre'] . '</a>';
                 echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
             } else {
-                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
+                echo '<a href="../../Login/index.php" class="login-button">Acceder</a>';
             }
             ?>
         </nav>

@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['email'] = $email;
             $_SESSION['rol'] = 'cliente';
 
-            header("Location: ../Principal/principal.php");
+            header("Location: ../Principal/index.php");
             exit();
         }
     }

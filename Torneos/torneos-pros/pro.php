@@ -20,7 +20,7 @@ session_start();
         </div>
         <nav class="nav1">
             
-                <a href="../../Principal/principal.php" class="inicio">Inicio</a>
+                <a href="../../Principal/index.php" class="inicio">Inicio</a>
                 <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
                 <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -41,7 +41,7 @@ session_start();
                 echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . htmlspecialchars($_SESSION['nombre']) . '</a>';
                 echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
             } else {
-                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
+                echo '<a href="../../Login/index.php" class="login-button">Acceder</a>';
             }
             ?>
 
@@ -95,7 +95,7 @@ session_start();
             <div class="footer-col">
                 <h4>Enlaces</h4>
                 <ul>
-                    <li><a href="../../Principal/principal.php">Inicio</a></li>
+                    <li><a href="../../Principal/index.php">Inicio</a></li>
                     <li><a href="../../Torneos/torneos.php">Torneos</a></li>
                     <li><a href="../../Entrenamientos/entrenamientos.php">Entrenamientos</a></li>
                     <li><a href="../../Contacto/contacto.php">Contacto</a></li>

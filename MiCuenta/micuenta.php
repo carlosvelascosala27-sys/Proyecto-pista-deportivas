@@ -4,7 +4,7 @@ require_once '../config/db.php';
 
 // Si no ha iniciado sesion, lo mandamos al login
 if (!isset($_SESSION['id'])) {
-    header('Location: ../Login/login.php');
+    header('Location: ../Login/index.php');
     exit();
 }
 
@@ -52,13 +52,13 @@ $todas = $consulta_todas->fetchAll();
 <body>
     <header class="header">
         <div class="logos">
-            <a href="../Principal/principal.php">
+            <a href="../Principal/index.php">
                 <img src="logo.png" alt="Logo" class="logo">
             </a>
             <img src="espana.png" alt="Logo" class="logo2">
         </div>
         <nav class="nav1">
-            <a href="../Principal/principal.php" class="inicio">Inicio</a>
+            <a href="../Principal/index.php" class="inicio">Inicio</a>
             <a href="../Torneos/torneos.php" class="torneos">Torneos</a>
             <a href="../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -72,7 +72,7 @@ $todas = $consulta_todas->fetchAll();
                 echo '<span class="login-button">Hola, ' . htmlspecialchars($_SESSION['nombre']) . '</span>';
                 echo '<a href="../logout.php" class="cerrar">Cerrar Sesión</a>';
             } else {
-                echo '<a href="../Login/login.php" class="login-button">Acceder</a>';
+                echo '<a href="../Login/index.php" class="login-button">Acceder</a>';
             }
             ?>
         </nav>
