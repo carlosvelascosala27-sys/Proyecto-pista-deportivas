@@ -5,7 +5,7 @@
 session_start();
 
 // Conectamos con la base de datos
-require_once '../config/db.php';
+require '../config/db.php';
 
 // Comprobamos que el formulario se ha enviado por POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Redirigimos según el rol
             if ($usuario['rol'] === 'admin') {
-                header("Location: ../Admin/admin.php");
+                header("Location: ../Admin/index.php");
             } else {
                 header("Location: ../Principal/principal.php");
             }
