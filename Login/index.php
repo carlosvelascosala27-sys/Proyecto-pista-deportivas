@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $usuario = $stmt->fetch(); // Devuelve la fila como array o false si no existe
 
         // Comprobamos si el usuario existe Y si la contraseÃ±a es correcta
-        // password_verify compara la contraseÃ±a escrita con el hash guardado en la BD
+        // password_verify compara la contraseña escrita con el hash guardado en la BD
         if ($usuario && password_verify($password, $usuario['password'])) {
 
             // Login correcto: guardamos sus datos en la sesiÃ³n
@@ -37,11 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['rol'] = $usuario['rol'];
             $_SESSION['saldo_monedas'] = $usuario['saldo_monedas'];
 
-            // Redirigimos segÃºn el rol
+            // Redirigimos según el rol
             if ($usuario['rol'] === 'admin') {
-                header("Location: ../Admin/index.php");
+                header("Location: ../Admin/");
             } else {
-                header("Location: ../Principal/index.php");
+                header("Location: ../Principal/");
             }
             exit(); // Importante: detiene el PHP despuÃ©s de redirigir
 
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="boton">Iniciar sesión</button>
 
             <div class="registro">
-                <p>¿No tienes una cuenta? <a href="../registro/registro.html">Regístrate aquí</a></p>
+                <p>¿No tienes una cuenta? <a href="../registro/registro.php">Regístrate aquí</a></p>
             </div>
         </form>
     </div>

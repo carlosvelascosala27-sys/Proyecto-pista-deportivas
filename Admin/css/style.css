@@ -80,10 +80,43 @@ body {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
 }
 
 #dashboard .bloque-admin {
     width: 250px;
+    background-color: #002b5b;
+    color: white;
+    padding: 30px 25px;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#dashboard .bloque-admin h3 {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#dashboard .bloque-admin .numero-dashboard {
+    font-size: 48px;
+    font-weight: bold;
+    color: rgba(241, 146, 37, 0.93);
+    line-height: 1;
+}
+
+#dashboard .bloque-admin p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    margin: 0;
 }
 
 .bloque-admin {

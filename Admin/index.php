@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 require '../config/db.php';
 
@@ -149,10 +149,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $total_pistas = $pdo->query("SELECT COUNT(*) FROM pistas WHERE estado = 'activa'")->fetchColumn();
                     $total_mensajes = $pdo->query("SELECT COUNT(*) FROM mensajes_contacto")->fetchColumn();
 
-                    echo '<div class="bloque-admin"><h3>Usuarios registrados</h3><p>' . $total_usuarios . ' usuarios en total</p></div>';
-                    echo '<div class="bloque-admin"><h3>Reservas hoy</h3><p>' . $total_reservas . ' reservas hoy</p></div>';
-                    echo '<div class="bloque-admin"><h3>Pistas disponibles</h3><p>' . $total_pistas . ' pistas activas</p></div>';
-                    echo '<div class="bloque-admin"><h3>Mensajes de contacto</h3><p>' . $total_mensajes . ' mensajes recibidos</p></div>';
+                    echo '<div class="bloque-admin"><h3>Usuarios registrados</h3><p class="numero-dashboard">' . $total_usuarios . '</p><p>usuarios en total</p></div>';
+                    echo '<div class="bloque-admin"><h3>Reservas hoy</h3><p class="numero-dashboard">' . $total_reservas . '</p><p>reservas hoy</p></div>';
+                    echo '<div class="bloque-admin"><h3>Pistas disponibles</h3><p class="numero-dashboard">' . $total_pistas . '</p><p>pistas activas</p></div>';
+                    echo '<div class="bloque-admin"><h3>Mensajes</h3><p class="numero-dashboard">' . $total_mensajes . '</p><p>mensajes recibidos</p></div>';
                     ?>
                 </section>
             <?php } ?>

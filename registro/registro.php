@@ -40,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['email'] = $email;
             $_SESSION['rol'] = 'cliente';
 
-            header("Location: ../Principal/index.php");
-            exit();
+            header("Location: ../Principal/");
+             exit();
         }
     }
 }
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input class="controls" type="password" name="password" placeholder="Ingrese su contraseña" required>
             <input class="controls" type="password" name="confirm_password" placeholder="Confirmar contraseña" required>
             <button class="boton" type="submit">Registrarse</button>
-            <p><a href="../Login/login.html">¿Ya tienes una cuenta?</a></p>
+            <p><a href="../Login/index.php">¿Ya tienes una cuenta?</a></p>
         </form>
     </section>
 </body>
