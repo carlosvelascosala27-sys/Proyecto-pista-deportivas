@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 session_start();
 require_once '../config/db.php';
 if (!isset($_SESSION['id'])) {
-    header('Location: ../Login/index.php');
+    header('Location: ../Login/login.php');
     exit();
 }
 ?>
@@ -18,7 +18,7 @@ if (!isset($_SESSION['id'])) {
     <main class="confirmacion-container">
 
         <div class="confirmacion-card">
-            <h1>âœ” Reserva Confirmada</h1>
+            <h1>✔ Reserva Confirmada</h1>
 
             <p class="mensaje">
                 Gracias por reservar con nosotros.
@@ -29,7 +29,7 @@ if (!isset($_SESSION['id'])) {
             </p>
 
             <div class="botones">
-                <a href="../Principal/index.php" class="btn">Volver al inicio</a>
+                <a href="../Principal/principal.php" class="btn">Volver al inicio</a>
                 <a href="../MiCuenta/micuenta.php" class="btn-secundario">Ver mis reservas</a>
             </div>
         </div>

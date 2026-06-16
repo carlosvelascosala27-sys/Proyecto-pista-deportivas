@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email    = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    // Comprobamos que no vengan vacÃ­os
+    // Comprobamos que no vengan vacíos
     if (empty($email) || empty($password)) {
         $error = "Por favor, rellena todos los campos.";
     } else {
@@ -26,29 +26,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$email]);
         $usuario = $stmt->fetch(); // Devuelve la fila como array o false si no existe
 
-        // Comprobamos si el usuario existe Y si la contraseÃ±a es correcta
-        // password_verify compara la contraseÃ±a escrita con el hash guardado en la BD
+        // Comprobamos si el usuario existe Y si la contraseña es correcta
+        // password_verify compara la contraseña escrita con el hash guardado en la BD
         if ($usuario && password_verify($password, $usuario['password'])) {
 
-            // Login correcto: guardamos sus datos en la sesiÃ³n
+            // Login correcto: guardamos sus datos en la sesión
             $_SESSION['id'] = $usuario['id'];
             $_SESSION['nombre'] = $usuario['nombre'];
             $_SESSION['email'] = $usuario['email'];
             $_SESSION['rol'] = $usuario['rol'];
             $_SESSION['saldo_monedas'] = $usuario['saldo_monedas'];
 
-            // Redirigimos segÃºn el rol
+            // Redirigimos según el rol
             if ($usuario['rol'] === 'admin') {
                 header("Location: ../Admin/index.php");
             } else {
-                header("Location: ../Principal/index.php");
+                header("Location: ../Principal/principal.php");
             }
-            exit(); // Importante: detiene el PHP despuÃ©s de redirigir
+            exit(); // Importante: detiene el PHP después de redirigir
 
         } else {
-            // Email o contraseÃ±a incorrectos
-            // No decimos cuÃ¡l de los dos falla (por seguridad)
-            $error = "Email o contraseÃ±a incorrectos.";
+            // Email o contraseña incorrectos
+            // No decimos cuál de los dos falla (por seguridad)
+            $error = "Email o contraseña incorrectos.";
         }
     }
 }
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
     <div class="caja1">
-        <form action="index.php" method="post">
+        <form action="login.php" method="post">
             <h1>Inicio de Sesión</h1>
 
             <?php if (!empty($error)): ?>
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endif; ?>
 
             <div class="box">
-                <input type="email" name="email" placeholder="Correo electronico" required
+                <input type="email" name="email" placeholder="Correo electrónico" required
                        value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
                 <i class="bx bx-user" style="color:#ffffff;"></i>
             </div>

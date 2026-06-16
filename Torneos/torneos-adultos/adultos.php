@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ session_start();
         </div>
         <nav class="nav1">
             
-                <a href="../../Principal/index.php" class="inicio">Inicio</a>
+                <a href="../../Principal/principal.php" class="inicio">Inicio</a>
                 <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
                 <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -39,9 +39,9 @@ session_start();
             <?php
             if (isset($_SESSION['id'])) {
                 echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . htmlspecialchars($_SESSION['nombre']) . '</a>';
-                echo '<a href="../../logout.php" class="cerrar">Cerrar SesiÃ³n</a>';
+                echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
             } else {
-                echo '<a href="../../Login/index.php" class="login-button">Acceder</a>';
+                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
             }
             ?>
 
@@ -50,7 +50,7 @@ session_start();
     <section class="torneos-section">
         <div class="torneos-header">
             <h1>Torneos Adultos</h1>
-            <p>Torneos dirigidos a jugadores adultos de todos los niveles, con organizaciÃ³n y ambiente competitivo.
+            <p>Torneos dirigidos a jugadores adultos de todos los niveles, con organización y ambiente competitivo.
             </p>
         </div>
     </section>
@@ -64,24 +64,24 @@ session_start();
                     <h3>Torneo Open A3Pistas - Futbol</h3>
                     <p>
                         Participa en nuestro torneo oficial de futbol. 
-                        CompeticiÃ³n para todos los niveles con premios y trofeos.
+                        Competición para todos los niveles con premios y trofeos.
                     <strong>
-                        PROXIMAMENTE SE ABRIRÃN LAS INSCRIPCIONES.
+                        PROXIMAMENTE SE ABRIRÁN LAS INSCRIPCIONES.
                     </strong>
                     </p>              
                 </div>
             </a>
 
             <a href="#" class="card-torneo">
-                <img src="cartel-padel-tenis.png" alt="Torneo de PÃ¡del">
+                <img src="cartel-padel-tenis.png" alt="Torneo de Pádel">
                 <div class="card-contenido">
-                    <h3>Torneo Verano - PÃ¡del y Tenis</h3>
+                    <h3>Torneo Verano - Pádel y Tenis</h3>
                     <p>
-                        Torneo de pÃ¡del y tenis por parejas con fase de grupos y eliminatorias.
+                        Torneo de pádel y tenis por parejas con fase de grupos y eliminatorias.
                         Ambiente competitivo y divertido.
 
                     <strong>
-                        PROXIMAMENTE SE ABRIRÃN LAS INSCRIPCIONES.
+                        PROXIMAMENTE SE ABRIRÁN LAS INSCRIPCIONES.
                     </strong>
                     </p>  
                 </div>
@@ -99,7 +99,7 @@ session_start();
             <div class="footer-col">
                 <h4>Enlaces</h4>
                 <ul>
-                    <li><a href="../../Principal/index.php">Inicio</a></li>
+                    <li><a href="../../Principal/principal.php">Inicio</a></li>
                     <li><a href="../../Torneos/torneos.php">Torneos</a></li>
                     <li><a href="../../Entrenamientos/entrenamientos.php">Entrenamientos</a></li>
                     <li><a href="../../Contacto/contacto.php">Contacto</a></li>
@@ -108,7 +108,7 @@ session_start();
 
             <div class="footer-col">
                 <h4>Contacto</h4>
-                <p>Alicante, EspaÃ±a</p>
+                <p>Alicante, España</p>
                 <p>+34 600 000 000</p>
                 <p>info@a3pistas.com</p>
             </div>
@@ -116,7 +116,7 @@ session_start();
         </div>
 
         <div class="footer-bottom">
-            <p>Â© 2025 A3Pitas. Todos los derechos reservados.</p>
+            <p>© 2025 A3Pitas. Todos los derechos reservados.</p>
         </div>
     </footer>
 </body>

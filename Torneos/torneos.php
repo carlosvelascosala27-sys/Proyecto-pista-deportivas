@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -15,14 +15,14 @@ session_start();
 <body>
     <header class="header">
         <div class="logos">
-            <a href="../Principal/index.php">
+            <a href="../Principal/principal.php">
                 <img src="logo.png" alt="Logo" class="logo">
             </a>
             <img src="espana.png" alt="Logo" class="logo2">
         </div>
         <nav class="nav1">
             
-                <a href="../Principal/index.php" class="inicio">Inicio</a>
+                <a href="../Principal/principal.php" class="inicio">Inicio</a>
                 <a href="torneos.php" class="torneos">Torneos</a>
                 <a href="../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -35,9 +35,9 @@ session_start();
 
             <?php if (isset($_SESSION['id'])): ?>
                 <a href="../MiCuenta/micuenta.php" class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></a>
-                <a href="../logout.php" class="cerrar">Cerrar SesiÃ³n</a>
+                <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
             <?php else: ?>
-                <a href="../Login/index.php" class="login-button">Acceder</a>
+                <a href="../Login/login.php" class="login-button">Acceder</a>
             <?php endif; ?>
 
         </nav>
@@ -58,7 +58,7 @@ session_start();
 
             <div class="intro-texto">
                 <p>En A3Pistas organizamos torneos deportivos para jugadores de todos los niveles. 
-                    Vive la competiciÃ³n, mejora tu tÃ©cnica y disfruta de una experiencia Ãºnica.
+                    Vive la competición, mejora tu técnica y disfruta de una experiencia única.
                 </p>
             </div>
         </div>
@@ -69,14 +69,14 @@ session_start();
         <a href="torneos-adultos/adultos.php" class="tarjeta-adultos">
             <img src="adultos.jpeg" alt="Torneos Adultos">
             <h3>Adultos</h3>
-            <p>Los jugadores inscritos vivirÃ¡n una experiencia profesional Ãºnica. (+18)</p>
+            <p>Los jugadores inscritos vivirán una experiencia profesional única. (+18)</p>
         </a>
 
         <a href="torneos-juniors/juniors.php" class="tarjeta-juniors">
             <img src="juniors.jpeg" alt="Torneos Juniors">
             <div class="texto">
                 <h3>Juniors</h3>
-                <p>Competiciones internacionales de categorÃ­a juvenil. (-18)</p>
+                <p>Competiciones internacionales de categoría juvenil. (-18)</p>
             </div>
         </a>
 
@@ -101,7 +101,7 @@ session_start();
             <div class="footer-col">
                 <h4>Enlaces</h4>
                 <ul>
-                    <li><a href="../Principal/index.php">Inicio</a></li>
+                    <li><a href="../Principal/principal.php">Inicio</a></li>
                     <li><a href="torneos.php">Torneos</a></li>
                     <li><a href="../Entrenamientos/entrenamientos.php">Entrenamientos</a></li>
                     <li><a href="../Contacto/contacto.php">Contacto</a></li>
@@ -110,7 +110,7 @@ session_start();
 
             <div class="footer-col">
                 <h4>Contacto</h4>
-                <p>Alicante, EspaÃ±a</p>
+                <p>Alicante, España</p>
                 <p>+34 600 000 000</p>
                 <p>info@a3pistas.com</p>
             </div>
@@ -118,7 +118,7 @@ session_start();
         </div>
 
         <div class="footer-bottom">
-            <p>Â© 2025 A3Pitas. Todos los derechos reservados.</p>
+            <p>© 2025 A3Pitas. Todos los derechos reservados.</p>
         </div>
     </footer>
 </body>

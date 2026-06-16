@@ -1,10 +1,10 @@
-﻿<?php
+<?php
 session_start();
 require_once '../../config/db.php';
 
-// Verificar si el usuario ha iniciado sesiÃ³n
+// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['id'])) {
-    header('Location: ../../Login/index.php');
+    header('Location: ../../Login/login.php');
     exit();
 }
 
@@ -28,7 +28,7 @@ $fecha_siguiente = date('Y-m-d', strtotime($fecha . ' +1 day'));
 // Horas disponibles
 $horas = ['11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 
-// Pistas de pÃ¡del disponibles
+// Pistas de pádel disponibles
 $pistas = [
     ['id' => 15, 'nombre' => 'Pista Cubierta 1', 'imagen' => 'padelcubierto.png'],
     ['id' => 16, 'nombre' => 'Pista Cubierta 2', 'imagen' => 'padelcubierto.png'],
@@ -40,7 +40,7 @@ $pistas = [
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Reservas PÃ¡del</title>
+    <title>Reservas Pádel</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,13 +49,13 @@ $pistas = [
 <body>
     <header class="header">
         <div class="logos">
-            <a href="../../Principal/index.php">
+            <a href="../../Principal/principal.php">
                 <img src="logo.png" alt="Logo" class="logo">
             </a>
             <img src="espana.png" alt="Logo" class="logo2">
         </div>
         <nav class="nav1">
-            <a href="../../Principal/index.php" class="inicio">Inicio</a>
+            <a href="../../Principal/principal.php" class="inicio">Inicio</a>
             <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
             <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -67,16 +67,16 @@ $pistas = [
             <?php
             if (isset($_SESSION['id'])) {
                 echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . $_SESSION['nombre'] . '</a>';
-                echo '<a href="../../logout.php" class="cerrar">Cerrar SesiÃ³n</a>';
+                echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
             } else {
-                echo '<a href="../../Login/index.php" class="login-button">Acceder</a>';
+                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
             }
             ?>
         </nav>
     </header>
 
     <main class="reservas">
-        <h1 class="titulo-deporte">PÃDEL</h1>
+        <h1 class="titulo-deporte">PÁDEL</h1>
 
         <?php
         // Recorrer todas las pistas y mostrar su disponibilidad
@@ -84,7 +84,7 @@ $pistas = [
             echo '<details class="panel">';
             echo '<summary class="panel-header">';
             echo '<img src="' . $pista['imagen'] . '" alt="' . $pista['nombre'] . '">';
-            echo '<div class="header-info"><span class="titulo">' . $pista['nombre'] . '</span><span class="precio">20â‚¬/hora</span></div>';
+            echo '<div class="header-info"><span class="titulo">' . $pista['nombre'] . '</span><span class="precio">20€/hora</span></div>';
             echo '</summary>';
             echo '<div class="selector-fecha">';
             if ($fecha > $hoy) {

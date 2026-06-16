@@ -1,10 +1,10 @@
-﻿<?php
+<?php
 session_start();
 require_once '../../config/db.php';
 
-// Verificar si el usuario ha iniciado sesiÃ³n
+// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['id'])) {
-    header('Location: ../../Login/index.php');
+    header('Location: ../../Login/login.php');
     exit();
 }
 
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header('Location: ../../Confirmacion/confirmacion.php');
         exit();
     } else {
-        echo "<script>alert('Error al confirmar la reserva. Por favor, intÃ©ntalo de nuevo.');</script>";
+        echo "<script>alert('Error al confirmar la reserva. Por favor, inténtalo de nuevo.');</script>";
     }
 }
 
@@ -113,7 +113,7 @@ if (isset($_GET['hora'])) {
             <img src="espana.png" alt="Logo" class="logo2">
         </div>
         <nav class="nav1">
-            <a href="../../Principal/index.php" class="inicio">Inicio</a>
+            <a href="../../Principal/principal.php" class="inicio">Inicio</a>
             <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
             <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -125,9 +125,9 @@ if (isset($_GET['hora'])) {
             <?php
             if (isset($_SESSION['id'])) {
                 echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . $_SESSION['nombre'] . '</a>';
-                echo '<a href="../../logout.php" class="cerrar">Cerrar SesiÃ³n</a>';
+                echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
             } else {
-                echo '<a href="../../Login/index.php" class="login-button">Acceder</a>';
+                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
             }
             ?>
         </nav>
@@ -149,18 +149,18 @@ if (isset($_GET['hora'])) {
 
             <div class="grupo-fecha">
                 <label>Fecha:</label>
-                <!-- Se rellena automÃ¡ticamente con la fecha elegida en reservas-tenis.php -->
+                <!-- Se rellena automáticamente con la fecha elegida en reservas-tenis.php -->
                 <input type="date" name="fecha" value="<?php echo $fecha_valor; ?>" readonly required>
             </div>
 
             <div class="grupo">
                 <label>Hora de inicio:</label>
-                <!-- Se rellena automÃ¡ticamente con la hora elegida en reservas-tenis.php -->
+                <!-- Se rellena automáticamente con la hora elegida en reservas-tenis.php -->
                 <input type="time" name="hora_inicio" value="<?php echo $hora_valor; ?>" readonly required>
             </div>
 
             <div class="grupo">
-                <label>DuraciÃ³n:</label>
+                <label>Duración:</label>
                 <select name="duracion" required>
                     <option value="1">1 hora</option>
                     <option value="1.5">1 hora y media</option>
@@ -181,15 +181,15 @@ if (isset($_GET['hora'])) {
             <div class="grupo">
                 <label>Alquiler de material:</label>
                 <div class="opciones">
-                    <label><input type="checkbox" name="pelotas" value="1"> Pelotas (8â‚¬)</label>
-                    <label><input type="checkbox" name="raqueta" value="1"> Raqueta (5â‚¬)</label>
+                    <label><input type="checkbox" name="pelotas" value="1"> Pelotas (8€)</label>
+                    <label><input type="checkbox" name="raqueta" value="1"> Raqueta (5€)</label>
                 </div>
             </div>
 
             <div class="grupo">
                 <label>
                     <input type="checkbox" required>
-                    Acepto la polÃ­tica de cancelaciÃ³n
+                    Acepto la política de cancelación
                 </label>
             </div>
 
@@ -198,8 +198,8 @@ if (isset($_GET['hora'])) {
         </form>
 
         <p class="politica">
-            Las reservas podrÃ¡n cancelarse hasta 1 hora antes del inicio.
-            Pasado ese tiempo no se permitirÃ¡ la cancelaciÃ³n.
+            Las reservas podrán cancelarse hasta 1 hora antes del inicio.
+            Pasado ese tiempo no se permitirá la cancelación.
         </p>
 
     </main>

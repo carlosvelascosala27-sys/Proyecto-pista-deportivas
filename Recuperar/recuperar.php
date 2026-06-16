@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 require_once '../config/db.php';
 
@@ -19,23 +19,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
     }
 }
 
-// Paso 2: cambiar la contraseÃ±a si se ha enviado el formulario con nueva contraseÃ±a
+// Paso 2: cambiar la contraseña si se ha enviado el formulario con nueva contraseña
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nueva_password'])) {
     $email = $_POST['email_hidden'];
     $nueva_password = $_POST['nueva_password'];
     $repetir_password = $_POST['repetir_password'];
 
     if ($nueva_password != $repetir_password) {
-        $mensaje = 'Las contraseÃ±as no coinciden.';
+        $mensaje = 'Las contraseñas no coinciden.';
         $email_encontrado = $email;
     } else if (strlen($nueva_password) < 6) {
-        $mensaje = 'La contraseÃ±a debe tener al menos 6 caracteres.';
+        $mensaje = 'La contraseña debe tener al menos 6 caracteres.';
         $email_encontrado = $email;
     } else {
-        // Actualizamos la contraseÃ±a en la base de datos
+        // Actualizamos la contraseña en la base de datos
         $password_hash = password_hash($nueva_password, PASSWORD_DEFAULT);
         $pdo->query("UPDATE usuarios SET password = '$password_hash' WHERE email = '$email'");
-        $mensaje = 'ContraseÃ±a cambiada correctamente. Ya puedes iniciar sesiÃ³n.';
+        $mensaje = 'Contraseña cambiada correctamente. Ya puedes iniciar sesión.';
     }
 }
 ?>
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nueva_password'])) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Recuperar ContraseÃ±a</title>
+    <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nueva_password'])) {
 </head>
 <body>
     <section class="recuperar">
-        <h1>Recuperar ContraseÃ±a</h1>
+        <h1>Recuperar Contraseña</h1>
 
         <?php
         // Si hay un mensaje lo mostramos
@@ -59,27 +59,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nueva_password'])) {
             echo '<p class="mensaje">' . $mensaje . '</p>';
         }
 
-        // Si el email fue encontrado mostramos el formulario para cambiar la contraseÃ±a
+        // Si el email fue encontrado mostramos el formulario para cambiar la contraseña
         if ($email_encontrado != '') {
             echo '<form action="recuperar.php" method="post">';
             echo '<input type="hidden" name="email_hidden" value="' . $email_encontrado . '">';
-            echo '<input class="controls" type="password" name="nueva_password" placeholder="Nueva contraseÃ±a" required>';
-            echo '<input class="controls" type="password" name="repetir_password" placeholder="Repetir contraseÃ±a" required>';
-            echo '<button class="boton" type="submit">Cambiar contraseÃ±a</button>';
+            echo '<input class="controls" type="password" name="nueva_password" placeholder="Nueva contraseña" required>';
+            echo '<input class="controls" type="password" name="repetir_password" placeholder="Repetir contraseña" required>';
+            echo '<button class="boton" type="submit">Cambiar contraseña</button>';
             echo '</form>';
         } else if ($mensaje == '' || $mensaje == 'No existe ninguna cuenta con ese email.') {
             // Mostramos el formulario para introducir el email
             echo '<form action="recuperar.php" method="post">';
-            echo '<input class="controls" type="email" name="email" placeholder="Ingrese su correo electrÃ³nico" required>';
+            echo '<input class="controls" type="email" name="email" placeholder="Ingrese su correo electrónico" required>';
             echo '<button class="boton" type="submit">Buscar cuenta</button>';
             echo '</form>';
         }
 
-        // Si la contraseÃ±a se cambio correctamente mostramos el enlace al login
-        if ($mensaje == 'ContraseÃ±a cambiada correctamente. Ya puedes iniciar sesiÃ³n.') {
-            echo '<p><a href="../Login/index.php" class="boton">Ir al login</a></p>';
+        // Si la contraseña se cambio correctamente mostramos el enlace al login
+        if ($mensaje == 'Contraseña cambiada correctamente. Ya puedes iniciar sesión.') {
+            echo '<p><a href="../Login/login.php" class="boton">Ir al login</a></p>';
         } else {
-            echo '<p><a href="../Login/index.php">Â¿Volver al inicio de sesiÃ³n?</a></p>';
+            echo '<p><a href="../Login/login.php">¿Volver al inicio de sesión?</a></p>';
         }
         ?>
 
