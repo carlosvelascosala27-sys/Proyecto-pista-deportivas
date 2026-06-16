@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 // Las sesiones permiten guardar datos del usuario mientras navega por la web
 // Es como una "memoria temporal" que dura hasta que cierra el navegador
@@ -14,41 +14,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email    = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    // Comprobamos que no vengan vacíos
+    // Comprobamos que no vengan vacÃ­os
     if (empty($email) || empty($password)) {
         $error = "Por favor, rellena todos los campos.";
     } else {
 
         // Buscamos en la BD un usuario con ese email
-        // Usamos consulta preparada (?) para evitar inyección SQL
+        // Usamos consulta preparada (?) para evitar inyecciÃ³n SQL
         $sql  = "SELECT * FROM usuarios WHERE email = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$email]);
         $usuario = $stmt->fetch(); // Devuelve la fila como array o false si no existe
 
-        // Comprobamos si el usuario existe Y si la contraseña es correcta
-        // password_verify compara la contraseña escrita con el hash guardado en la BD
+        // Comprobamos si el usuario existe Y si la contraseÃ±a es correcta
+        // password_verify compara la contraseÃ±a escrita con el hash guardado en la BD
         if ($usuario && password_verify($password, $usuario['password'])) {
 
-            // Login correcto: guardamos sus datos en la sesión
+            // Login correcto: guardamos sus datos en la sesiÃ³n
             $_SESSION['id'] = $usuario['id'];
             $_SESSION['nombre'] = $usuario['nombre'];
             $_SESSION['email'] = $usuario['email'];
             $_SESSION['rol'] = $usuario['rol'];
             $_SESSION['saldo_monedas'] = $usuario['saldo_monedas'];
 
-            // Redirigimos según el rol
+            // Redirigimos segÃºn el rol
             if ($usuario['rol'] === 'admin') {
                 header("Location: ../Admin/index.php");
             } else {
-                header("Location: ../Principal/principal.php");
+                header("Location: ../Principal/index.php");
             }
-            exit(); // Importante: detiene el PHP después de redirigir
+            exit(); // Importante: detiene el PHP despuÃ©s de redirigir
 
         } else {
-            // Email o contraseña incorrectos
-            // No decimos cuál de los dos falla (por seguridad)
-            $error = "Email o contraseña incorrectos.";
+            // Email o contraseÃ±a incorrectos
+            // No decimos cuÃ¡l de los dos falla (por seguridad)
+            $error = "Email o contraseÃ±a incorrectos.";
         }
     }
 }
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Inicio Sesión</title>
+    <title>Inicio SesiÃ³n</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
@@ -66,30 +66,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
     <div class="caja1">
-        <form action="login.php" method="post">
-            <h1>Inicio de Sesión</h1>
+        <form action="index.php" method="post">
+            <h1>Inicio de SesiÃ³n</h1>
 
             <?php if (!empty($error)): ?>
                 <p style="color:red; text-align:center;"><?= htmlspecialchars($error) ?></p>
             <?php endif; ?>
 
             <div class="box">
-                <input type="email" name="email" placeholder="Correo electrónico" required
+                <input type="email" name="email" placeholder="Correo electrÃ³nico" required
                        value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
                 <i class="bx bx-user" style="color:#ffffff;"></i>
             </div>
             <div class="box">
-                <input type="password" name="password" placeholder="Contraseña" required>
+                <input type="password" name="password" placeholder="ContraseÃ±a" required>
                 <i class="bx bx-lock" style="color:#ffffff;"></i>
             </div>
             <div class="recordar">
-                <label><input type="checkbox" name="recordar"> Recordar contraseña</label>
-                <a href="../Recuperar/recuperar.php">¿Olvidaste tu contraseña?</a>
+                <label><input type="checkbox" name="recordar"> Recordar contraseÃ±a</label>
+                <a href="../Recuperar/recuperar.php">Â¿Olvidaste tu contraseÃ±a?</a>
             </div>
-            <button type="submit" class="boton">Iniciar sesión</button>
+            <button type="submit" class="boton">Iniciar sesiÃ³n</button>
 
             <div class="registro">
-                <p>¿No tienes una cuenta? <a href="../registro/registro.html">Regístrate aquí</a></p>
+                <p>Â¿No tienes una cuenta? <a href="../registro/registro.html">RegÃ­strate aquÃ­</a></p>
             </div>
         </form>
     </div>

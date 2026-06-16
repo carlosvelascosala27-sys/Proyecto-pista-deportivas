@@ -1,17 +1,17 @@
-<?php
+﻿<?php
 session_start();
 require '../config/db.php';
 
 // Verificar si el usuario es administrador
 if (!isset($_SESSION['id']) || $_SESSION['rol'] !== 'admin') {
-    header('Location: ../Login/login.php');
+    header('Location: ../Login/index.php');
     exit();
 }
 
 // Si se envia el formulario
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $accion = '';
-    // Comprobamos si se ha enviado la acción desde el formulario
+    // Comprobamos si se ha enviado la acciÃ³n desde el formulario
     if (isset($_POST['accion'])) {
         $accion = $_POST['accion'];
     }
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $apellido_1 = $_POST['apellido_1'];
         $apellido_2 = $_POST['apellido_2'];
         $email = $_POST['email'];
-        // Hasheamos la contraseña antes de guardarla en la base de datos
+        // Hasheamos la contraseÃ±a antes de guardarla en la base de datos
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $rol = $_POST['rol'];
         $pdo->query("INSERT INTO usuarios (nombre, apellido_1, apellido_2, email, password, rol) VALUES ('$nombre', '$apellido_1', '$apellido_2', '$email', '$password', '$rol')");
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $duracion_horas = $_POST['duracion'];
         $tipo_pago = $_POST['tipo_pago'];
         
-        // Si se ha seleccionado alquiler de pelotas, agregar esa información a la reserva
+        // Si se ha seleccionado alquiler de pelotas, agregar esa informaciÃ³n a la reserva
         if (isset($_POST['pelotas'])){
             $alquiler_pelotas = 1;
         }else {
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Administración de Pistas</title>
+    <title>AdministraciÃ³n de Pistas</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php
             if ($seccion == 'pistas'){ ?>
                 <section id="pistas" class="seccion-admin">
-                    <h1>Gestión de Pistas</h1>
+                    <h1>GestiÃ³n de Pistas</h1>
 
                     <?php
                     // Filtro de deporte
@@ -191,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo '<div class="bloque-admin">';
                         echo '<h3>' . $p['nombre'] . '</h3>';
                         echo '<p>Deporte: ' . $p['deporte'] . '</p>';
-                        echo '<p>Precio/hora: ' . $p['precio_hora'] . '€</p>';
+                        echo '<p>Precio/hora: ' . $p['precio_hora'] . 'â‚¬</p>';
                         echo '</div>';
                     }
                     ?>
@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php
             if ($seccion == 'reservas'){ ?>
                 <section id="reservas" class="seccion-admin">
-                    <h1>Gestión de Reservas</h1>
+                    <h1>GestiÃ³n de Reservas</h1>
 
                     <?php
                     $buscar = '';
@@ -247,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $pagina = $total_paginas;
                     }
 
-                    // Calculamos el inicio de la consulta para la paginación
+                    // Calculamos el inicio de la consulta para la paginaciÃ³n
                     $inicio = ($pagina - 1) * $por_pagina;
                     $sql = "SELECT r.id, r.fecha, r.hora_inicio, r.estado, u.nombre, u.apellido_1, u.email, p.id AS id_pista, p.nombre AS nombre_pista FROM reservas r JOIN usuarios u ON r.id_usuario = u.id JOIN pistas p ON r.id_pista = p.id WHERE true";
                     if ($buscar != '') {
@@ -257,7 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $sql .= " AND r.estado = '$estado_filtro'";
                     }
                     $sql .= " ORDER BY r.fecha $ordenar";
-                    // Agregamos la cláusula LIMIT para la paginación
+                    // Agregamos la clÃ¡usula LIMIT para la paginaciÃ³n
                     $sql .= " LIMIT $inicio, $por_pagina";
 
                     $lista_reservas = $pdo->query($sql)->fetchAll();
@@ -285,7 +285,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </select>
                         
                         <input type="time" name="hora_inicio" class="input-admin" required>
-                        <input type="number" name="duracion" placeholder="Duración (horas)" class="input-admin" min="1" max="2.5" required>
+                        <input type="number" name="duracion" placeholder="DuraciÃ³n (horas)" class="input-admin" min="1" max="2.5" required>
                         <label><input type="checkbox" name="pelotas"> Alquiler de pelotas</label>
                         <label><input type="checkbox" name="raqueta"> Alquiler de raqueta</label>
                         <select name="tipo_pago" class="input-admin">
@@ -391,7 +391,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php
             if ($seccion == 'usuarios'){ ?>
                 <section id="usuarios" class="seccion-admin">
-                    <h1>Gestión de Usuarios</h1>
+                    <h1>GestiÃ³n de Usuarios</h1>
 
                     <h2>Crear usuario</h2>
                     <form action="index.php?seccion=usuarios" method="post" class="form-crear">
@@ -400,7 +400,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="text" name="apellido_1" placeholder="Primer apellido" class="input-admin" required>
                         <input type="text" name="apellido_2" placeholder="Segundo apellido" class="input-admin">
                         <input type="email" name="email" placeholder="Email" class="input-admin" required>
-                        <input type="password" name="password" placeholder="Contraseña" class="input-admin" required>
+                        <input type="password" name="password" placeholder="ContraseÃ±a" class="input-admin" required>
                         <select name="rol" class="input-admin">
                             <option value="cliente">Cliente</option>
                             <option value="admin">Admin</option>
@@ -505,7 +505,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $mensajes = $pdo->query("SELECT nombre, email, asunto, mensaje, fecha_envio FROM mensajes_contacto ORDER BY fecha_envio DESC")->fetchAll();
 
                     if (count($mensajes) == 0) {
-                        echo '<p>No hay mensajes todavía.</p>';
+                        echo '<p>No hay mensajes todavÃ­a.</p>';
                     } else {
                         foreach ($mensajes as $m) {
                             echo '<div class="bloque-admin">';

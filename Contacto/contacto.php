@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 require_once '../config/db.php';
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <nav class="nav1">
             
-                <a href="../Principal/principal.php" class="inicio">Inicio</a>
+                <a href="../Principal/index.php" class="inicio">Inicio</a>
                 <a href="../Torneos/torneos.php" class="torneos">Torneos</a>
                 <a href="../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -46,9 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <?php if (isset($_SESSION['id'])) { ?>
                 <a href="../MiCuenta/micuenta.php" class="login-button">Hola, <?= htmlspecialchars($_SESSION['nombre']) ?></a>
-                <a href="../logout.php" class="cerrar">Cerrar Sesión</a>
+                <a href="../logout.php" class="cerrar">Cerrar SesiÃ³n</a>
             <?php } else { ?>
-                <a href="../Login/login.php" class="login-button">Acceder</a>
+                <a href="../Login/index.php" class="login-button">Acceder</a>
             <?php } ?>
             
 
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <section class="contacto-hero">
     <h1>Contacto A3Pistas</h1>
-    <p>Estamos aquí para ayudarte</p>
+    <p>Estamos aquÃ­ para ayudarte</p>
     </section>
 
 
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="contacto-formulario">
 
-            <h2>Envíanos un mensaje</h2>
+            <h2>EnvÃ­anos un mensaje</h2>
 
             <form action="contacto.php" method="post">
 
@@ -73,13 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="text" name="nombre" placeholder="Tu nombre completo" required>
 
                 <label>Email</label>
-                <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                <input type="email" name="email" placeholder="Tu correo electrÃ³nico" required>
 
                 <label>Asunto</label>
                 <select name="asunto">
                     <option>Consulta general</option>
                     <option>Reserva de pista</option>
-                    <option>Organización de torneo</option>
+                    <option>OrganizaciÃ³n de torneo</option>
                     <option>Otro</option>
                 </select>
 
@@ -94,10 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="contacto-info">
 
-            <h2>Información de contacto</h2>
+            <h2>InformaciÃ³n de contacto</h2>
 
-            <p><strong>Dirección:</strong> Alicante, España</p>
-            <p><strong>Teléfono:</strong> +34 600 000 000</p>
+            <p><strong>DirecciÃ³n:</strong> Alicante, EspaÃ±a</p>
+            <p><strong>TelÃ©fono:</strong> +34 600 000 000</p>
             <p><strong>Email:</strong> info@a3pistas.com</p>
             <p><strong>Horario:</strong> Lunes a Domingo 9:00 - 23:00</p>
 

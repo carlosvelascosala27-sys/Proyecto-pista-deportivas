@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 require_once '../config/db.php';
 
@@ -14,10 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Por favor, rellena todos los campos.";
 
     } elseif ($password !== $confirm_password) {
-        $error = "Las contraseñas no coinciden.";
+        $error = "Las contraseÃ±as no coinciden.";
 
     } elseif (strlen($password) < 6) {
-        $error = "La contraseña debe tener al menos 6 caracteres.";
+        $error = "La contraseÃ±a debe tener al menos 6 caracteres.";
 
     } else {
 
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$email]);
 
         if ($stmt->fetch()) {
-            $error = "Ese email ya está registrado.";
+            $error = "Ese email ya estÃ¡ registrado.";
         } else {
 
             $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['email'] = $email;
             $_SESSION['rol'] = 'cliente';
 
-            header("Location: ../Principal/principal.php");
+            header("Location: ../Principal/index.php");
             exit();
         }
     }
@@ -64,11 +64,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="registro.php" method="post">
             <input class="controls" type="text" name="nombre" placeholder="Ingrese su nombre" required>
             <input class="controls" type="text" name="apellido" placeholder="Ingrese su apellido" required>
-            <input class="controls" type="email" name="email" placeholder="Ingrese su correo electrónico" required>
-            <input class="controls" type="password" name="password" placeholder="Ingrese su contraseña" required>
-            <input class="controls" type="password" name="confirm_password" placeholder="Confirmar contraseña" required>
+            <input class="controls" type="email" name="email" placeholder="Ingrese su correo electrÃ³nico" required>
+            <input class="controls" type="password" name="password" placeholder="Ingrese su contraseÃ±a" required>
+            <input class="controls" type="password" name="confirm_password" placeholder="Confirmar contraseÃ±a" required>
             <button class="boton" type="submit">Registrarse</button>
-            <p><a href="../Login/login.html">¿Ya tienes una cuenta?</a></p>
+            <p><a href="../Login/login.html">Â¿Ya tienes una cuenta?</a></p>
         </form>
     </section>
 </body>

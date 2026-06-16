@@ -1,10 +1,10 @@
-<?php
+﻿<?php
 session_start();
 require_once '../config/db.php';
 
 // Si no ha iniciado sesion, lo mandamos al login
 if (!isset($_SESSION['id'])) {
-    header('Location: ../Login/login.php');
+    header('Location: ../Login/index.php');
     exit();
 }
 
@@ -52,13 +52,13 @@ $todas = $consulta_todas->fetchAll();
 <body>
     <header class="header">
         <div class="logos">
-            <a href="../Principal/principal.php">
+            <a href="../Principal/index.php">
                 <img src="logo.png" alt="Logo" class="logo">
             </a>
             <img src="espana.png" alt="Logo" class="logo2">
         </div>
         <nav class="nav1">
-            <a href="../Principal/principal.php" class="inicio">Inicio</a>
+            <a href="../Principal/index.php" class="inicio">Inicio</a>
             <a href="../Torneos/torneos.php" class="torneos">Torneos</a>
             <a href="../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -70,9 +70,9 @@ $todas = $consulta_todas->fetchAll();
             <?php
             if (isset($_SESSION['id'])) {
                 echo '<span class="login-button">Hola, ' . htmlspecialchars($_SESSION['nombre']) . '</span>';
-                echo '<a href="../logout.php" class="cerrar">Cerrar Sesión</a>';
+                echo '<a href="../logout.php" class="cerrar">Cerrar SesiÃ³n</a>';
             } else {
-                echo '<a href="../Login/login.php" class="login-button">Acceder</a>';
+                echo '<a href="../Login/index.php" class="login-button">Acceder</a>';
             }
             ?>
         </nav>
@@ -88,14 +88,14 @@ $todas = $consulta_todas->fetchAll();
         </section>
 
         <section class="seccion">
-            <h2>Próximas Reservas</h2>
+            <h2>PrÃ³ximas Reservas</h2>
             <?php
             if (count($proximas) == 0) {
-                echo '<p class="sin-datos">No tienes reservas próximas.</p>';
+                echo '<p class="sin-datos">No tienes reservas prÃ³ximas.</p>';
             } else {
                 echo '<table class="tabla-reservas">';
                 echo '<thead><tr>';
-                echo '<th>Pista</th><th>Fecha</th><th>Hora</th><th>Duración</th><th>Precio</th><th>Pago</th><th>Estado</th><th></th>';
+                echo '<th>Pista</th><th>Fecha</th><th>Hora</th><th>DuraciÃ³n</th><th>Precio</th><th>Pago</th><th>Estado</th><th></th>';
                 echo '</tr></thead><tbody>';
                 // Recorremos las proximas reservas
                 foreach ($proximas as $reserva) {
@@ -104,7 +104,7 @@ $todas = $consulta_todas->fetchAll();
                     echo '<td>' . $reserva['fecha'] . '</td>';
                     echo '<td>' . $reserva['hora_inicio'] . '</td>';
                     echo '<td>' . $reserva['duracion_horas'] . ' hora/s</td>';
-                    echo '<td>' . $reserva['precio_total'] . '€</td>';
+                    echo '<td>' . $reserva['precio_total'] . 'â‚¬</td>';
                     echo '<td>' . $reserva['tipo_pago'] . '</td>';
                     echo '<td>' . $reserva['estado'] . '</td>';
                     // Boton de cancelar que envia el id de la reserva por POST
@@ -130,7 +130,7 @@ $todas = $consulta_todas->fetchAll();
             } else {
                 echo '<table class="tabla-reservas">';
                 echo '<thead><tr>';
-                echo '<th>Pista</th><th>Fecha</th><th>Hora</th><th>Duración</th><th>Precio</th><th>Pago</th><th>Estado</th>';
+                echo '<th>Pista</th><th>Fecha</th><th>Hora</th><th>DuraciÃ³n</th><th>Precio</th><th>Pago</th><th>Estado</th>';
                 echo '</tr></thead><tbody>';
                 // Recorremos el historial de reservas pasadas
                 foreach ($historial as $reserva) {
@@ -139,7 +139,7 @@ $todas = $consulta_todas->fetchAll();
                     echo '<td>' . $reserva['fecha'] . '</td>';
                     echo '<td>' . $reserva['hora_inicio'] . '</td>';
                     echo '<td>' . $reserva['duracion_horas'] . ' hora/s</td>';
-                    echo '<td>' . $reserva['precio_total'] . '€</td>';
+                    echo '<td>' . $reserva['precio_total'] . 'â‚¬</td>';
                     echo '<td>' . $reserva['tipo_pago'] . '</td>';
                     echo '<td>' . $reserva['estado'] . '</td>';
                     echo '</tr>';

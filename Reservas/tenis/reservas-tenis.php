@@ -1,10 +1,10 @@
-<?php
+﻿<?php
 session_start();
 require_once '../../config/db.php';
 
-// Verificar si el usuario ha iniciado sesión
+// Verificar si el usuario ha iniciado sesiÃ³n
 if (!isset($_SESSION['id'])) {
-    header('Location: ../../Login/login.php');
+    header('Location: ../../Login/index.php');
     exit();
 }
 
@@ -22,7 +22,7 @@ if ($fecha < $hoy) {
     $fecha = $hoy;
 }
 
-// Fechas para las flechas de navegación
+// Fechas para las flechas de navegaciÃ³n
 $fecha_anterior = date('Y-m-d', strtotime($fecha . ' -1 day'));
 $fecha_siguiente = date('Y-m-d', strtotime($fecha . ' +1 day'));
 
@@ -50,13 +50,13 @@ $pistas = [
 <body>
     <header class="header">
         <div class="logos">
-            <a href="../../Principal/principal.php">
+            <a href="../../Principal/index.php">
                 <img src="logo.png" alt="Logo" class="logo">
             </a>
             <img src="espana.png" alt="Logo" class="logo2">
         </div>
         <nav class="nav1">
-            <a href="../../Principal/principal.php" class="inicio">Inicio</a>
+            <a href="../../Principal/index.php" class="inicio">Inicio</a>
             <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
             <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -68,9 +68,9 @@ $pistas = [
             <?php
             if (isset($_SESSION['id'])) {
                 echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . $_SESSION['nombre'] . '</a>';
-                echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
+                echo '<a href="../../logout.php" class="cerrar">Cerrar SesiÃ³n</a>';
             } else {
-                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
+                echo '<a href="../../Login/index.php" class="login-button">Acceder</a>';
             }
             ?>
         </nav>
@@ -85,7 +85,7 @@ $pistas = [
             echo '<details class="panel">';
             echo '<summary class="panel-header">';
             echo '<img src="' . $pista['imagen'] . '" alt="' . $pista['nombre'] . '">';
-            echo '<div class="header-info"><span class="titulo">' . $pista['nombre'] . '</span><span class="precio">10€/hora</span></div>';
+            echo '<div class="header-info"><span class="titulo">' . $pista['nombre'] . '</span><span class="precio">10â‚¬/hora</span></div>';
             echo '</summary>';
 
             // Selector de fecha

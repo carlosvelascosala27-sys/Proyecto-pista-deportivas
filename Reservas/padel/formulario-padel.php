@@ -1,10 +1,10 @@
-<?php
+﻿<?php
 session_start();
 require_once '../../config/db.php';
 
-// Verificar si el usuario ha iniciado sesión
+// Verificar si el usuario ha iniciado sesiÃ³n
 if (!isset($_SESSION['id'])) {
-    header('Location: ../../Login/login.php');
+    header('Location: ../../Login/index.php');
     exit();
 }
 
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $precio_euros = $precio_euros + 5;
     }
 
-    // Calcular el precio en BMVCoins (150 BMVCoins por hora de pádel)
+    // Calcular el precio en BMVCoins (150 BMVCoins por hora de pÃ¡del)
     $precio_coins = $duracion_horas * 150;
 
     // Verificar si el usuario tiene suficientes BMVCoins
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header('Location: ../../Confirmacion/confirmacion.php');
         exit();
     } else {
-        echo "<script>alert('Error al confirmar la reserva. Por favor, inténtalo de nuevo.');</script>";
+        echo "<script>alert('Error al confirmar la reserva. Por favor, intÃ©ntalo de nuevo.');</script>";
     }
 }
 
@@ -113,7 +113,7 @@ if (isset($_GET['hora'])) {
             <img src="espana.png" alt="Logo" class="logo2">
         </div>
         <nav class="nav1">
-            <a href="../../Principal/principal.php" class="inicio">Inicio</a>
+            <a href="../../Principal/index.php" class="inicio">Inicio</a>
             <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
             <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -125,9 +125,9 @@ if (isset($_GET['hora'])) {
             <?php
             if (isset($_SESSION['id'])) {
                 echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . $_SESSION['nombre'] . '</a>';
-                echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
+                echo '<a href="../../logout.php" class="cerrar">Cerrar SesiÃ³n</a>';
             } else {
-                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
+                echo '<a href="../../Login/index.php" class="login-button">Acceder</a>';
             }
             ?>
         </nav>
@@ -135,7 +135,7 @@ if (isset($_GET['hora'])) {
 
     <main class="formulario-container">
 
-        <h1>Formulario de Reserva - Pádel</h1>
+        <h1>Formulario de Reserva - PÃ¡del</h1>
 
         <form action="formulario-padel.php" method="post" class="formulario">
 
@@ -157,7 +157,7 @@ if (isset($_GET['hora'])) {
             </div>
 
             <div class="grupo">
-                <label>Duración:</label>
+                <label>DuraciÃ³n:</label>
                 <select name="duracion" required>
                     <option value="1">1 hora</option>
                     <option value="1.5">1 hora y media</option>
@@ -178,15 +178,15 @@ if (isset($_GET['hora'])) {
             <div class="grupo">
                 <label>Alquiler de material:</label>
                 <div class="opciones">
-                    <label><input type="checkbox" name="pelotas" value="1"> Pelotas (8€)</label>
-                    <label><input type="checkbox" name="pala" value="1"> Pala (5€)</label>
+                    <label><input type="checkbox" name="pelotas" value="1"> Pelotas (8â‚¬)</label>
+                    <label><input type="checkbox" name="pala" value="1"> Pala (5â‚¬)</label>
                 </div>
             </div>
 
             <div class="grupo">
                 <label>
                     <input type="checkbox" required>
-                    Acepto la política de cancelación
+                    Acepto la polÃ­tica de cancelaciÃ³n
                 </label>
             </div>
 
@@ -195,8 +195,8 @@ if (isset($_GET['hora'])) {
         </form>
 
         <p class="politica">
-            Las reservas podrán cancelarse hasta 1 hora antes del inicio.
-            Pasado ese tiempo no se permitirá la cancelación.
+            Las reservas podrÃ¡n cancelarse hasta 1 hora antes del inicio.
+            Pasado ese tiempo no se permitirÃ¡ la cancelaciÃ³n.
         </p>
 
     </main>

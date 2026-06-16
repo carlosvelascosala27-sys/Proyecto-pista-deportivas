@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ session_start();
         </div>
         <nav class="nav1">
             
-                <a href="../../Principal/principal.php" class="inicio">Inicio</a>
+                <a href="../../Principal/index.php" class="inicio">Inicio</a>
                 <a href="../../Torneos/torneos.php" class="torneos">Torneos</a>
                 <a href="../../Contacto/contacto.php" class="contacto">Contacto</a>
         </nav>
@@ -39,9 +39,9 @@ session_start();
             <?php
             if (isset($_SESSION['id'])) {
                 echo '<a href="../../MiCuenta/micuenta.php" class="login-button">Hola, ' . htmlspecialchars($_SESSION['nombre']) . '</a>';
-                echo '<a href="../../logout.php" class="cerrar">Cerrar Sesión</a>';
+                echo '<a href="../../logout.php" class="cerrar">Cerrar SesiÃ³n</a>';
             } else {
-                echo '<a href="../../Login/login.php" class="login-button">Acceder</a>';
+                echo '<a href="../../Login/index.php" class="login-button">Acceder</a>';
             }
             ?>
 
@@ -50,7 +50,7 @@ session_start();
     <section class="torneos-section">
         <div class="torneos-header">
             <h1>Torneos Juniors</h1>
-            <p>Torneos dirigidos a jugadores jóvenes de todos los niveles, con organización y ambiente competitivo.
+            <p>Torneos dirigidos a jugadores jÃ³venes de todos los niveles, con organizaciÃ³n y ambiente competitivo.
             </p>
         </div>
     </section>
@@ -58,15 +58,15 @@ session_start();
     <section class="torneos-parte">
         <div class="contenedor-cards">
             <a href="torneo_futbol_junior.html" class="card-torneo">
-                <img src="cartel-junior.png" alt="Torneo Junior Fútbol">
+                <img src="cartel-junior.png" alt="Torneo Junior FÃºtbol">
 
                 <div class="card-contenido">
-                    <h3>Torneo Junior Fútbol</h3>
+                    <h3>Torneo Junior FÃºtbol</h3>
 
                     <p>
-                        Competición juvenil por equipos con fase de grupos y eliminatorias.
+                        CompeticiÃ³n juvenil por equipos con fase de grupos y eliminatorias.
                         Ambiente deportivo y formativo.
-                        <strong>PRÓXIMAMENTE SE ABRIRÁN LAS INSCRIPCIONES.</strong>
+                        <strong>PRÃ“XIMAMENTE SE ABRIRÃN LAS INSCRIPCIONES.</strong>
                     </p>
                 </div>
             </a>
@@ -75,12 +75,12 @@ session_start();
                 <img src="cartel-padel-tenis.png" alt="Torneo Junior Tenis">
 
                 <div class="card-contenido">
-                    <h3>Torneo Junior Tenis y Pádel</h3>
+                    <h3>Torneo Junior Tenis y PÃ¡del</h3>
 
                     <p>
-                        Torneo individual juvenil con diferentes categorías por edad.
-                        Sistema de competición oficial.
-                        <strong>PRÓXIMAMENTE SE ABRIRÁN LAS INSCRIPCIONES.</strong>
+                        Torneo individual juvenil con diferentes categorÃ­as por edad.
+                        Sistema de competiciÃ³n oficial.
+                        <strong>PRÃ“XIMAMENTE SE ABRIRÃN LAS INSCRIPCIONES.</strong>
                     </p>
                 </div>
             </a>
@@ -99,7 +99,7 @@ session_start();
             <div class="footer-col">
                 <h4>Enlaces</h4>
                 <ul>
-                    <li><a href="../../Principal/principal.php">Inicio</a></li>
+                    <li><a href="../../Principal/index.php">Inicio</a></li>
                     <li><a href="../../Torneos/torneos.php">Torneos</a></li>
                     <li><a href="../../Entrenamientos/entrenamientos.php">Entrenamientos</a></li>
                     <li><a href="../../Contacto/contacto.php">Contacto</a></li>
@@ -108,7 +108,7 @@ session_start();
 
             <div class="footer-col">
                 <h4>Contacto</h4>
-                <p>Alicante, España</p>
+                <p>Alicante, EspaÃ±a</p>
                 <p>+34 600 000 000</p>
                 <p>info@a3pistas.com</p>
             </div>
@@ -116,7 +116,7 @@ session_start();
         </div>
 
         <div class="footer-bottom">
-            <p>© 2025 A3Pitas. Todos los derechos reservados.</p>
+            <p>Â© 2025 A3Pitas. Todos los derechos reservados.</p>
         </div>
     </footer>
 
